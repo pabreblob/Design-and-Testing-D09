@@ -1,0 +1,2 @@
+Si solo hay que comprobar que tenga letras, números y guiones (pero sin comprobar que estén todas):
+^[A-Za-z0-9\-]+$
