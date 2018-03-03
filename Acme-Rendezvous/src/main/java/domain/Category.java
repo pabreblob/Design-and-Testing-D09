@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -70,6 +71,7 @@ public class Category extends DomainEntity {
 		this.children = children;
 	}
 
+	@Valid
 	@ManyToOne
 	public Category getParent() {
 		return this.parent;
