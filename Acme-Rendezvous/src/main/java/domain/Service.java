@@ -86,7 +86,7 @@ public class Service extends DomainEntity {
 		return this.category;
 	}
 
-	public void setCategories(final Category category) {
+	public void setCategory(final Category category) {
 		this.category = category;
 	}
 
