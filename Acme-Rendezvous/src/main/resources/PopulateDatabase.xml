@@ -114,7 +114,13 @@
 		</property>
 	</bean>
 	
+	<bean id="Configurations" class="domain.Configuration">
+		<property name="bannerUrl" value="https://tinyurl.com/adventure-meetup" />
+		<property name="welcomeEng" value="Your place to organise your adventure meetups!" />
+		<property name="welcomeEsp" value="Tu sitio para organizar quedadas de aventura." />
+		<property name="businessName" value="Adventure meetups" />
 	
+	</bean>
 	<!-- Other domain beans come here -->	
 	<bean id="Admin" class="domain.Administrator">
 		<property name="name" value="admin" />
