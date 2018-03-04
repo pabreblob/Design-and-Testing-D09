@@ -27,7 +27,8 @@
 			<bean class="converters.StringToCommentConverter"/>
 			<bean class="converters.StringToReplyConverter"/>
 			<bean class="converters.StringToConfigurationConverter"/>
-		
+			
+			<bean class="converters.ServiceToStringConverter"/>
 			<bean class="converters.ConfigurationToStringConverter"/>
 			<bean class="converters.QuestionToStringConverter"/>
 			<bean class="converters.AdminToStringConverter"/>
@@ -46,6 +47,7 @@
 			<bean class="converters.StringToRendezvousConverter" />
 			<bean class="converters.StringToUserConverter" />
 			<bean class="converters.StringToAuthorityConverter" />
+			<bean class="converters.StringToServiceConverter" />
 			
 	</util:list>
 	
