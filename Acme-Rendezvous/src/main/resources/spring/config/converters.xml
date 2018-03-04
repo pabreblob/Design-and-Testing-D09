@@ -26,7 +26,9 @@
 			<bean class="converters.StringToAnswerConverter"/>
 			<bean class="converters.StringToCommentConverter"/>
 			<bean class="converters.StringToReplyConverter"/>
-
+			<bean class="converters.StringToConfigurationConverter"/>
+		
+			<bean class="converters.ConfigurationToStringConverter"/>
 			<bean class="converters.QuestionToStringConverter"/>
 			<bean class="converters.AdminToStringConverter"/>
 			<bean class="converters.AnnouncementToStringConverter" />
