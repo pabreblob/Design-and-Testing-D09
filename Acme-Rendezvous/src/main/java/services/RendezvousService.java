@@ -21,6 +21,7 @@ import domain.Announcement;
 import domain.Comment;
 import domain.Question;
 import domain.Rendezvous;
+import domain.Request;
 import domain.User;
 
 @Service
@@ -60,6 +61,7 @@ public class RendezvousService {
 		res.setComments(new ArrayList<Comment>());
 		res.setLinkedRendezvous(new ArrayList<Rendezvous>());
 		res.setQuestions(new ArrayList<Question>());
+		res.setRequests(new ArrayList<Request>());
 
 		return res;
 	}
@@ -75,7 +77,7 @@ public class RendezvousService {
 	public Rendezvous save(final Rendezvous rendezvous) {
 		if (rendezvous.getId() != 0) {
 			Assert.isTrue((rendezvous.getCreator().getUserAccount().getId() == LoginService.getPrincipal().getId()));
-			//Assert.isTrue(this.findOne(rendezvous.getId()).isFinalMode() == false);
+			Assert.isTrue(this.findOne(rendezvous.getId()).isFinalMode() == false);
 			Assert.isTrue(this.findOne(rendezvous.getId()).isDeleted() == false);
 			Assert.isTrue(this.findOne(rendezvous.getId()).getMoment().after(new Date()));
 		}
@@ -101,6 +103,7 @@ public class RendezvousService {
 		Assert.isTrue(rendezvous.getCreator().equals(this.userService.findByPrincipal()));
 		final Rendezvous res = this.rendezvousRepository.save(rendezvous);
 		for (final Rendezvous r : rendezvous.getLinkedRendezvous()) {
+			Assert.isTrue(r.getCreator().equals(this.userService.findByPrincipal()));
 			if (r.getLinkedRendezvous().contains(rendezvous))
 				r.getLinkedRendezvous().remove(rendezvous);
 			r.getLinkedRendezvous().add(rendezvous);
@@ -250,6 +253,7 @@ public class RendezvousService {
 			result.setComments(new ArrayList<Comment>());
 			result.setLinkedRendezvous(new ArrayList<Rendezvous>());
 			result.setQuestions(new ArrayList<Question>());
+			result.setRequests(new ArrayList<Request>());
 		} else {
 			result = this.rendezvousRepository.findOne(rendez.getId());
 
