@@ -279,7 +279,8 @@
 		<property name="vat" value="3067-J" />
 		<property name="services">
 			<list>
-				
+				<ref bean="Service1"></ref>
+				<ref bean="Service2"></ref>
 			</list>
 		</property>
 	</bean>
@@ -296,7 +297,7 @@
 		<property name="vat" value="3067-J" />
 		<property name="services">
 			<list>
-				
+				<ref bean="Service3"></ref>
 			</list>
 		</property>
 	</bean>
