@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -23,6 +24,7 @@ public class Service extends DomainEntity {
 	private String				description;
 	private String				pictureUrl;
 	private boolean				cancelled;
+	private double				price;
 
 	private Collection<Request>	requests;
 	private Category			category;
@@ -68,6 +70,15 @@ public class Service extends DomainEntity {
 
 	public void setCancelled(final boolean cancelled) {
 		this.cancelled = cancelled;
+	}
+
+	@Digits(integer = 15, fraction = 2)
+	public double getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(final double price) {
+		this.price = price;
 	}
 
 	@NotNull
