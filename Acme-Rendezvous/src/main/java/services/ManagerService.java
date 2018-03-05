@@ -114,6 +114,7 @@ public class ManagerService {
 		res.setAddress(managerForm.getAddress());
 		res.setPhone(managerForm.getPhone());
 		res.setEmail(managerForm.getEmail());
+		res.setVat(managerForm.getVat());
 		res.getUserAccount().setUsername(managerForm.getUserAccount().getUsername());
 		res.getUserAccount().setPassword(managerForm.getUserAccount().getPassword());
 

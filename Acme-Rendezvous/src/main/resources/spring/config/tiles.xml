@@ -35,6 +35,7 @@
 		
 		<value>/views/comment/tiles.xml</value>
 		<value>/views/reply/tiles.xml</value>
+		<value>/views/manager/tiles.xml</value>
 		
 
 	</util:list>

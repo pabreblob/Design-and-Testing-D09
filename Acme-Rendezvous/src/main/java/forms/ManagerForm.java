@@ -26,6 +26,7 @@ public class ManagerForm {
 
 	private String		name;
 	private String		surname;
+	private String		vat;
 	private Date		birthdate;
 	private String		address;
 	private String		phone;
@@ -128,5 +129,14 @@ public class ManagerForm {
 
 	public void setAcceptTerms(final boolean acceptTerms) {
 		this.acceptTerms = acceptTerms;
+	}
+	@NotBlank
+	@SafeHtml(whitelistType = WhiteListType.NONE)
+	public String getVat() {
+		return this.vat;
+	}
+
+	public void setVat(final String vat) {
+		this.vat = vat;
 	}
 }

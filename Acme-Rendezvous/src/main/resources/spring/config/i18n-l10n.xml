@@ -36,6 +36,7 @@
 		
 		<value>/views/comment/messages</value>
 		<value>/views/reply/messages</value>
+		<value>/views/manager/messages</value>
 	</util:list>
 
 </beans>

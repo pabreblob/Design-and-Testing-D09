@@ -34,6 +34,22 @@
 		
 	</display:table>
 	<jstl:if test="${adminList==true}">
+	<h1><spring:message code="user.managerList"/></h1>
+	<display:table pagesize="5" class="displaytag" keepStatus="true"
+	name="managers" requestURI="${requestURI}" id="row">
+	
+	<spring:message code="user.name" var="uNameHeader" />
+		<display:column property="name" title="${uNameHeader}" />
+	<spring:message code="user.email" var="emailHeader" />
+		<display:column property="email" title="${emailHeader}" />
+	<display:column>
+			<a href="manager/display.do?managerId=${row.id}">
+				<spring:message	code="manager.display" />
+			</a>
+		</display:column>
+	</display:table>
+	</jstl:if>
+	<jstl:if test="${adminList==true}">
 	<h1><spring:message code="user.adminList"/></h1>
 	<display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="administrators" requestURI="${requestURI}" id="row">
@@ -49,3 +65,4 @@
 		</display:column>
 	</display:table>
 	</jstl:if>
+	

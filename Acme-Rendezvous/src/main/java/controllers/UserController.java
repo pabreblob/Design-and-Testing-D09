@@ -23,9 +23,11 @@ import security.Authority;
 import security.UserAccount;
 import security.UserAccountService;
 import services.AdminService;
+import services.ManagerService;
 import services.RendezvousService;
 import services.UserService;
 import domain.Administrator;
+import domain.Manager;
 import domain.Rendezvous;
 import domain.User;
 import forms.UserForm;
@@ -38,6 +40,8 @@ public class UserController extends AbstractController {
 	private UserService			userService;
 	@Autowired
 	private AdminService		adminService;
+	@Autowired
+	private ManagerService		managerService;
 	@Autowired
 	private RendezvousService	rendezvousService;
 	@Autowired
@@ -52,6 +56,7 @@ public class UserController extends AbstractController {
 		ModelAndView result;
 		Collection<User> users;
 		final Collection<Administrator> administrators = this.adminService.findAll();
+		final Collection<Manager> managers = this.managerService.findAll();
 		final Boolean hasQuestions = false;
 		final Boolean adminList = true;
 		users = this.userService.findAll();
@@ -60,6 +65,7 @@ public class UserController extends AbstractController {
 		result.addObject("users", users);
 		result.addObject("adminList", adminList);
 		result.addObject("administrators", administrators);
+		result.addObject("managers", managers);
 		result.addObject("hasQuestions", hasQuestions);
 		result.addObject("requestURI", "user/list-all.do");
 

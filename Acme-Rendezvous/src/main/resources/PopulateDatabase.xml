@@ -276,7 +276,7 @@
 		<property name="userAccount">
 			<ref bean="userAccount8" />
 		</property>
-		<property name="vat" value="3067-J" />
+		<property name="vat" value="ES12345678Z" />
 		<property name="services">
 			<list>
 				<ref bean="Service1"></ref>
@@ -294,7 +294,7 @@
 		<property name="userAccount">
 			<ref bean="userAccount9" />
 		</property>
-		<property name="vat" value="3067-J" />
+		<property name="vat" value="ES12345678Z" />
 		<property name="services">
 			<list>
 				<ref bean="Service3"></ref>
