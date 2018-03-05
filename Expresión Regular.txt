@@ -1,2 +1,31 @@
-Si solo hay que comprobar que tenga letras, números y guiones (pero sin comprobar que estén todas):
-^[A-Za-z0-9\-]+$
+Comprobación del VAT en España
+^((ES)(\-)?)?(([A-Z](\-)?[0-9]{8})|([A-Z](\-)?[0-9]{7}(\-)?[A-Z])|([0-9]{8}(\-)?[A-Z]))$
+
+CASOS PARA LOS QUE FUNCIONA:
+12345678Z
+12345678-Z
+Z12345678
+Z-12345678
+Z1234567Z
+Z-1234567Z
+Z1234567-Z
+Z-1234567-Z
+
+ES12345678Z
+ES12345678-Z
+ESZ12345678
+ESZ-12345678
+ESZ1234567Z
+ESZ-1234567Z
+ESZ1234567-Z
+ESZ-1234567-Z
+
+ES-12345678Z
+ES-12345678-Z
+ES-Z12345678
+ES-Z-12345678
+ES-Z1234567Z
+ES-Z-1234567Z
+ES-Z1234567-Z
+ES-Z-1234567-Z
+
