@@ -23,7 +23,7 @@ public class ConfigurationAdminController extends AbstractController {
 
 	@RequestMapping("/display")
 	public ModelAndView display() {
-		final ModelAndView res = new ModelAndView("configuration/display");
+		final ModelAndView res = new ModelAndView("configuration/list");
 		final Configuration conf = this.configurationService.find();
 		res.addObject("config", conf);
 		return res;
