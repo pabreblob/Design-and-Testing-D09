@@ -21,3 +21,4 @@
 	<display:column property="welcomeEsp" title="${welcomeEsp}"/>
 	
 </display:table>
+<a href="configuration/admin/edit.do"><spring:message code="configuration.edit"/></a>
