@@ -55,6 +55,7 @@
 		<security:intercept-url pattern="/user/list-attendants.do" access="permitAll" />
 		<security:intercept-url pattern="/user/display.do" access="permitAll" /> 
 		<security:intercept-url pattern="/user/user/display.do" access="hasRole('USER')" /> 
+		<security:intercept-url pattern="/configuration/admin/**" access="hasRole('ADMIN')" /> 
 		
 		<security:intercept-url pattern="/rendezvous/**" access="permitAll" />
 		<security:intercept-url pattern="/rendezvous/administrator/**" access="hasRole('ADMIN')" />
