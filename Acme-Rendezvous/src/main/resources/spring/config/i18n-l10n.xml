@@ -28,6 +28,7 @@
 
 		<value>/views/question/messages</value>
 		<value>/views/user/messages</value>
+		<value>/views/configuration/messages</value>
 		
 		<value>/views/answer/messages</value>
 		<value>/views/rendezvous/messages</value>
