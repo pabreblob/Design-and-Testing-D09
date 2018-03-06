@@ -16,7 +16,7 @@ import services.RendezvousService;
 import domain.Rendezvous;
 
 @Controller
-@RequestMapping("/rendezvous/administrator")
+@RequestMapping("/rendezvous/admin")
 public class RendezvousAdminController extends AbstractController {
 
 	@Autowired
@@ -33,7 +33,7 @@ public class RendezvousAdminController extends AbstractController {
 		res = new ModelAndView("rendezvous/list");
 		res.addObject("rendezvous", rendezvous);
 		res.addObject("timestamp", timestamp);
-		res.addObject("requestURI", "rendezvous/administrator/list.do");
+		res.addObject("requestURI", "rendezvous/admin/list.do");
 
 		return res;
 	}

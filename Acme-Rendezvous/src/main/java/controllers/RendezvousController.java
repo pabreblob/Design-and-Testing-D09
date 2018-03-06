@@ -18,10 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdminService;
 import services.CommentService;
+import services.ManagerService;
 import services.RendezvousService;
+import services.ServiceService;
 import services.UserService;
 import domain.Administrator;
 import domain.Comment;
+import domain.Manager;
 import domain.Rendezvous;
 import domain.User;
 
@@ -40,6 +43,12 @@ public class RendezvousController extends AbstractController {
 
 	@Autowired
 	CommentService		commentService;
+
+	@Autowired
+	ServiceService		serviceService;
+
+	@Autowired
+	ManagerService		managerService;
 
 
 	//	Listing
@@ -62,6 +71,21 @@ public class RendezvousController extends AbstractController {
 			}
 			if (user != null)
 				res.addObject("userLogged", user);
+		} catch (final Exception e) {
+
+		}
+
+		try {
+			final Manager manager = this.managerService.findByPrincipal();
+			//			final DateTime fechaNacimiento = new DateTime(user.getBirthdate());
+			//			final DateTime fechaActual = new DateTime();
+
+			final Integer edad = this.calculateAge(manager.getBirthdate());
+			if (edad >= 18) {
+				adult = true;
+				rendezvous = this.rendezvousService.findFinalRendezvousAdult();
+			}
+
 		} catch (final Exception e) {
 
 		}
@@ -91,6 +115,19 @@ public class RendezvousController extends AbstractController {
 		} catch (final Exception e) {
 
 		}
+
+		try {
+			final Manager manager = this.managerService.findByPrincipal();
+			//			final DateTime fechaNacimiento = new DateTime(user.getBirthdate());
+			//			final DateTime fechaActual = new DateTime();
+
+			final Integer edad = this.calculateAge(manager.getBirthdate());
+			if (edad >= 18)
+				rendezvous = this.rendezvousService.findFinalRendezvousLinkedAdult(rendezvousId);
+
+		} catch (final Exception e) {
+
+		}
 		final Date currentTime = new Date(System.currentTimeMillis());
 		final Timestamp timestamp = new Timestamp(currentTime.getTime());
 		res.addObject("rendezvous", rendezvous);
@@ -112,6 +149,16 @@ public class RendezvousController extends AbstractController {
 		try {
 			final User user = this.userService.findByPrincipal();
 			final Integer edad = this.calculateAge(user.getBirthdate());
+			if (edad >= 18)
+				mayor = true;
+			linked2Size = this.rendezvousService.findFinalRendezvousLinkedAdult(rendezvousId).size();
+		} catch (final Exception e) {
+
+		}
+
+		try {
+			final Manager manager = this.managerService.findByPrincipal();
+			final Integer edad = this.calculateAge(manager.getBirthdate());
 			if (edad >= 18)
 				mayor = true;
 			linked2Size = this.rendezvousService.findFinalRendezvousLinkedAdult(rendezvousId).size();
@@ -152,6 +199,7 @@ public class RendezvousController extends AbstractController {
 		res.addObject("isFinal", isFinal);
 		res.addObject("rsvpd", rsvpd);
 		res.addObject("announcementSize", this.rendezvousService.findAnnouncementsByRendezId(r.getId()).size());
+		res.addObject("serviceSize", this.serviceService.findServicesByRendezvousId(rendezvousId).size());
 		int pictureSize;
 		if (r.getPictureURL() == null || r.getPictureURL().length() == 0)
 			pictureSize = 0;

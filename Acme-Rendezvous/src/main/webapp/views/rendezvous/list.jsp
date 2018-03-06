@@ -173,7 +173,7 @@
 	</display:column>
 	</jstl:if>
 	
-	<jstl:if test="${requestURI == 'rendezvous/administrator/list.do' }">
+	<jstl:if test="${requestURI == 'rendezvous/admin/list.do' }">
 	<spring:message code="rendez.deleted" var="deletedHeader" />
 	<display:column  title="${deletedHeader}" >
 		<jstl:if test ="${r.deleted == false }">
@@ -193,7 +193,7 @@
 	<security:authorize access="hasRole('ADMIN')">
 	<display:column>
 	<jstl:if test = "${r.deleted == false}">
-	<a href="rendezvous/administrator/delete.do?rendezvousId=${r.id}"> <spring:message
+	<a href="rendezvous/admin/delete.do?rendezvousId=${r.id}"> <spring:message
 					code="rendez.delete" />
 			</a>
 	</jstl:if>
