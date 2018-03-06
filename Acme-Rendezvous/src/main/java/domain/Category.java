@@ -26,6 +26,9 @@ public class Category extends DomainEntity {
 	private Collection<Category>	children;
 	private Category				parent;
 
+	@SuppressWarnings("unused")
+	private String					displayName;
+
 
 	public Category() {
 		super();
@@ -89,6 +92,10 @@ public class Category extends DomainEntity {
 		else
 			res = this.name;
 		return res;
+	}
+
+	public void setDisplayName(final String displayName) {
+		this.displayName = displayName;
 	}
 
 }
