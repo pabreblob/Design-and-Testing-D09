@@ -1,11 +1,12 @@
 
 package controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,8 +20,6 @@ public class ConfigurationAdminController extends AbstractController {
 
 	@Autowired
 	private ConfigurationService	configurationService;
-	@Autowired
-	private Validator				validator;
 
 
 	public ConfigurationAdminController() {
@@ -44,9 +43,8 @@ public class ConfigurationAdminController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(final Configuration configuration, final BindingResult binding) {
+	public ModelAndView save(@Valid final Configuration configuration, final BindingResult binding) {
 		ModelAndView res;
-		this.validator.validate(configuration, binding);
 		if (binding.hasErrors()) {
 			res = new ModelAndView("configuration/edit");
 			res.addObject("configuration", configuration);
