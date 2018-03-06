@@ -81,4 +81,14 @@ public class Category extends DomainEntity {
 		this.parent = parent;
 	}
 
+	//Propiedad derivada. Sirve para mostrar las categorías de forma más ordenada.
+	public String getDisplayName() {
+		String res;
+		if (this.parent != null && this.parent.name != "CATEGORY")
+			res = this.name + " (" + this.parent.name + ")";
+		else
+			res = this.name;
+		return res;
+	}
+
 }
