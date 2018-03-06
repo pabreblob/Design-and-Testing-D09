@@ -77,7 +77,6 @@ public class RendezvousService {
 	public Rendezvous save(final Rendezvous rendezvous) {
 		if (rendezvous.getId() != 0) {
 			Assert.isTrue((rendezvous.getCreator().getUserAccount().getId() == LoginService.getPrincipal().getId()));
-			Assert.isTrue(this.findOne(rendezvous.getId()).isFinalMode() == false);
 			Assert.isTrue(this.findOne(rendezvous.getId()).isDeleted() == false);
 			Assert.isTrue(this.findOne(rendezvous.getId()).getMoment().after(new Date()));
 		}
@@ -270,6 +269,14 @@ public class RendezvousService {
 		}
 		this.validator.validate(result, binding);
 		return result;
+	}
+
+	public Collection<Rendezvous> findRendezvousforRequestByPrincipal(final int serviceId) {
+		final User u = this.userService.findByPrincipal();
+		final Collection<Rendezvous> rendez = this.rendezvousRepository.findFutureFinalRendezvousCreatedByUserAccountId(u.getUserAccount().getId());
+		rendez.removeAll(this.rendezvousRepository.findRendezvousWithRequestByUserId(u.getId(), serviceId));
+		return rendez;
+
 	}
 
 	@SuppressWarnings("deprecation")

@@ -39,4 +39,9 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Integer>
 	@Query("select r.announcements from Rendezvous r where r.id = ?1")
 	Collection<Rendezvous> findAnnouncementsByRendezId(int rendezId);
 
+	@Query("select r from User u join u.createdRendezvous r join r.requests req where u.id = ?1 and req.service.id = ?2  and r.moment > CURRENT_TIMESTAMP and r.finalMode = true")
+	Collection<Rendezvous> findRendezvousWithRequestByUserId(int id, int serviceId);
+	@Query("select r from User u join u.createdRendezvous r where u.userAccount.id = ?1 and r.moment > CURRENT_TIMESTAMP and r.finalMode = true")
+	Collection<Rendezvous> findFutureFinalRendezvousCreatedByUserAccountId(int id);
+
 }

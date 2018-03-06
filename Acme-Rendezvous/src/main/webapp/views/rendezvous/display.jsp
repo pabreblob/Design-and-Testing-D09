@@ -131,6 +131,14 @@
 	</div>
 	</jstl:if>
 	
+	<jstl:if test = "${serviceSize > 0}">
+	<div>
+	<a href="service/list.do?rendezId=${rendezvous.id }">
+	<spring:message code="rendez.services"/>
+	</a>
+	</div>
+	</jstl:if>
+	
 <br/>
 <h2>
 <spring:message code="rendez.comments" var="commentHeader"/>

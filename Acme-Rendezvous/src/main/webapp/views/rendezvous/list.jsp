@@ -173,6 +173,22 @@
 	</display:column>
 	</jstl:if>
 	
+	<jstl:if test="${requestURI == 'rendezvous/administrator/list.do' }">
+	<spring:message code="rendez.deleted" var="deletedHeader" />
+	<display:column  title="${deletedHeader}" >
+		<jstl:if test ="${r.deleted == false }">
+		<div class = "NOBORRADO">
+				<spring:message code ="rendez.isFinalVer.false"/>
+		</div>
+		</jstl:if>
+		<jstl:if test ="${r.deleted == true }">
+		<div class = "BORRADO">
+			<spring:message code ="rendez.isFinalVer.true"/>
+		</div>
+		</jstl:if>
+	</display:column>
+	</jstl:if>
+	
 	
 	<security:authorize access="hasRole('ADMIN')">
 	<display:column>

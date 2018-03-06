@@ -39,9 +39,10 @@ public class ServiceService {
 		}
 		final domain.Service saved = this.serviceRepository.save(service);
 		//Guardar en el manager
-		if (manager.getServices().contains(service))
-			manager.getServices().remove(service);
-		manager.getServices().add(service);
+		if (manager.getServices().contains(saved))
+			manager.getServices().remove(saved);
+		manager.getServices().add(saved);
+		saved.getCategory().getServices().add(saved);
 
 		return saved;
 	}
@@ -57,6 +58,18 @@ public class ServiceService {
 
 	public void delete(final domain.Service service) {
 		//Comprobar que nadie usa el servicio
+		Assert.isTrue(service.getRequests().size() == 0);
+		this.managerService.findByPrincipal().getServices().remove(service);
+		service.getCategory().getServices().remove(service);
+		service.getCategory().getServices().remove(service);
+		this.serviceRepository.delete(service.getId());
+
+	}
+
+	public void cancel(final int serviceId) {
+		final domain.Service s = this.findOne(serviceId);
+		s.setCancelled(true);
+		this.serviceRepository.save(s);
 
 	}
 
@@ -66,5 +79,9 @@ public class ServiceService {
 
 	public Collection<domain.Service> findServicesCreatedByPrincipal() {
 		return this.serviceRepository.findServicesCreatedByManagerId(this.managerService.findByPrincipal().getId());
+	}
+
+	public Collection<domain.Service> findServicesByRendezvousId(final int id) {
+		return this.serviceRepository.findServicesByRendezvousId(id);
 	}
 }
