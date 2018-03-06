@@ -15,23 +15,28 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AnnouncementService;
+import services.ConfigurationService;
 import services.UserService;
 import domain.Announcement;
+import domain.Configuration;
 
 @Controller
 @RequestMapping("/welcome")
 public class WelcomeController extends AbstractController {
 
 	@Autowired
-	private AnnouncementService	announcementService;
+	private AnnouncementService		announcementService;
 	@Autowired
-	private UserService			userService;
+	private UserService				userService;
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -48,6 +53,7 @@ public class WelcomeController extends AbstractController {
 		result = new ModelAndView("welcome/index");
 		SimpleDateFormat formatter;
 		String moment;
+		final Configuration configuration = this.configurationService.find();
 
 		try {
 			final Collection<Announcement> announcements = this.announcementService.findAnnouncementsByPrincipal();
@@ -62,7 +68,10 @@ public class WelcomeController extends AbstractController {
 
 		result.addObject("name", name);
 		result.addObject("moment", moment);
-
+		if (LocaleContextHolder.getLocale().getDisplayLanguage().equals("Spanish"))
+			result.addObject("welcomeMessage", configuration.getWelcomeEsp());
+		else
+			result.addObject("welcomeMessage", configuration.getWelcomeEng());
 		return result;
 	}
 }

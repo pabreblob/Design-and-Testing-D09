@@ -17,12 +17,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="isAnonymous()">
-	<p><spring:message code="welcome.greeting.prefix" /><spring:message code="welcome.greeting.suffix" /></p>
-</security:authorize>
+<jstl:out value="${welcomeMessage}" />
+
 <security:authorize access="isAuthenticated()">
-	<p><spring:message code="welcome.greeting.prefix" /> ${name}<spring:message code="welcome.greeting.suffix" /></p>
-	
 	<h2><spring:message code="announcements.list"/></h2>
 	
 	<display:table class="displaytag" name="announcements" id="row" requestURI="welcome/index.do" pagesize="5">	
