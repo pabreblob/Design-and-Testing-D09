@@ -3,6 +3,7 @@ package controllers;
 
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -95,5 +96,18 @@ public class AdminController extends AbstractController {
 		res.addObject("userId", adminId);
 
 		return res;
+	}
+	@RequestMapping(value = "/list-all", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Collection<Administrator> admins;
+
+		admins = this.adminService.findAll();
+
+		result = new ModelAndView("admin/list");
+		result.addObject("admins", admins);
+		result.addObject("requestURI", "admin/list-all.do");
+
+		return result;
 	}
 }

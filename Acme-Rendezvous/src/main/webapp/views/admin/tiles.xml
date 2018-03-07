@@ -16,4 +16,8 @@
 		<put-attribute name="title" value="Display administrator" />
 		<put-attribute name="body" value="/views/admin/display.jsp" />
 	</definition>
+<definition name="admin/list" extends="master.page">	
+		<put-attribute name="title" value="List administrators" />
+		<put-attribute name="body" value="/views/admin/list.jsp" />
+	</definition>
 </tiles-definitions>

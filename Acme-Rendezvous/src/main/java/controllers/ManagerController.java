@@ -2,6 +2,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,23 @@ public class ManagerController extends AbstractController {
 	public ManagerController() {
 		super();
 	}
+	@RequestMapping(value = "/list-all", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Collection<Manager> managers;
 
+		final Boolean hasQuestions = false;
+
+		managers = this.managerService.findAll();
+
+		result = new ModelAndView("manager/list");
+		result.addObject("managers", managers);
+
+		result.addObject("hasQuestions", hasQuestions);
+		result.addObject("requestURI", "manager/list-all.do");
+
+		return result;
+	}
 	//Displaying
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int managerId) {
