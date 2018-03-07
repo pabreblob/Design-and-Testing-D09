@@ -15,7 +15,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="welcome/index.do"><img src='<jstl:out value="${banner}"/>' height="200px" width="100%" alt='<jstl:out value="${footer}"/>' /></a>
+	<a href="welcome/index.do"><img src='<jstl:out value="${banner}"/>' height="300px" width="100%" alt='<jstl:out value="${footer}"/>' /></a>
 </div>
 
 <div id="menuP">
