@@ -17,6 +17,7 @@ import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
 import domain.Administrator;
+import domain.Manager;
 import domain.Rendezvous;
 
 @Service
@@ -222,6 +223,72 @@ public class AdminService {
 		res = this.adminRepository.standartDeviationRepliesPerComment();
 		if (res == null)
 			res = 0.0;
+		return res;
+	}
+	public Double getAverageRequestsPerRendezvous() {
+		Double res;
+		res = this.adminRepository.averageRequestsPerRendezvous();
+		if (res == null)
+			res = 0.0;
+		return res;
+	}
+	public Double getStandartRequestsPerRendezvous() {
+		Double res;
+		res = this.adminRepository.standartDeviationRequestsPerRendezvous();
+		if (res == null)
+			res = 0.0;
+		return res;
+	}
+	public Double getMinRequestsPerRendezvous() {
+		Double res;
+		res = this.adminRepository.averageRequestsPerRendezvous();
+		if (res == null)
+			res = 0.0;
+		return res;
+	}
+	public Double getMaxRequestsPerRendezvous() {
+		Double res;
+		res = this.adminRepository.standartDeviationRequestsPerRendezvous();
+		if (res == null)
+			res = 0.0;
+		return res;
+	}
+	public Double getAverageServicePerCategory() {
+		Double res;
+		res = this.adminRepository.averageServicePerCategory();
+		if (res == null)
+			res = 0.0;
+		return res;
+	}
+	public List<domain.Service> getBestSellingServices() {
+		final List<domain.Service> services = this.adminRepository.bestSellingServices();
+		final List<domain.Service> res;
+		if (services.isEmpty())
+			res = new ArrayList<domain.Service>();
+		else if (services.size() < 10)
+			res = services.subList(0, services.size() - 1);
+		else
+			res = services.subList(0, 9);
+		return res;
+	}
+	public List<domain.Service> getTopSellingServices() {
+		final List<domain.Service> services = this.adminRepository.topSellingServices();
+		final List<domain.Service> res;
+		if (services.isEmpty())
+			res = new ArrayList<domain.Service>();
+		else if (services.size() < 10)
+			res = services.subList(0, services.size() - 1);
+		else
+			res = services.subList(0, 9);
+		return res;
+	}
+	public List<Manager> getManagersMoreThanAvgService() {
+		final List<Manager> managers = this.adminRepository.managersMoreThanAvgService();
+		final List<Manager> res;
+		if (managers.isEmpty())
+			res = new ArrayList<Manager>();
+		else
+			res = managers;
 		return res;
 	}
 

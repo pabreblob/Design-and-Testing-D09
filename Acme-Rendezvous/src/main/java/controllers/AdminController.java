@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdminService;
 import domain.Administrator;
+import domain.Manager;
 import domain.Rendezvous;
+import domain.Service;
 
 @Controller
 @RequestMapping("/admin")
@@ -48,6 +50,11 @@ public class AdminController extends AbstractController {
 		final String standarDesvAnswersPerRendezvous = df.format(this.adminService.getStandartDeviationAnswersPerRendezvous());
 		final String averageRepliesPerComment = df.format(this.adminService.getAverageRepliesPerComment());
 		final String standarDesvRepliesPerComment = df.format(this.adminService.getStandartDeviationRepliesPerComment());
+		final String averageRequestsPerRendezvous = df.format(this.adminService.getAverageRequestsPerRendezvous());
+		final String standarRequestsPerRendezvous = df.format(this.adminService.getStandartRequestsPerRendezvous());
+		final String minRequestsPerRendezvous = df.format(this.adminService.getMinRequestsPerRendezvous());
+		final String maxRequestsPerRendezvous = df.format(this.adminService.getMaxRequestsPerRendezvous());
+		final String averageServicePerCategory = df.format(this.adminService.getAverageServicePerCategory());
 		final Date currentTime = new Date(System.currentTimeMillis());
 		final Timestamp timestamp = new Timestamp(currentTime.getTime());
 		result = new ModelAndView("admin/dashboard");
@@ -66,6 +73,11 @@ public class AdminController extends AbstractController {
 		result.addObject("standarDesvAnswersPerRendezvous", standarDesvAnswersPerRendezvous);
 		result.addObject("averageRepliesPerComment", averageRepliesPerComment);
 		result.addObject("standarDesvRepliesPerComment", standarDesvRepliesPerComment);
+		result.addObject("averageRequestsPerRendezvous", averageRequestsPerRendezvous);
+		result.addObject("standarRequestsPerRendezvous", standarRequestsPerRendezvous);
+		result.addObject("minRequestsPerRendezvous", minRequestsPerRendezvous);
+		result.addObject("maxRequestsPerRendezvous", maxRequestsPerRendezvous);
+		result.addObject("averageServicePerCategory", averageServicePerCategory);
 
 		//Ratios
 		final Double ratioUsersWithCreatedRendezvous = this.adminService.getRatioUsersWithCreatedRendezvous();
@@ -81,9 +93,22 @@ public class AdminController extends AbstractController {
 		result.addObject("mostReserved", mostReserved);
 		result.addObject("announcementsOver75", announcementsOver75);
 		result.addObject("linkedPlus10", linkedPlus10);
+		//Managers
+		final List<Manager> managersMoreAverage;
+		managersMoreAverage = this.adminService.getManagersMoreThanAvgService();
+		result.addObject("managersMoreAverage", managersMoreAverage);
+		//Services
+		final List<Service> topSelling;
+		topSelling = this.adminService.getTopSellingServices();
+		final List<Service> bestSelling;
+		bestSelling = this.adminService.getBestSellingServices();
+		result.addObject("topSelling", topSelling);
+		result.addObject("bestSelling", bestSelling);
 		result.addObject("requestURI", "admin/dashboard.do");
 		return result;
+
 	}
+
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int adminId) {
 		ModelAndView res;

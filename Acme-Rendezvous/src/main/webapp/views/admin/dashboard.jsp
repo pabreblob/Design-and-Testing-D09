@@ -50,6 +50,11 @@
     <td><jstl:out value="${averageRepliesPerComment}"/></td> 
     <td><jstl:out value="${standarDesvRepliesPerComment}"/></td>
   </tr>
+  <tr>
+    <td><spring:message code="admin.requestsRendezvous"/></td>
+    <td><jstl:out value="${averageRequestsPerRendezvous}"/></td> 
+    <td><jstl:out value="${standarRequestsPerRendezvous}"/></td>
+  </tr>
   
   </table>
   
@@ -57,6 +62,15 @@
   
   <div>
   <p><spring:message code="admin.ratioUsersCreatedRend"/>: <jstl:out value="${ratioUsersWithCreatedRendezvous}"/></p>
+  </div>
+  <div>
+  <p><spring:message code="admin.maxRequestsRendezvous"/>: <jstl:out value="${maxRequestsPerRendezvous}"/></p>
+  </div>
+  <div>
+  <p><spring:message code="admin.minRequestsRendezvous"/>: <jstl:out value="${minRequestsPerRendezvous}"/></p>
+  </div>
+  <div>
+  <p><spring:message code="admin.averageServiceCategory"/>: <jstl:out value="${averageServicePerCategory}"/></p>
   </div>
   
 

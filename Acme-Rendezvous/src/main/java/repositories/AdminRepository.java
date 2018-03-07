@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import domain.Administrator;
+import domain.Manager;
 import domain.Rendezvous;
+import domain.Service;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Administrator, Integer> {
@@ -52,5 +54,23 @@ public interface AdminRepository extends JpaRepository<Administrator, Integer> {
 	Double averageRepliesPerComment();
 	@Query("select sqrt(sum(c.replies.size*c.replies.size)/count(c.replies.size)-(avg(c.replies.size)*avg(c.replies.size))) from Comment c")
 	Double standartDeviationRepliesPerComment();
-
+	//nuevas queries
+	@Query("select m from Manager m where m.services.size > (select avg(mag.services.size) from Manager mag)")
+	List<Manager> managersMoreThanAvgService();
+	//falta managers con más servicios cancelados
+	@Query("select s from Service s order by s.requests.size DESC")
+	List<Service> bestSellingServices();
+	@Query("select s from Service s order by (s.requests.size)*s.price DESC")
+	List<Service> topSellingServices();
+	//falta average categories per rendezvous
+	@Query("select avg(c.services.size) from Category c")
+	Double averageServicePerCategory();
+	@Query("select avg(r.requests.size) from Rendezvous r")
+	Double averageRequestsPerRendezvous();
+	@Query("select sqrt(sum(r.requests.size*r.requests.size)/count(r.requests.size)-(avg(r.requests.size)*avg(r.requests.size))) from Rendezvous r")
+	Double standartDeviationRequestsPerRendezvous();
+	@Query("select min(r.requests.size) from Rendezvous r")
+	Double minRequestsPerRendezvous();
+	@Query("select max(r.requests.size) from Rendezvous r")
+	Double maxRequestsPerRendezvous();
 }
