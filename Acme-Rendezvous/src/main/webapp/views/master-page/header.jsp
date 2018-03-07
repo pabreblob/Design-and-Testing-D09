@@ -15,10 +15,10 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="welcome/index.do"><img src='<jstl:out value="${banner}"/>' alt="Acme-Rendezvous, Inc." /></a>
+	<a href="welcome/index.do"><img src='<jstl:out value="${banner}"/>' height="200px" width="100%" alt='<jstl:out value="${footer}"/>' /></a>
 </div>
 
-<div>
+<div id="menuP">
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		
@@ -120,7 +120,7 @@
 			</li>
 			<li><a class="fNiv" href="user/list-all.do"><spring:message code="master.page.user.list"/></a></li>
 		</security:authorize>
-		<li>
+		<li id="rightB">
 			<a class="fNiv" href="<spring:message code="master.page.language.url"/>"><spring:message code="master.page.language"/></a>
 		</li>
 	</ul>

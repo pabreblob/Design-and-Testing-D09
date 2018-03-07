@@ -8,6 +8,17 @@
  * 
  */
 
+ 
+#menuP{
+	background-color: #322f32;
+	width: 100%; 
+}
+
+#rightB{
+	position: absolute;
+	right: 1%;
+}
+
 .jMenu {
 	display: table;
 	margin: 0px;
