@@ -21,6 +21,9 @@ public class RequestService {
 	@Autowired
 	ServiceService		serviceService;
 
+	@Autowired
+	UserService			userService;
+
 
 	public Request create(final domain.Service s) {
 		final Request request = new Request();
@@ -50,4 +53,7 @@ public class RequestService {
 		return this.requestRepository.findRequestByServiceId(serviceId);
 	}
 
+	public Collection<Request> findRequestByPrincipal() {
+		return this.requestRepository.findRequestByUserId(this.userService.findByPrincipal().getId());
+	}
 }

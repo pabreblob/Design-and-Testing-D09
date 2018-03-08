@@ -24,15 +24,15 @@
 	pagesize="5" class="displaytag">
 
 	<security:authorize access="hasRole('ADMIN')">
-	<display:column>
-	<jstl:if test = "${s.cancelled == false}">
-	<a href="service/admin/cancel.do?serviceId=${s.id}"> <spring:message
-					code="service.cancel" />
-			</a>
-	</jstl:if>
-	</display:column>
+		<display:column>
+			<jstl:if test="${s.cancelled == false}">
+				<a href="service/admin/cancel.do?serviceId=${s.id}"> <spring:message
+						code="service.cancel" />
+				</a>
+			</jstl:if>
+		</display:column>
 	</security:authorize>
-	
+
 	<jstl:if test="${requestURI == 'service/manager/list-created.do' }">
 		<display:column>
 			<jstl:if test="${s.cancelled == false}">
@@ -42,23 +42,22 @@
 			</jstl:if>
 		</display:column>
 	</jstl:if>
-	
+
 	<jstl:if test="${requestURI == 'service/manager/list-created.do' }">
 		<display:column>
 			<jstl:if test="${s.cancelled == false}">
-			
-				<a href="request/manager/list.do?serviceId=${s.id}"> <spring:message
-						code="service.requests" />
-				</a>
+					<a href="request/manager/list.do?serviceId=${s.id}"> <spring:message
+							code="service.requests" />
+					</a>
 			</jstl:if>
 		</display:column>
 	</jstl:if>
-	
+
 	<jstl:if test="${requestURI == 'service/user/list.do' }">
 		<display:column>
-				<a href="request/user/create.do?serviceId=${s.id}"> <spring:message
-						code="service.request" />
-				</a>
+			<a href="request/user/create.do?serviceId=${s.id}"> <spring:message
+					code="service.request" />
+			</a>
 		</display:column>
 	</jstl:if>
 
@@ -70,53 +69,54 @@
 
 
 	<spring:message code="service.category" var="categoryHeader" />
-	<display:column property="category.displayName" title="${categoryHeader}" />
-	
+	<display:column property="category.displayName"
+		title="${categoryHeader}" />
+
 	<spring:message code="service.price" var="priceHeader" />
 	<display:column property="price" title="${priceHeader}" />
 
 	<jstl:if test="${requestURI == 'service/manager/list-created.do' }">
-	<spring:message code="service.cancelled" var="cancelledHeader" />
-	<display:column title="${cancelledHeader}">
-		<jstl:if test="${s.cancelled == false }">
-			<div class="NOBORRADO">
-				<spring:message code="service.cancelled.false" />
-			</div>
-		</jstl:if>
-		<jstl:if test="${s.cancelled == true }">
-			<div class="BORRADO">
-				<spring:message code="service.cancelled.true" />
-			</div>
-		</jstl:if>
-	</display:column>
+		<spring:message code="service.cancelled" var="cancelledHeader" />
+		<display:column title="${cancelledHeader}">
+			<jstl:if test="${s.cancelled == false }">
+				<div class="NOBORRADO">
+					<spring:message code="service.cancelled.false" />
+				</div>
+			</jstl:if>
+			<jstl:if test="${s.cancelled == true }">
+				<div class="BORRADO">
+					<spring:message code="service.cancelled.true" />
+				</div>
+			</jstl:if>
+		</display:column>
 	</jstl:if>
-	
+
 	<jstl:if test="${requestURI == 'service/admin/list.do' }">
-	<spring:message code="service.cancelled" var="cancelledHeader" />
-	<display:column title="${cancelledHeader}">
-		<jstl:if test="${s.cancelled == false }">
-			<div class="NOBORRADO">
-				<spring:message code="service.cancelled.false" />
-			</div>
-		</jstl:if>
-		<jstl:if test="${s.cancelled == true }">
-			<div class="BORRADO">
-				<spring:message code="service.cancelled.true" />
-			</div>
-		</jstl:if>
-	</display:column>
+		<spring:message code="service.cancelled" var="cancelledHeader" />
+		<display:column title="${cancelledHeader}">
+			<jstl:if test="${s.cancelled == false }">
+				<div class="NOBORRADO">
+					<spring:message code="service.cancelled.false" />
+				</div>
+			</jstl:if>
+			<jstl:if test="${s.cancelled == true }">
+				<div class="BORRADO">
+					<spring:message code="service.cancelled.true" />
+				</div>
+			</jstl:if>
+		</display:column>
 	</jstl:if>
-	
-	
+
+
 	<display:column>
-	<jstl:if test = "${s.cancelled == false}">
-	<a href="service/display.do?serviceId=${s.id}"> <spring:message
+		<jstl:if test="${s.cancelled == false}">
+			<a href="service/display.do?serviceId=${s.id}"> <spring:message
 					code="service.display" />
 			</a>
-	</jstl:if>
+		</jstl:if>
 	</display:column>
-	
-	
+
+
 </display:table>
 
 
