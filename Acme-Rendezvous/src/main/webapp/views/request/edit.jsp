@@ -10,13 +10,16 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="${requestURI}" modelAttribute="request">
-	<jstl:if test="${rendezvousSize == 0 }">
+<jstl:if test="${rendezvousSize == 0 }">
 	<spring:message code="request.norendez"/>
 	<br/>
+	<acme:cancel code="request.cancel" url="service/user/list.do" />
 	</jstl:if>
+
+<jstl:if test="${rendezvousSize > 0 }">
+<form:form action="${requestURI}" modelAttribute="request">
 	
-	<jstl:if test="${rendezvousSize > 0 }">
+	
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	
@@ -30,11 +33,12 @@
 	<acme:textbox code="request.expMonth" path="creditCard.expMonth"/>
 	<acme:textbox code="request.expYear" path="creditCard.expYear"/>
 	<acme:textbox code="request.cvv" path="creditCard.cvv"/>
-	</jstl:if>
 	
-	<jstl:if test="${rendezvousSize > 0 }">
+	
+	
 	<acme:submit name="save" code="request.save"  />
-	</jstl:if>
+	
 	<acme:cancel code="request.cancel" url="service/user/list.do" />
 		
 </form:form>
+</jstl:if>

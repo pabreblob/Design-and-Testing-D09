@@ -56,14 +56,16 @@ public class RequestUserController extends AbstractController {
 
 		ModelAndView res;
 
-		if (binding.hasErrors())
+		if (binding.hasErrors()) {
 			res = this.createEditModelAndView(r);
-		else
+			res.addObject("rendezvousSize", this.rendezvousService.findRendezvousforRequestByPrincipal(r.getService().getId()).size());
+		} else
 			try {
 				this.requestService.save(r);
 				res = new ModelAndView("redirect:/service/user/list.do");
 			} catch (final Throwable oops) {
 				res = this.createEditModelAndView(r, "request.commit.error");
+				res.addObject("rendezvousSize", this.rendezvousService.findRendezvousforRequestByPrincipal(r.getService().getId()).size());
 			}
 
 		return res;
