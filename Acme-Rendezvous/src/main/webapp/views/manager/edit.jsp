@@ -25,19 +25,19 @@
 	<form:hidden path="userAccount.id"/>
 	<form:hidden path="userAccount.version"/>
 	
-	<acme:textbox code="manager.username" path="userAccount.username" /><br />
-	<acme:password code="manager.password" path="userAccount.password" /><br />
-	<acme:password code="manager.confirmPassword" path="confirmPass" /><br />
-	<acme:textbox code="manager.name" path="name" /><br />
-	<acme:textbox code="manager.surname" path="surname" /><br />
-	<acme:textbox code="manager.vat" path="vat" /><br />
+	<acme:textbox code="manager.username" path="userAccount.username" />
+	<acme:password code="manager.password" path="userAccount.password" />
+	<acme:password code="manager.confirmPassword" path="confirmPass" />
+	<acme:textbox code="manager.name" path="name" />
+	<acme:textbox code="manager.surname" path="surname" />
+	<acme:textbox code="manager.vat" path="vat" />
 	<spring:message code="manager.date.placeholder" var="dateplaceholder"/>
-	<acme:textbox code="manager.birthdate" path="birthdate" placeholder='${dateplaceholder}' /><br />
+	<acme:textbox code="manager.birthdate" path="birthdate" placeholder='${dateplaceholder}' />
 	<spring:message code="manager.placeholderEmail" var="emailplaceholder"/>
-	<acme:textbox code="manager.email" path="email" placeholder='${emailplaceholder}' /><br />
-	<acme:textbox code="manager.phone" path="phone" /><br />
-	<acme:textbox code="manager.address" path="address" /><br />
-	<a href="misc/terms.do" target="_blank"><spring:message code="manager.acceptTerms"/></a><acme:checkbox code="manager.blank" path="acceptTerms"/><br />
+	<acme:textbox code="manager.email" path="email" placeholder='${emailplaceholder}' />
+	<acme:textbox code="manager.phone" path="phone" />
+	<acme:textbox code="manager.address" path="address" />
+	<a href="misc/terms.do" target="_blank"><spring:message code="manager.acceptTerms"/></a><acme:checkbox code="manager.blank" path="acceptTerms"/>
 	<acme:submit name="save" code="manager.save"  />
-	<acme:cancel code="manager.cancel" url="welcome/index.do" /><br />	
+	<acme:cancel code="manager.cancel" url="welcome/index.do" />	
 </form:form>

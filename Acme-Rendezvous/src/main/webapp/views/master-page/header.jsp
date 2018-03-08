@@ -72,7 +72,7 @@
 			<li><a class="fNiv"><spring:message code="master.page.services"/></a>
 				<ul>
 					<li class="arrow"/>
-					<li><a href="service/manager/list"><spring:message code="master.page.manager.service.list"/></a></li>
+					<li><a href="service/manager/list.do"><spring:message code="master.page.manager.service.list"/></a></li>
 					<li><a href="service/manager/list-created.do"><spring:message code="master.page.manager.service.created"/></a></li>
 					<li><a href="service/manager/create.do"><spring:message code="master.page.manager.service.create"/></a></li>
 					<li><a href="request/manager/list.do"><spring:message code="master.page.manager.request.list"/></a></li>

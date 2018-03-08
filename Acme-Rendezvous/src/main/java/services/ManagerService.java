@@ -55,7 +55,7 @@ public class ManagerService {
 
 		final List<Authority> authorities = new ArrayList<Authority>();
 		final Authority auth = new Authority();
-		auth.setAuthority(Authority.USER);
+		auth.setAuthority(Authority.MANAGER);
 		authorities.add(auth);
 		res.getUserAccount().setAuthorities(authorities);
 
@@ -72,7 +72,7 @@ public class ManagerService {
 
 		final List<Authority> authorities = new ArrayList<Authority>();
 		final Authority auth = new Authority();
-		auth.setAuthority(Authority.USER);
+		auth.setAuthority(Authority.MANAGER);
 		authorities.add(auth);
 		manager.getUserAccount().setAuthorities(authorities);
 		final UserAccount ua = this.userAccountService.save(manager.getUserAccount());

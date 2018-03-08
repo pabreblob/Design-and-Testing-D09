@@ -202,5 +202,30 @@
 		</display:column>
 	
 	</display:table>
-
+<p><spring:message code="admin.topSelling"/></p>	
+<display:table pagesize="5" class="displaytag" keepStatus="true"
+	name="${topSelling}"  id="row" requestURI="${requestURI}">
+ <spring:message code="admin.rendezvous.name" var="nameHeader" />
+		<display:column property="name" title="${nameHeader}" />
+	<spring:message code="admin.service.price" var="priceHeader" />
+		<display:column property="price" title="${priceHeader}" />
+	<display:column>
+	<a href="service/display.do?serviceId=${row.id}">
+				<spring:message	code="admin.rendezvous.view" />
+			</a>
+	</display:column>
+	</display:table>
+<p><spring:message code="admin.bestSelling"/></p>	
+<display:table pagesize="5" class="displaytag" keepStatus="true"
+	name="${bestSelling}"  id="row" requestURI="${requestURI}">
+ <spring:message code="admin.rendezvous.name" var="nameHeader" />
+		<display:column property="name" title="${nameHeader}" />
+	<spring:message code="admin.service.price" var="priceHeader" />
+		<display:column property="price" title="${priceHeader}" />
+	<display:column>
+	<a href="service/display.do?serviceId=${row.id}">
+				<spring:message	code="admin.rendezvous.view" />
+			</a>
+	</display:column>
+	</display:table>
 	

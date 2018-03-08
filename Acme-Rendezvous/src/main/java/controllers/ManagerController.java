@@ -74,7 +74,7 @@ public class ManagerController extends AbstractController {
 
 		final List<Authority> authorities = new ArrayList<Authority>();
 		final Authority auth = new Authority();
-		auth.setAuthority(Authority.USER);
+		auth.setAuthority(Authority.MANAGER);
 		authorities.add(auth);
 		managerForm.getUserAccount().setAuthorities(authorities);
 		//		user = this.userService.create();
