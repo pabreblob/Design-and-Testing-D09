@@ -28,6 +28,7 @@ public class Manager extends Actor {
 
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
+	@Pattern(regexp = "^((ES)(\\-)?)?(([A-Z](\\-)?[0-9]{8})|([A-Z](\\-)?[0-9]{7}(\\-)?[A-Z])|([0-9]{8}(\\-)?[A-Z]))$")
 	public String getVat() {
 		return this.vat;
 	}
