@@ -14,8 +14,21 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
-<div>
-	<a href="welcome/index.do"><img src='<jstl:out value="${banner}"/>' height="300px" width="100%" alt='<jstl:out value="${footer}"/>' /></a>
+<style type="text/css">
+	.headerImg{
+	height: auto;
+	width: 100%;
+	max-width: 955px; 
+	}
+	
+	
+	.divHeader{
+	
+	text-align: center;
+	}
+</style>
+<div class="divHeader">
+	<a class="headerEnlace" href="welcome/index.do"><img class="headerImg" src='<jstl:out value="${banner}"/>' alt='<jstl:out value="${footer}"/>' /></a>
 </div>
 
 <div id="menuP">
