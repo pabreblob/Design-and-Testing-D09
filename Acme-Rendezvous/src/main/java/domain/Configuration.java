@@ -18,6 +18,7 @@ public class Configuration extends DomainEntity {
 	private String	welcomeEng;
 	private String	welcomeEsp;
 	private String	businessName;
+	private String	currency;
 
 
 	public Configuration() {
@@ -63,6 +64,16 @@ public class Configuration extends DomainEntity {
 
 	public void setBusinessName(final String businessName) {
 		this.businessName = businessName;
+	}
+
+	@NotBlank
+	@SafeHtml(whitelistType = WhiteListType.NONE)
+	public String getCurrency() {
+		return this.currency;
+	}
+
+	public void setCurrency(final String currency) {
+		this.currency = currency;
 	}
 
 }

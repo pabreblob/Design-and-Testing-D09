@@ -20,5 +20,8 @@
 	<spring:message code="configuration.welcomeEsp" var="welcomeEsp" />
 	<display:column property="welcomeEsp" title="${welcomeEsp}"/>
 	
+	<spring:message code="configuration.currency" var="currency" />
+	<display:column property="currency" title="${currency}"/>
+	
 </display:table>
 <a href="configuration/admin/edit.do"><spring:message code="configuration.edit"/></a>

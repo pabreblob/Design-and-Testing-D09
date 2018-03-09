@@ -119,6 +119,7 @@
 		<property name="welcomeEng" value="Your place to organise your adventure meetups!" />
 		<property name="welcomeEsp" value="Tu sitio para organizar quedadas de aventura." />
 		<property name="businessName" value="Adventure meetups" />
+		<property name="currency" value="eur." />		
 	
 	</bean>
 	<!-- Other domain beans come here -->	
