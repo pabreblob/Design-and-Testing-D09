@@ -67,7 +67,9 @@
 		<security:intercept-url pattern="/admin/display.do" access="permitAll" />
 		<security:intercept-url pattern="/admin/list-all.do" access="permitAll" /> 
 		<security:intercept-url pattern="/comment/user/**" access="hasRole('USER')" />
-		<security:intercept-url pattern="/comment/admin/**" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/comment/admin/**" access="hasRole('ADMIN')" />   		
+		<security:intercept-url pattern="category/admin/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/category/**" access="permitAll" />
 		<security:intercept-url pattern="/reply/user/**" access="hasRole('USER')" />
 		<security:intercept-url pattern="/reply/admin/**" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/manager/create.do" access="isAnonymous()" /> 

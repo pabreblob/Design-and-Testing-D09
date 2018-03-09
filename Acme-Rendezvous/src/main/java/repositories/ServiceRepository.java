@@ -21,4 +21,7 @@ public interface ServiceRepository extends JpaRepository<Service, Integer> {
 	@Query("select req.service from Rendezvous r join r.requests req  where r.id = ?1")
 	Collection<Service> findServicesByRendezvousId(int id);
 
+	@Query("select s from Service s where s.cancelled = false and s.category.id = ?1")
+	Collection<Service> findServicesByCategory(int categoryId);
+
 }

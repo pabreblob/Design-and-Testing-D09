@@ -84,4 +84,7 @@ public class ServiceService {
 	public Collection<domain.Service> findServicesByRendezvousId(final int id) {
 		return this.serviceRepository.findServicesByRendezvousId(id);
 	}
+	public Collection<domain.Service> findServicesByCategory(final int categoryId) {
+		return this.serviceRepository.findServicesByCategory(categoryId);
+	}
 }

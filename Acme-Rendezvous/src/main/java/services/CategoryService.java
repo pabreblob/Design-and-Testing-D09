@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.CategoryRepository;
 import domain.Category;
@@ -20,6 +22,8 @@ public class CategoryService {
 	private CategoryRepository	categoryRepository;
 	@Autowired
 	private AdminService		adminService;
+	@Autowired
+	private Validator			validator;
 
 
 	public Category create(final Category parent) {
@@ -36,6 +40,19 @@ public class CategoryService {
 		return cat;
 	}
 
+	public Category createTop() {
+		Assert.notNull(this.adminService.findByPrincipal());
+
+		final Category cat = new Category();
+		final Collection<domain.Service> services = new ArrayList<domain.Service>();
+		final Collection<Category> children = new ArrayList<Category>();
+		cat.setParent(null);
+		cat.setChildren(children);
+		cat.setServices(services);
+
+		return cat;
+	}
+
 	public Category save(final Category cat) {
 		Assert.notNull(cat);
 		Assert.notNull(this.adminService.findByPrincipal());
@@ -43,8 +60,11 @@ public class CategoryService {
 		final Category res = this.categoryRepository.save(cat);
 		Assert.notNull(res);
 
-		final Category parent = cat.getParent();
-		parent.getChildren().add(cat);
+		if (res.getParent() != null) {
+			final Category parent = cat.getParent();
+			parent.getChildren().add(cat);
+		}
+
 		return res;
 	}
 
@@ -55,6 +75,43 @@ public class CategoryService {
 
 	public Collection<Category> findAll() {
 		return this.categoryRepository.findAll();
+	}
+
+	public void delete(final Category cat) {
+		Assert.notNull(cat);
+		Assert.notNull(this.adminService.findByPrincipal());
+		Assert.isTrue(cat.getChildren().isEmpty());
+		Assert.isTrue(cat.getServices().isEmpty());
+
+		cat.getParent().getChildren().remove(cat);
+		this.categoryRepository.delete(cat);
+
+	}
+
+	//Other
+
+	public Collection<Category> findTopCategories() {
+		return this.categoryRepository.findTopCategories();
+	}
+
+	public Category reconstruct(final Category category, final BindingResult binding) {
+		Category res;
+		if (category.getId() == 0) {
+			res = category;
+			final Collection<domain.Service> services = new ArrayList<domain.Service>();
+			final Collection<Category> children = new ArrayList<Category>();
+			res.setParent(null);
+			res.setChildren(children);
+			res.setServices(services);
+		} else {
+			res = this.categoryRepository.findOne(category.getId());
+
+			res.setName(category.getName());
+			res.setDescription(category.getDescription());
+		}
+		this.validator.validate(res, binding);
+
+		return res;
 	}
 
 }
