@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
+import services.ManagerService;
 import services.ServiceService;
 import domain.Service;
 
@@ -26,6 +28,8 @@ public class ServiceManagerController extends AbstractController {
 
 	@Autowired
 	CategoryService	categoryService;
+	@Autowired
+	ManagerService	managerService;
 
 
 	//	Listing
@@ -71,6 +75,7 @@ public class ServiceManagerController extends AbstractController {
 		ModelAndView res;
 		Service s;
 		s = this.serviceService.findOne(serviceId);
+		Assert.isTrue(this.managerService.findByPrincipal().getServices().contains(s));
 		res = this.createEditModelAndView(s);
 
 		return res;
