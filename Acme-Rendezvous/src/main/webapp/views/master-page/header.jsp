@@ -46,7 +46,7 @@
 					<li><a href="rendezvous/admin/list.do"><spring:message code="master.page.administrator.rendezvous.list" /></a></li>
 					<li><a href="configuration/admin/list.do"><spring:message code="master.page.administrator.configuration"/></a></li>
 					<li><a href="service/admin/list.do"><spring:message code="master.page.administrator.services"/></a></li>
-					<li><a href="category/admin/list.do"><spring:message code="master.page.administrator.category.list"/></a></li>
+					<li><a href="category/list.do"><spring:message code="master.page.administrator.category.list"/></a></li>
 				</ul>
 			</li>
 		</security:authorize>
