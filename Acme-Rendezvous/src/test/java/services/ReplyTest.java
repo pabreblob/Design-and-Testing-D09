@@ -20,7 +20,7 @@ import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+	"classpath:spring/junit.xml"
 })
 @Transactional
 public class ReplyTest extends AbstractTest {
@@ -70,7 +70,7 @@ public class ReplyTest extends AbstractTest {
 	@Test
 	public void testDelete() {
 		super.authenticate("Admin");
-		final Comment c = new ArrayList<Comment>(this.commentService.findAll()).get(0);
+		final Comment c = new ArrayList<Comment>(this.commentService.findAll()).get(1);
 		final List<Reply> replies = new ArrayList<Reply>(c.getReplies());
 		final Reply res = replies.get(0);
 		this.replyService.delete(res);

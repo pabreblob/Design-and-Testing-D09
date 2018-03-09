@@ -104,7 +104,14 @@
 					<li><a href="manager/create.do"><spring:message code="master.page.register.manager" /></a></li>
 				</ul>
 			</li>
-			<li><a class="fNiv" href="user/list-all.do"><spring:message code="master.page.user.list"/></a></li>
+			<li><a class="fNiv"><spring:message code="master.page.allUsers"/></a>
+				<ul>
+					<li class="arrow"/>
+					<li><a href="user/list-all.do"><spring:message code="master.page.user.list"/></a></li>
+					<li><a href="manager/list-all.do"><spring:message code="master.page.manager.list"/></a></li>
+					<li><a href="admin/list-all.do"><spring:message code="master.page.admin.list"/></a></li>
+				</ul>
+			</li>
 			<li><a class="fNiv"><spring:message code="master.page.rendezvous"/></a>
 				<ul>
 					<li class="arrow"/>
@@ -131,7 +138,14 @@
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
-			<li><a class="fNiv" href="user/list-all.do"><spring:message code="master.page.user.list"/></a></li>
+			<li><a class="fNiv"><spring:message code="master.page.allUsers"/></a>
+				<ul>
+					<li class="arrow"/>
+					<li><a href="user/list-all.do"><spring:message code="master.page.user.list"/></a></li>
+					<li><a href="manager/list-all.do"><spring:message code="master.page.manager.list"/></a></li>
+					<li><a href="admin/list-all.do"><spring:message code="master.page.admin.list"/></a></li>
+				</ul>
+			</li>
 		</security:authorize>
 		<li id="rightB">
 			<a class="fNiv" href="<spring:message code="master.page.language.url"/>"><spring:message code="master.page.language"/></a>

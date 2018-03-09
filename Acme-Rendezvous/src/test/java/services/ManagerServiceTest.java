@@ -23,7 +23,7 @@ import domain.User;
 	"classpath:spring/junit.xml"
 })
 @Transactional
-public class UserServiceTest extends AbstractTest {
+public class ManagerServiceTest extends AbstractTest {
 
 	@Autowired
 	private UserService	userService;
