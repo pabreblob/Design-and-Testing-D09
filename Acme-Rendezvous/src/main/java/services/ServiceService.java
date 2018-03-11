@@ -32,11 +32,15 @@ public class ServiceService {
 
 	public domain.Service save(final domain.Service service) {
 		final Manager manager = this.managerService.findByPrincipal();
+
 		if (service.getId() != 0) {
 			//Comprobar que el manager lo tiene en el servicio
 			Assert.isTrue(manager.getServices().contains(service));
 			Assert.isTrue(this.findOne(service.getId()).isCancelled() == false);
+			final domain.Service old = this.serviceRepository.findOne(service.getId());
+			old.getCategory().getServices().remove(old);
 		}
+
 		final domain.Service saved = this.serviceRepository.save(service);
 		//Guardar en el manager
 		if (manager.getServices().contains(saved))
@@ -59,20 +63,20 @@ public class ServiceService {
 	public void delete(final domain.Service service) {
 		//Comprobar que nadie usa el servicio
 		Assert.isTrue(service.getRequests().size() == 0);
+		Assert.isTrue(!service.isCancelled());
+		Assert.isTrue(this.managerService.findByPrincipal().getServices().contains(service));
 		this.managerService.findByPrincipal().getServices().remove(service);
 		service.getCategory().getServices().remove(service);
 		service.getCategory().getServices().remove(service);
 		this.serviceRepository.delete(service.getId());
 
 	}
-
 	public void cancel(final int serviceId) {
+		Assert.isTrue(this.findOne(serviceId).isCancelled() == false);
 		final domain.Service s = this.findOne(serviceId);
 		s.setCancelled(true);
 		this.serviceRepository.save(s);
-
 	}
-
 	public Collection<domain.Service> findAvailableServices() {
 		return this.serviceRepository.findAvailableServices();
 	}
