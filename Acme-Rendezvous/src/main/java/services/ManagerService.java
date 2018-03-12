@@ -78,6 +78,7 @@ public class ManagerService {
 		final UserAccount ua = this.userAccountService.save(manager.getUserAccount());
 		manager.setUserAccount(ua);
 		final Manager res = this.managerRepository.save(manager);
+		Assert.notNull(res.getUserAccount().getUsername());
 		return res;
 	}
 	public Manager findOne(final int idManager) {

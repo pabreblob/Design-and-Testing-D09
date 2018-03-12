@@ -60,9 +60,9 @@ public interface AdminRepository extends JpaRepository<Administrator, Integer> {
 	//falta managers con más servicios cancelados
 	@Query("select s from Service s order by s.requests.size DESC")
 	List<Service> bestSellingServices();
-	@Query("select s from Service s order by (s.requests.size)*s.price DESC")
-	List<Service> topSellingServices();
-	//falta average categories per rendezvous
+	//average categories per rendezvous
+	@Query("select count(distinct req.service.category) from Rendezvous r join r.requests req group by r")
+	List<Long> averageCategoriesPerRendezvous();
 	@Query("select avg(c.services.size) from Category c")
 	Double averageServicePerCategory();
 	@Query("select avg(r.requests.size) from Rendezvous r")

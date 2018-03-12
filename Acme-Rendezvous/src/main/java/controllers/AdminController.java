@@ -55,6 +55,7 @@ public class AdminController extends AbstractController {
 		final String minRequestsPerRendezvous = df.format(this.adminService.getMinRequestsPerRendezvous());
 		final String maxRequestsPerRendezvous = df.format(this.adminService.getMaxRequestsPerRendezvous());
 		final String averageServicePerCategory = df.format(this.adminService.getAverageServicePerCategory());
+		final String averageCategoryPerRendezvous = df.format(this.adminService.getAverageCategoryPerRendezvous());
 		final Date currentTime = new Date(System.currentTimeMillis());
 		final Timestamp timestamp = new Timestamp(currentTime.getTime());
 		result = new ModelAndView("admin/dashboard");
@@ -78,6 +79,7 @@ public class AdminController extends AbstractController {
 		result.addObject("minRequestsPerRendezvous", minRequestsPerRendezvous);
 		result.addObject("maxRequestsPerRendezvous", maxRequestsPerRendezvous);
 		result.addObject("averageServicePerCategory", averageServicePerCategory);
+		result.addObject("averageCategoryPerRendezvous", averageCategoryPerRendezvous);
 
 		//Ratios
 		final Double ratioUsersWithCreatedRendezvous = this.adminService.getRatioUsersWithCreatedRendezvous();

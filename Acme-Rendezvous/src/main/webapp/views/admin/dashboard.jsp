@@ -72,6 +72,9 @@
   <div>
   <p><spring:message code="admin.averageServiceCategory"/>: <jstl:out value="${averageServicePerCategory}"/></p>
   </div>
+   <div>
+  <p><spring:message code="admin.averageCategoryRendezvous"/>: <jstl:out value="${averageCategoryPerRendezvous}"/></p>
+  </div>
   
 
   

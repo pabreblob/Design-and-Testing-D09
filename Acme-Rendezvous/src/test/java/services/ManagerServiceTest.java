@@ -3,7 +3,6 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import security.Authority;
-import security.UserAccount;
 import utilities.AbstractTest;
-import domain.User;
+import domain.Manager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -26,88 +23,124 @@ import domain.User;
 public class ManagerServiceTest extends AbstractTest {
 
 	@Autowired
-	private UserService	userService;
+	private ManagerService	managerService;
 
 
+	/**
+	 * Tests the creation of managers.
+	 * <p>
+	 * This method is used to test the creation of empty managers before passing them to the corresponding views.
+	 * <p>
+	 * Functional requirement 3:
+	 * <p>
+	 * An actor who is not authenticated must be able to:
+	 * <p>
+	 * 1. Register to the system as a manager.
+	 */
 	@Test
-	public void testCreate() {
-		final User res = this.userService.create();
+	public void testCreateManager() {
+
+		final Manager res = this.managerService.create();
 		Assert.notNull(res);
-	}
 
+	}
+	/**
+	 * Tests the saving of manager data when registering as a manager.
+	 * <p>
+	 * This method tests the registration as a manager as it would be done by an anonymous user in the corresponding views. Functional requirement 3:
+	 * <p>
+	 * An actor who is not authenticated must be able to:
+	 * <p>
+	 * 1. Register to the system as a manager.
+	 */
 	@Test
-	public void testSave() {
-		final User res = this.userService.create();
-		res.setName("name1");
-		res.setSurname("surname1");
-		res.setEmail("email1@ejemplo.com");
-		res.setPhone("123456792");
-		res.setAddress("test");
-		final Date birthdate = new Date(System.currentTimeMillis() - 100000000);
-		res.setBirthdate(birthdate);
-		final List<Authority> authorities = new ArrayList<Authority>();
-		final Authority auth = new Authority();
-		auth.setAuthority(Authority.USER);
-		authorities.add(auth);
-		res.getUserAccount().setAuthorities(authorities);
-		final User saved = this.userService.save(res);
-		Assert.notNull(saved);
+	public void driverSaveManager() {
+		final Object testingData[][] = {
+			{
+				"testManager1", null
+			}, {
+				null, IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateSave((String) testingData[i][0], (Class<?>) testingData[i][1]);
 	}
 
+	/**
+	 * Template for testing registering as a manager.
+	 * <p>
+	 * This method defines the template used for the tests that check the saving of a new manager data.
+	 * 
+	 * @param username
+	 *            The username given to the manager. It must not be null. In the first test case, it is not null and therefore,
+	 *            the user must register successfully as a manager. In the second scenario, the username is null and the registration
+	 *            must fail.
+	 * @param expected
+	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
+	 */
+	protected void templateSave(final String username, final Class<?> expected) {
+		Class<?> caught;
+		caught = null;
+		try {
+			final Manager res = this.managerService.create();
+			res.getUserAccount().setUsername(username);
+			res.getUserAccount().setPassword("password");
+			res.setName("name");
+			res.setSurname("surname");
+			res.setVat("ES12345678Z");
+			res.setEmail("test@test.com");
+			res.setAddress(null);
+			res.setPhone(null);
+			res.setBirthdate(new Date(System.currentTimeMillis() - 100000000));
+			final Manager m = this.managerService.save(res);
+			final Manager found = this.managerService.findOne(m.getId());
+			Assert.notNull(m);
+			Assert.isTrue(found.equals(m));
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
+	}
+	/**
+	 * Tests the finding of one manager.
+	 * <p>
+	 * This method checks that the profile of a manager can be accessed to.
+	 */
 	@Test
-	public void testFindOne() {
-		final User res = this.userService.create();
-		res.setName("name1");
-		res.setSurname("surname1");
-		res.setEmail("email1@ejemplo.com");
-		res.setPhone("123456792");
-		res.setAddress("test");
-		final Date birthdate = new Date(System.currentTimeMillis() - 100000000);
-		res.setBirthdate(birthdate);
-		final List<Authority> authorities = new ArrayList<Authority>();
-		final Authority auth = new Authority();
-		auth.setAuthority(Authority.USER);
-		authorities.add(auth);
-		res.getUserAccount().setAuthorities(authorities);
-		final User saved = this.userService.save(res);
-		final User found = this.userService.findOne(saved.getId());
-		Assert.isTrue(found.equals(saved));
+	public void driverFindOneManager() {
+		final Object testingData[][] = {
+			{
+				"Manager1", null
+			}, {
+				"Manager2", NullPointerException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateFindOne(super.getEntityId((String) testingData[i][0]), (Class<?>) testingData[i][1]);
 	}
 
-	@Test
-	public void testFindAll() {
-		final User res = this.userService.create();
-		res.setName("name1");
-		res.setSurname("surname1");
-		res.setEmail("email1@ejemplo.com");
-		res.setPhone("123456792");
-		res.setAddress("test");
-		final Date birthdate = new Date(System.currentTimeMillis() - 100000000);
-		res.setBirthdate(birthdate);
-		final List<Authority> authorities = new ArrayList<Authority>();
-		final Authority auth = new Authority();
-		auth.setAuthority(Authority.USER);
-		authorities.add(auth);
-		res.getUserAccount().setAuthorities(authorities);
-		final User saved = this.userService.save(res);
-		Assert.isTrue(this.userService.findAll().contains(saved));
+	/**
+	 * Template for testing the finding of one manager.
+	 * <p>
+	 * This method defines the template used for the tests that check the finding of one manager.
+	 * 
+	 * @param managerId
+	 *            The id of the manager that we want to find.
+	 * @param expected
+	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
+	 */
+	protected void templateFindOne(Integer managerId, final Class<?> expected) {
+		Class<?> caught;
+		caught = null;
+		try {
+			final Manager manager2 = new ArrayList<Manager>(this.managerService.findAll()).get(1);
+			if (this.managerService.findOne(managerId).equals(manager2))
+				managerId = null;
+			final Manager m = this.managerService.findOne(managerId);
+			Assert.notNull(m);
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
 	}
-
-	@Test
-	public void testFindByPrincipal() {
-		super.authenticate("user1");
-		final User principal = this.userService.findByPrincipal();
-		final User aux = this.userService.findOne(principal.getId());
-		Assert.isTrue(principal.equals(aux));
-	}
-
-	@Test
-	public void testFindByUserAccount() {
-		super.authenticate("user1");
-		final UserAccount ua = this.userService.findByPrincipal().getUserAccount();
-		final User found = this.userService.findByUserAccountId(ua.getId());
-		Assert.notNull(found);
-		super.authenticate(null);
-	}
-
 }

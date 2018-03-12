@@ -28,6 +28,8 @@ public class AdminService {
 	private AdminRepository		adminRepository;
 	@Autowired
 	private UserAccountService	userAccountService;
+	@Autowired
+	private RendezvousService	rendezvousService;
 
 
 	public AdminService() {
@@ -262,17 +264,22 @@ public class AdminService {
 	}
 	public List<domain.Service> getBestSellingServices() {
 		final List<domain.Service> services = this.adminRepository.bestSellingServices();
-		final List<domain.Service> res;
+		List<domain.Service> res = new ArrayList<domain.Service>();
 		if (services.isEmpty())
 			res = new ArrayList<domain.Service>();
-		else if (services.size() < 10)
-			res = services.subList(0, services.size() - 1);
 		else
-			res = services.subList(0, 9);
+			res.add(services.get(0));
+		for (final domain.Service s : services)
+			if (s.getRequests().size() == services.get(0).getRequests().size() && s != services.get(0))
+				res.add(s);
+		//		while (i < services.size() - 1)
+		//			if (services.get(i).getRequests().size() == services.get(0).getRequests().size())
+		//				res.add(services.get(i));
+		//		i++;
 		return res;
 	}
 	public List<domain.Service> getTopSellingServices() {
-		final List<domain.Service> services = this.adminRepository.topSellingServices();
+		final List<domain.Service> services = this.adminRepository.bestSellingServices();
 		final List<domain.Service> res;
 		if (services.isEmpty())
 			res = new ArrayList<domain.Service>();
@@ -291,5 +298,22 @@ public class AdminService {
 			res = managers;
 		return res;
 	}
+	public Double avgCategoriesPerRendezvous() {
+		final Double res = 0.0;
 
+		return res;
+	}
+	public Double getAverageCategoryPerRendezvous() {
+		Double sum = 0.0;
+		Double res = 0.0;
+		final int size = this.rendezvousService.findAll().size();
+		final List<Long> categoriesNum = this.adminRepository.averageCategoriesPerRendezvous();
+
+		for (final Long i : categoriesNum)
+			sum += i;
+		if (this.findAll().size() != 0)
+			res = sum / size;
+
+		return res;
+	}
 }
