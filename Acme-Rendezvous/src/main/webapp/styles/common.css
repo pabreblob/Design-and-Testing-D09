@@ -35,3 +35,13 @@
 #terms h2{
 	margin-bottom: 0;
 }
+#footerTerms a{
+	text-decoration: none;
+	color: #000000;
+}
+
+#footerTerms a:hover{
+	text-decoration: underline;
+	font-weight: bold;
+	cursor:pointer;
+}

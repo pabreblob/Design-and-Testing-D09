@@ -18,21 +18,11 @@
 <hr />
 
 <b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> <jstl:out value="${footer}"/></b>
-<div>
-<a href="misc/terms.do">
-	<spring:message code="master.page.terms"/>
-	</a>
-</div>
-<div>
-	<a href="misc/contact.do">
-	<spring:message code="master.page.contact"/>
-	</a>
-</div>
-<div>
-	<a href="misc/cookies.do">
-	<spring:message code="master.page.cookies"/>
-	</a>
-</div>
+<p id="footerTerms">
+	<a href="misc/terms.do"><spring:message code="master.page.terms"/></a> - 
+	<a href="misc/contact.do"><spring:message code="master.page.contact"/></a> - 
+	<a href="misc/cookies.do"><spring:message code="master.page.cookies"/></a>
+</p>
 <br />
 <div id="pruebacookie"></div>
 
