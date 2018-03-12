@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ServiceRepository;
 import domain.Manager;
@@ -22,6 +24,9 @@ public class ServiceService {
 
 	@Autowired
 	ManagerService		managerService;
+
+	@Autowired
+	Validator			validator;
 
 
 	public domain.Service create() {
@@ -90,5 +95,24 @@ public class ServiceService {
 	}
 	public Collection<domain.Service> findServicesByCategory(final int categoryId) {
 		return this.serviceRepository.findServicesByCategory(categoryId);
+	}
+
+	public domain.Service reconstruct(final domain.Service service, final BindingResult binding) {
+		domain.Service result;
+		if (service.getId() == 0) {
+			result = service;
+			result.setRequests(new ArrayList<Request>());
+		} else {
+			result = this.serviceRepository.findOne(service.getId());
+			result.setName(service.getName());
+			result.setDescription(service.getDescription());
+			result.setPictureUrl(service.getPictureUrl());
+			result.setPrice(service.getPrice());
+			result.setCategory(service.getCategory());
+
+		}
+
+		this.validator.validate(result, binding);
+		return result;
 	}
 }

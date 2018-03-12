@@ -3,8 +3,6 @@ package controllers;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -82,8 +80,9 @@ public class ServiceManagerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Service s, final BindingResult binding) {
+	public ModelAndView save(Service s, final BindingResult binding) {
 		ModelAndView res;
+		s = this.serviceService.reconstruct(s, binding);
 
 		if (binding.hasErrors())
 			res = this.createEditModelAndView(s);
