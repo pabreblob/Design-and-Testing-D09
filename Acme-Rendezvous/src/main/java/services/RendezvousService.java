@@ -279,6 +279,14 @@ public class RendezvousService {
 
 	}
 
+	public Collection<Rendezvous> findRendezvousByCategoryId(final int categoryId) {
+		return this.rendezvousRepository.findRendezvousByCategoryId(categoryId);
+	}
+
+	public Collection<Rendezvous> findRendezvousWithAdultContentByCategoryId(final int categoryId) {
+		return this.rendezvousRepository.findRendezvousWithAdultContentByCategoryId(categoryId);
+	}
+
 	@SuppressWarnings("deprecation")
 	private int calculateAge(final Date birthdate) {
 		final LocalDate birth = new LocalDate(birthdate.getYear() + 1900, birthdate.getMonth() + 1, birthdate.getDate());
