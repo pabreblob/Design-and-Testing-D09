@@ -104,8 +104,11 @@ public class AdminController extends AbstractController {
 		topSelling = this.adminService.getTopSellingServices();
 		final List<Service> bestSelling;
 		bestSelling = this.adminService.getBestSellingServices();
+		final List<Manager> moreCancelled;
+		moreCancelled = this.adminService.getManagersMostCancelled();
 		result.addObject("topSelling", topSelling);
 		result.addObject("bestSelling", bestSelling);
+		result.addObject("moreCancelled", moreCancelled);
 		result.addObject("requestURI", "admin/dashboard.do");
 		return result;
 

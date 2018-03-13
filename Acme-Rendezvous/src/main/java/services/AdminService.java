@@ -290,7 +290,7 @@ public class AdminService {
 		return res;
 	}
 	public List<Manager> getManagersMoreThanAvgService() {
-		final List<Manager> managers = this.adminRepository.managersMoreThanAvgService();
+		final List<Manager> managers = this.adminRepository.managersMoreThanAvg();
 		final List<Manager> res;
 		if (managers.isEmpty())
 			res = new ArrayList<Manager>();
@@ -314,6 +314,22 @@ public class AdminService {
 		if (this.findAll().size() != 0)
 			res = sum / size;
 
+		return res;
+	}
+	public List<Manager> getManagersMostCancelled() {
+		final List<Manager> managers = this.adminRepository.managersMostCancelled();
+		List<Manager> res = new ArrayList<Manager>();
+		if (managers.isEmpty())
+			res = new ArrayList<Manager>();
+		else
+			res.add(managers.get(0));
+		for (final Manager m : managers)
+			if (this.adminRepository.cancelledbyManager(m.getId()).size() == this.adminRepository.cancelledbyManager(managers.get(0).getId()).size() && m != managers.get(0))
+				res.add(m);
+		//		while (i < services.size() - 1)
+		//			if (services.get(i).getRequests().size() == services.get(0).getRequests().size())
+		//				res.add(services.get(i));
+		//		i++;
 		return res;
 	}
 }

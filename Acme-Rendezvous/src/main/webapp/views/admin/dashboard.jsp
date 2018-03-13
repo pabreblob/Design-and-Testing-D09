@@ -231,4 +231,15 @@
 			</a>
 	</display:column>
 	</display:table>
+	<p><spring:message code="admin.mostCancelled"/></p>	
+<display:table pagesize="5" class="displaytag" keepStatus="true"
+	name="${moreCancelled}"  id="row" requestURI="${requestURI}">
+ <spring:message code="admin.rendezvous.name" var="nameHeader" />
+		<display:column property="userAccount.username" title="${nameHeader}" />
+	<display:column>
+	<a href="manager/display.do?managerId=${row.id}">
+				<spring:message	code="admin.rendezvous.view" />
+			</a>
+	</display:column>
+	</display:table>
 	

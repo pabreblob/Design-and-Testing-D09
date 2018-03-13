@@ -56,8 +56,12 @@ public interface AdminRepository extends JpaRepository<Administrator, Integer> {
 	Double standartDeviationRepliesPerComment();
 	//nuevas queries
 	@Query("select m from Manager m where m.services.size > (select avg(mag.services.size) from Manager mag)")
-	List<Manager> managersMoreThanAvgService();
+	List<Manager> managersMoreThanAvg();
+	@Query("select s from Service s where s.manager.id=?")
+	List<Service> cancelledbyManager(int managerId);
 	//falta managers con más servicios cancelados
+	@Query("select s.manager from Service s where cancelled=true group by s.manager order by count(s) DESC")
+	List<Manager> managersMostCancelled();
 	@Query("select s from Service s order by s.requests.size DESC")
 	List<Service> bestSellingServices();
 	//average categories per rendezvous
