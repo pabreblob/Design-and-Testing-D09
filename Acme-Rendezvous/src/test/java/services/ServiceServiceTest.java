@@ -39,9 +39,11 @@ public class ServiceServiceTest extends AbstractTest {
 	 */
 	@Test
 	public void testCreateService() {
+		super.authenticate("manager1");
 		final Service res = this.serviceService.create();
 		Assert.notNull(res);
 		Assert.notNull(res.getRequests());
+		super.unauthenticate();
 	}
 
 	/**
