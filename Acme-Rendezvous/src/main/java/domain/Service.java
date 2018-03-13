@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +29,7 @@ public class Service extends DomainEntity {
 
 	private Collection<Request>	requests;
 	private Category			category;
+	private Manager				manager;
 
 
 	public Service() {
@@ -90,7 +92,7 @@ public class Service extends DomainEntity {
 	public void setRequests(final Collection<Request> requests) {
 		this.requests = requests;
 	}
-
+	@Valid
 	@NotNull
 	@ManyToOne
 	public Category getCategory() {
@@ -99,6 +101,16 @@ public class Service extends DomainEntity {
 
 	public void setCategory(final Category category) {
 		this.category = category;
+	}
+	@Valid
+	@NotNull
+	@ManyToOne
+	public Manager getManager() {
+		return this.manager;
+	}
+
+	public void setManager(final Manager manager) {
+		this.manager = manager;
 	}
 
 }
