@@ -24,14 +24,15 @@ public class ServiceService {
 
 	@Autowired
 	ManagerService		managerService;
-
 	@Autowired
 	Validator			validator;
 
 
 	public domain.Service create() {
+		final Manager manager = this.managerService.findByPrincipal();
 		final domain.Service res = new domain.Service();
 		res.setRequests(new ArrayList<Request>());
+		res.setManager(manager);
 		return res;
 	}
 
@@ -41,6 +42,7 @@ public class ServiceService {
 		if (service.getId() != 0) {
 			//Comprobar que el manager lo tiene en el servicio
 			Assert.isTrue(manager.getServices().contains(service));
+			Assert.isTrue(service.getManager().getId() == manager.getId());
 			Assert.isTrue(this.findOne(service.getId()).isCancelled() == false);
 			final domain.Service old = this.serviceRepository.findOne(service.getId());
 			old.getCategory().getServices().remove(old);
@@ -96,23 +98,24 @@ public class ServiceService {
 	public Collection<domain.Service> findServicesByCategory(final int categoryId) {
 		return this.serviceRepository.findServicesByCategory(categoryId);
 	}
-
 	public domain.Service reconstruct(final domain.Service service, final BindingResult binding) {
-		domain.Service result;
-		if (service.getId() == 0) {
-			result = service;
-			result.setRequests(new ArrayList<Request>());
-		} else {
-			result = this.serviceRepository.findOne(service.getId());
-			result.setName(service.getName());
-			result.setDescription(service.getDescription());
-			result.setPictureUrl(service.getPictureUrl());
-			result.setPrice(service.getPrice());
-			result.setCategory(service.getCategory());
 
-		}
+		final domain.Service res;
+		if (service.getId() == 0)
+			res = this.create();
+		else
+			res = this.findOne(service.getId());
+		res.setName(service.getName());
+		res.setDescription(service.getDescription());
+		res.setCategory(service.getCategory());
+		res.setPictureUrl(service.getPictureUrl());
+		res.setPrice(service.getPrice());
+		res.setRequests(service.getRequests());
+		res.setCancelled(service.isCancelled());
+		final Manager manager = this.managerService.findByPrincipal();
+		res.setManager(manager);
 
-		this.validator.validate(result, binding);
-		return result;
+		this.validator.validate(res, binding);
+		return res;
 	}
 }

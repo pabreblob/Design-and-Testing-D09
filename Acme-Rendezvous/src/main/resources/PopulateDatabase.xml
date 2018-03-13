@@ -363,6 +363,7 @@
 		</property>
 		<property name="category"><ref bean="Category2"></ref></property>
 		<property name="price" value="50.0" />
+		<property name="manager"><ref bean="Manager1"></ref></property>
 	</bean>
 	<bean id="Service2" class="domain.Service">
 		<property name="name" value="service2" />
@@ -376,6 +377,7 @@
 		</property>
 		<property name="category"><ref bean="Category3"></ref></property>
 		<property name="price" value="30.0" />
+		<property name="manager"><ref bean="Manager1"></ref></property>
 	</bean>
 	<bean id="Service3" class="domain.Service">
 		<property name="name" value="service3" />
@@ -389,6 +391,7 @@
 		</property>
 		<property name="category"><ref bean="Category3"></ref></property>
 		<property name="price" value="10.0" />
+		<property name="manager"><ref bean="Manager2"></ref></property>
 	</bean>
 	
 	

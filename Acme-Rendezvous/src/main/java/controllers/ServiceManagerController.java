@@ -83,7 +83,6 @@ public class ServiceManagerController extends AbstractController {
 	public ModelAndView save(Service s, final BindingResult binding) {
 		ModelAndView res;
 		s = this.serviceService.reconstruct(s, binding);
-
 		if (binding.hasErrors())
 			res = this.createEditModelAndView(s);
 		else
