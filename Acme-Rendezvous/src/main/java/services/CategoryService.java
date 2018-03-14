@@ -83,12 +83,25 @@ public class CategoryService {
 		Assert.isTrue(cat.getChildren().isEmpty());
 		Assert.isTrue(cat.getServices().isEmpty());
 
-		cat.getParent().getChildren().remove(cat);
+		if (cat.getParent() != null)
+			cat.getParent().getChildren().remove(cat);
 		this.categoryRepository.delete(cat);
 
 	}
 
 	//Other
+
+	public void move(final Category child, final Category parent) {
+		Assert.notNull(child);
+		Assert.notNull(this.adminService.findByPrincipal());
+
+		if (child.getParent() != null)
+			child.getParent().getChildren().remove(child);
+
+		child.setParent(parent);
+		if (parent != null)
+			parent.getChildren().add(child);
+	}
 
 	public Collection<Category> findTopCategories() {
 		return this.categoryRepository.findTopCategories();
@@ -100,7 +113,6 @@ public class CategoryService {
 			res = category;
 			final Collection<domain.Service> services = new ArrayList<domain.Service>();
 			final Collection<Category> children = new ArrayList<Category>();
-			res.setParent(null);
 			res.setChildren(children);
 			res.setServices(services);
 		} else {

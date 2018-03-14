@@ -38,7 +38,7 @@
 <display:table name="children" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 
 	<spring:message code="category.child.name" var="nameHeader"/>
-	<display:column property ="name" title="${nameHeader}" />
+	<display:column property ="displayName" title="${nameHeader}" />
 	
 	<spring:message code="category.child.link.header" var="${linkHeader}"/>
 	<display:column title="${linkHeader}">
@@ -49,6 +49,8 @@
 <br/>
 <security:authorize access="hasRole('ADMIN')">
 	<a href="category/admin/create.do?categoryId=${category.id}"><spring:message code="category.child.create"/></a>
+	<br/>
+	<a href="category/admin/move.do?categoryId=${category.id}"><spring:message code="category.move"/></a>
 	<br/>
 	<a href="category/admin/edit.do?categoryId=${category.id}"><spring:message code="category.edit"/></a>
 	<br/>
