@@ -171,6 +171,7 @@
 		<property name="createdRendezvous">
 			<list>
 				<ref bean="Rendezvous3" />
+				<ref bean="Rendezvous5" />
 			</list>
 		</property>
 		<property name="reservedRendezvous">
