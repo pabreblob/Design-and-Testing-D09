@@ -19,7 +19,7 @@
 
 <jstl:out value="${welcomeMessage}" />
 
-<security:authorize access="isAuthenticated()">
+<security:authorize access="hasRole('USER')">
 	<h2><spring:message code="announcements.list"/></h2>
 	
 	<display:table class="displaytag" name="announcements" id="row" requestURI="welcome/index.do" pagesize="5">	
