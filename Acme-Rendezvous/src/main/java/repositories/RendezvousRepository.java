@@ -45,10 +45,10 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Integer>
 	Collection<Rendezvous> findFutureFinalRendezvousCreatedByUserAccountId(int id);
 
 	//Para listar los rendezvous por categorias
-	@Query("select r from Category c join c.services s join s.requests r join r.rendezvous r where c.id=?1 and r.finalMode = true and r.adultContent = false")
+	@Query("select r from Category c join c.services s join s.requests r join r.rendezvous r where c.id=?1 and r.finalMode = true and r.adultContent = false and s.cancelled = false")
 	Collection<Rendezvous> findRendezvousByCategoryId(int id);
 
-	@Query("select r from Category c join c.services s join s.requests r join r.rendezvous r where c.id=?1 and r.finalMode = true")
+	@Query("select r from Category c join c.services s join s.requests r join r.rendezvous r where c.id=?1 and r.finalMode = true and s.cancelled = false")
 	Collection<Rendezvous> findRendezvousWithAdultContentByCategoryId(int id);
 
 }

@@ -74,6 +74,7 @@ public class ServiceManagerController extends AbstractController {
 		Service s;
 		s = this.serviceService.findOne(serviceId);
 		Assert.isTrue(this.managerService.findByPrincipal().getServices().contains(s));
+		Assert.isTrue(s.isCancelled() == false);
 		res = this.createEditModelAndView(s);
 
 		return res;

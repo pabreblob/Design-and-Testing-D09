@@ -36,6 +36,7 @@ public class RequestManagerController extends AbstractController {
 		ModelAndView res;
 		Collection<Request> r;
 		Assert.isTrue(this.managerService.findByPrincipal().getServices().contains(this.serviceService.findOne(serviceId)));
+		Assert.isTrue(this.serviceService.findOne(serviceId).isCancelled() == false);
 		r = this.requestService.findRequestByServiceId(serviceId);
 		res = new ModelAndView("request/list");
 		res.addObject("requests", r);

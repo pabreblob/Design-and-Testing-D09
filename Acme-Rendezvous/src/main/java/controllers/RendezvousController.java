@@ -128,10 +128,69 @@ public class RendezvousController extends AbstractController {
 		} catch (final Exception e) {
 
 		}
+
+		try {
+			this.adminService.findByPrincipal();
+			rendezvous = this.rendezvousService.findFinalRendezvousLinkedAdult(rendezvousId);
+
+		} catch (final Exception e) {
+
+		}
 		final Date currentTime = new Date(System.currentTimeMillis());
 		final Timestamp timestamp = new Timestamp(currentTime.getTime());
 		res.addObject("rendezvous", rendezvous);
 		res.addObject("timestamp", timestamp);
+		res.addObject("requestURI", "rendezvous/list.do");
+
+		return res;
+	}
+
+	//	Listing by category
+	@RequestMapping(value = "/list-categorized", method = RequestMethod.GET)
+	public ModelAndView listGroupByCategory(@RequestParam final int categoryId) {
+		ModelAndView res;
+		Collection<Rendezvous> rendezvous;
+		Boolean adult = false;
+		rendezvous = this.rendezvousService.findRendezvousByCategoryId(categoryId);
+		res = new ModelAndView("rendezvous/list");
+		try {
+			final User user = this.userService.findByPrincipal();
+			final Integer edad = this.calculateAge(user.getBirthdate());
+			if (edad >= 18) {
+				adult = true;
+				rendezvous = this.rendezvousService.findRendezvousWithAdultContentByCategoryId(categoryId);
+			}
+			if (user != null)
+				res.addObject("userLogged", user);
+		} catch (final Exception e) {
+
+		}
+
+		try {
+			final Manager manager = this.managerService.findByPrincipal();
+			final Integer edad = this.calculateAge(manager.getBirthdate());
+			if (edad >= 18) {
+				adult = true;
+				rendezvous = this.rendezvousService.findRendezvousWithAdultContentByCategoryId(categoryId);
+			}
+
+		} catch (final Exception e) {
+
+		}
+
+		try {
+			this.adminService.findByPrincipal();
+			adult = true;
+			rendezvous = this.rendezvousService.findRendezvousWithAdultContentByCategoryId(categoryId);
+
+		} catch (final Exception e) {
+
+		}
+		final Date currentTime = new Date(System.currentTimeMillis());
+		final Timestamp timestamp = new Timestamp(currentTime.getTime());
+		res.addObject("rendezvous", rendezvous);
+		res.addObject("timestamp", timestamp);
+		res.addObject("adult", adult);
 		res.addObject("requestURI", "rendezvous/list.do");
 
 		return res;
@@ -168,8 +227,10 @@ public class RendezvousController extends AbstractController {
 
 		try {
 			final Administrator admin = this.adminService.findByPrincipal();
-			if (admin != null)
+			if (admin != null) {
 				mayor = true;
+				linked2Size = this.rendezvousService.findFinalRendezvousLinkedAdult(rendezvousId).size();
+			}
 		} catch (final Exception e) {
 
 		}
