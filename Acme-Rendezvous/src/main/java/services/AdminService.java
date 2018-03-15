@@ -94,6 +94,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageRendezvousCreatedPerUser() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageRendezvousCreatedPerUser();
 		if (res == null)
@@ -101,6 +109,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartDeviationRendezvousCreatedPerUser() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationRendezvousCreatedPerUser();
 		if (res == null)
@@ -108,6 +124,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getRatioUsersWithCreatedRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.ratioUsersWithCreatedRendezvous();
 		if (res == null)
@@ -115,6 +139,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageAttendantsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageAttendantsPerRendezvous();
 		if (res == null)
@@ -122,6 +154,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartDeviationAttendantsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationAttendantsPerRendezvous();
 		if (res == null)
@@ -129,6 +169,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageRendezvousReservedPerUser() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageRendezvousReservedPerUser();
 		if (res == null)
@@ -136,6 +184,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartRendezvousReservedPerUser() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationRendezvousReservedPerUser();
 		if (res == null)
@@ -143,6 +199,14 @@ public class AdminService {
 		return res;
 	}
 	public List<Rendezvous> getMostReservedRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final List<Rendezvous> rendezvous = this.adminRepository.mostReservedRendezvous();
 		final List<Rendezvous> res;
 		if (rendezvous.isEmpty())
@@ -154,6 +218,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageAnnouncementsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageAnnouncementsPerRendezvous();
 		if (res == null)
@@ -161,6 +233,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartDeviationAnnouncementsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationAnnouncementsPerRendezvous();
 		if (res == null)
@@ -168,6 +248,14 @@ public class AdminService {
 		return res;
 	}
 	public List<Rendezvous> getRendezvousesAnnouncementsOver75() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final List<Rendezvous> rendezvous = this.adminRepository.rendezvousesAnnouncementsOver75();
 		final List<Rendezvous> res;
 		if (rendezvous.isEmpty())
@@ -177,6 +265,14 @@ public class AdminService {
 		return res;
 	}
 	public List<Rendezvous> getRendezvousesLinkedPlus10() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final List<Rendezvous> rendezvous = this.adminRepository.rendezvousesLinkedPlus10();
 		final List<Rendezvous> res;
 		if (rendezvous.isEmpty())
@@ -186,6 +282,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageQuestionsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageQuestionsPerRendezvous();
 		if (res == null)
@@ -193,6 +297,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartDeviationQuestionsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationQuestionsPerRendezvous();
 		if (res == null)
@@ -200,6 +312,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageAnswersPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageAnswersPerRendezvous();
 		if (res == null)
@@ -207,6 +327,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartDeviationAnswersPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationAnswersPerRendezvous();
 		if (res == null)
@@ -214,6 +342,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageRepliesPerComment() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageRepliesPerComment();
 		if (res == null)
@@ -221,6 +357,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartDeviationRepliesPerComment() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationRepliesPerComment();
 		if (res == null)
@@ -228,6 +372,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageRequestsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageRequestsPerRendezvous();
 		if (res == null)
@@ -235,6 +387,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getStandartRequestsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationRequestsPerRendezvous();
 		if (res == null)
@@ -242,6 +402,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getMinRequestsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageRequestsPerRendezvous();
 		if (res == null)
@@ -249,6 +417,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getMaxRequestsPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.standartDeviationRequestsPerRendezvous();
 		if (res == null)
@@ -256,6 +432,14 @@ public class AdminService {
 		return res;
 	}
 	public Double getAverageServicePerCategory() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double res;
 		res = this.adminRepository.averageServicePerCategory();
 		if (res == null)
@@ -263,6 +447,14 @@ public class AdminService {
 		return res;
 	}
 	public List<domain.Service> getBestSellingServices() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final List<domain.Service> services = this.adminRepository.bestSellingServices();
 		List<domain.Service> res = new ArrayList<domain.Service>();
 		if (services.isEmpty())
@@ -279,6 +471,14 @@ public class AdminService {
 		return res;
 	}
 	public List<domain.Service> getTopSellingServices() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final List<domain.Service> services = this.adminRepository.bestSellingServices();
 		final List<domain.Service> res;
 		if (services.isEmpty())
@@ -290,6 +490,14 @@ public class AdminService {
 		return res;
 	}
 	public List<Manager> getManagersMoreThanAvgService() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final List<Manager> managers = this.adminRepository.managersMoreThanAvg();
 		final List<Manager> res;
 		if (managers.isEmpty())
@@ -299,11 +507,27 @@ public class AdminService {
 		return res;
 	}
 	public Double avgCategoriesPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final Double res = 0.0;
 
 		return res;
 	}
 	public Double getAverageCategoryPerRendezvous() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		Double sum = 0.0;
 		Double res = 0.0;
 		final int size = this.rendezvousService.findAll().size();
@@ -317,6 +541,14 @@ public class AdminService {
 		return res;
 	}
 	public List<Manager> getManagersMostCancelled() {
+		Administrator admin = null;
+		try {
+			admin = this.findByPrincipal();
+
+		} catch (final Exception e) {
+
+		}
+		Assert.notNull(admin);
 		final List<Manager> managers = this.adminRepository.managersMostCancelled();
 		List<Manager> res = new ArrayList<Manager>();
 		if (managers.isEmpty())

@@ -78,9 +78,12 @@
 	<spring:message code="user.rendezvous.adult" var="adultHeader" />
 		<display:column property="adultContent" title="${adultHeader}" />
 	<display:column>
-			<a href="rendezvous/display.do?rendezvousId=${row.id}">
+	<jstl:if test = "${row.deleted == false}">
+			<a href="rendezvous/display.do?rendezvousId=${row.id}"> 
+			
 				<spring:message	code="user.rendezvous.view" />
 			</a>
+			</jstl:if>
 		</display:column>
 		
 	</display:table>

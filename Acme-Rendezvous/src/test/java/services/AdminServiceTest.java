@@ -17,7 +17,9 @@ import security.Authority;
 import security.UserAccount;
 import utilities.AbstractTest;
 import domain.Administrator;
+import domain.Manager;
 import domain.Rendezvous;
+import domain.Service;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -29,31 +31,6 @@ public class AdminServiceTest extends AbstractTest {
 	@Autowired
 	private AdminService	adminService;
 
-
-	@Test
-	public void testCreate() {
-		final Administrator res = this.adminService.create();
-		Assert.notNull(res);
-	}
-
-	@Test
-	public void testSave() {
-		final Administrator res = this.adminService.create();
-		res.setName("name1");
-		res.setSurname("surname1");
-		res.setEmail("email1@ejemplo.com");
-		res.setPhone("123456792");
-		res.setAddress("test");
-		final Date birthdate = new Date(System.currentTimeMillis() - 100000000);
-		res.setBirthdate(birthdate);
-		final List<Authority> authorities = new ArrayList<Authority>();
-		final Authority auth = new Authority();
-		auth.setAuthority(Authority.ADMIN);
-		authorities.add(auth);
-		res.getUserAccount().setAuthorities(authorities);
-		final Administrator saved = this.adminService.save(res);
-		Assert.notNull(saved);
-	}
 
 	@Test
 	public void testFindOne() {
@@ -110,133 +87,99 @@ public class AdminServiceTest extends AbstractTest {
 		Assert.notNull(found);
 		super.authenticate(null);
 	}
-	//Dashboard
+	/**
+	 * Tests the method related to the dashboard information an administrator must have access to.
+	 * <p>
+	 * This method tests that only an administrator can access to dashboard related services. An actor not authenticated at admin will not be able to use these services.
+	 */
 	@Test
-	public void testGetAverageRendezvousCreatedPerUser() {
-		super.authenticate("Admin");
-		final Double avg = this.adminService.getAverageRendezvousCreatedPerUser();
-		Assert.isTrue(avg != null);
-		super.authenticate(null);
+	public void driverDashboard() {
+		final Object testingData[][] = {
+			{
+				"admin", null
+			}, {
+				"user1", IllegalArgumentException.class
+			}, {
+				null, IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateDashboard((String) testingData[i][0], (Class<?>) testingData[i][1]);
 	}
-	@Test
-	public void testGetStandartDeviationRendezvousCreatedPerUser() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getStandartDeviationRendezvousCreatedPerUser();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetRatioUserCreatedRendezvous() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getRatioUsersWithCreatedRendezvous();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetAverageAttendantsPerRendezvous() {
-		super.authenticate("Admin");
-		final Double avg = this.adminService.getAverageAttendantsPerRendezvous();
-		Assert.isTrue(avg != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetStandartDeviationAttendantsPerRendezvous() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getStandartDeviationAttendantsPerRendezvous();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetAverageRendezvousReservedPerUser() {
-		super.authenticate("Admin");
-		final Double avg = this.adminService.getAverageRendezvousReservedPerUser();
-		Assert.isTrue(avg != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetStandartDeviationRendezvousReservedPerUser() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getStandartRendezvousReservedPerUser();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetMostReservedRendezvous() {
-		super.authenticate("Admin");
-		final List<Rendezvous> res = this.adminService.getMostReservedRendezvous();
-		Assert.isTrue(res != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetAverageAnnouncementsPerRendezvous() {
-		super.authenticate("Admin");
-		final Double avg = this.adminService.getAverageAnnouncementsPerRendezvous();
-		Assert.isTrue(avg != null);
-		super.authenticate(null);
-	}
+	/**
+	 * Template for testing dashboard methods.
+	 * <p>
+	 * This method defines the template used for the tests that check the dashboard functions.
+	 * 
+	 * @param username
+	 *            The username of the user trying to access the dashboard. If the user is not an administrator, the test is expected to fail
+	 * @param expected
+	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
+	 */
+	protected void templateDashboard(final String username, final Class<?> expected) {
+		Class<?> caught;
+		caught = null;
+		super.authenticate(username);
 
-	@Test
-	public void testGetStandartDeviationAnnouncementsPerRendezvous() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getStandartDeviationAnnouncementsPerRendezvous();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetRendezvousesAnnouncementsOver75() {
-		super.authenticate("Admin");
-		final List<Rendezvous> res = this.adminService.getRendezvousesAnnouncementsOver75();
-		Assert.isTrue(res != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetRendezvousesLinkedPlus10() {
-		super.authenticate("Admin");
-		final List<Rendezvous> res = this.adminService.getRendezvousesLinkedPlus10();
-		Assert.isTrue(res != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetAverageQuestionsPerRendezvous() {
-		super.authenticate("Admin");
-		final Double avg = this.adminService.getAverageQuestionsPerRendezvous();
-		Assert.isTrue(avg != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetStandartDeviationQuestionsPerRendezvousr() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getStandartDeviationQuestionsPerRendezvous();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetAverageAnswersPerRendezvous() {
-		super.authenticate("Admin");
-		final Double avg = this.adminService.getAverageAnswersPerRendezvous();
-		Assert.isTrue(avg != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetStandartDeviationAnswersPerRendezvous() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getStandartDeviationAnswersPerRendezvous();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetAverageRepliesPerComment() {
-		super.authenticate("Admin");
-		final Double avg = this.adminService.getAverageRepliesPerComment();
-		Assert.isTrue(avg != null);
-		super.authenticate(null);
-	}
-	@Test
-	public void testGetStandartDeviationRepliesPerComment() {
-		super.authenticate("Admin");
-		final Double st = this.adminService.getStandartDeviationRepliesPerComment();
-		Assert.isTrue(st != null);
-		super.authenticate(null);
-	}
+		try {
+			final Double averageRendezvousCreatedPerUser = this.adminService.getAverageRendezvousCreatedPerUser();
+			final Double standartRendezvousCreatedPerUser = this.adminService.getStandartDeviationRendezvousCreatedPerUser();
+			final Double ratioUsersWithCreatedRendezvous = this.adminService.getRatioUsersWithCreatedRendezvous();
+			final Double averageAttendantsPerRendezvous = this.adminService.getAverageAttendantsPerRendezvous();
+			final Double averageRendezvousReservedPerUser = this.adminService.getAverageRendezvousReservedPerUser();
+			final Double standartRendezvousReservedPerUser = this.adminService.getStandartRendezvousReservedPerUser();
+			final List<Rendezvous> mostReservedRendezvous = this.adminService.getMostReservedRendezvous();
+			final Double averageAnnouncementsPerRendezvous = this.adminService.getAverageAnnouncementsPerRendezvous();
+			final Double standartAnnouncementsPerRendezvous = this.adminService.getStandartDeviationAnnouncementsPerRendezvous();
+			final List<Rendezvous> rendezvousesAnnouncementsOver75 = this.adminService.getRendezvousesAnnouncementsOver75();
+			final List<Rendezvous> rendezvousesLinkedPlus10 = this.adminService.getRendezvousesLinkedPlus10();
+			final Double averageQuestionsPerRendezvous = this.adminService.getAverageQuestionsPerRendezvous();
+			final Double standartQuestionsPerRendezvous = this.adminService.getStandartDeviationQuestionsPerRendezvous();
+			final Double averageAnswersPerRendezvous = this.adminService.getAverageAnswersPerRendezvous();
+			final Double standartAnswersPerRendezvous = this.adminService.getStandartDeviationAnswersPerRendezvous();
+			final Double averageRepliesPerComment = this.adminService.getAverageRepliesPerComment();
+			final Double standartRepliesPerComment = this.adminService.getStandartDeviationRepliesPerComment();
+			final Double averageRequestsPerRendezvous = this.adminService.getAverageRequestsPerRendezvous();
+			final Double standartRequestsPerRendezvous = this.adminService.getStandartRequestsPerRendezvous();
+			final Double minRequestsPerRendezvous = this.adminService.getMinRequestsPerRendezvous();
+			final Double maxRequestsPerRendezvous = this.adminService.getMaxRequestsPerRendezvous();
+			final Double averageServicePerCategory = this.adminService.getAverageServicePerCategory();
+			final List<Service> bestSellingServices = this.adminService.getBestSellingServices();
+			final List<Service> topSellingServices = this.adminService.getTopSellingServices();
+			final List<Manager> managersMoreThanAvg = this.adminService.getManagersMoreThanAvgService();
+			final Double averageCategoryPerRendezvous = this.adminService.getAverageCategoryPerRendezvous();
+			final List<Manager> managersMostCancelled = this.adminService.getManagersMostCancelled();
+			Assert.notNull(averageRendezvousCreatedPerUser);
+			Assert.notNull(standartRendezvousCreatedPerUser);
+			Assert.notNull(ratioUsersWithCreatedRendezvous);
+			Assert.notNull(averageAttendantsPerRendezvous);
+			Assert.notNull(averageRendezvousReservedPerUser);
+			Assert.notNull(standartRendezvousReservedPerUser);
+			Assert.notNull(mostReservedRendezvous);
+			Assert.notNull(averageAnnouncementsPerRendezvous);
+			Assert.notNull(standartAnnouncementsPerRendezvous);
+			Assert.notNull(rendezvousesAnnouncementsOver75);
+			Assert.notNull(rendezvousesLinkedPlus10);
+			Assert.notNull(averageQuestionsPerRendezvous);
+			Assert.notNull(standartQuestionsPerRendezvous);
+			Assert.notNull(averageAnswersPerRendezvous);
+			Assert.notNull(standartAnswersPerRendezvous);
+			Assert.notNull(averageRepliesPerComment);
+			Assert.notNull(standartRepliesPerComment);
+			Assert.notNull(standartRequestsPerRendezvous);
+			Assert.notNull(minRequestsPerRendezvous);
+			Assert.notNull(maxRequestsPerRendezvous);
+			Assert.notNull(averageServicePerCategory);
+			Assert.notNull(averageRequestsPerRendezvous);
+			Assert.notNull(bestSellingServices);
+			Assert.notNull(topSellingServices);
+			Assert.notNull(managersMoreThanAvg);
+			Assert.notNull(averageCategoryPerRendezvous);
+			Assert.notNull(managersMostCancelled);
 
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
+	}
 }

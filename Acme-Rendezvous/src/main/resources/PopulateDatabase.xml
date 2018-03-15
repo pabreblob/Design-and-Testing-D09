@@ -416,7 +416,7 @@
 		<property name="creditCard"><bean class="domain.CreditCard">
 					<property name="holderName" value="user1" />
 					<property name="brandName" value="brand1" />
-					<property name="number" value="5521054892890001" />
+					<property name="number" value="4785623645262140" />
 					<property name="expMonth" value="10" />
 					<property name="expYear" value="18" />
 					<property name="cvv" value="156" />
@@ -429,7 +429,7 @@
 		<property name="creditCard"><bean class="domain.CreditCard">
 					<property name="holderName" value="user2" />
 					<property name="brandName" value="brand1" />
-					<property name="number" value="5521054892890001" />
+					<property name="number" value="4442461313215883" />
 					<property name="expMonth" value="10" />
 					<property name="expYear" value="18" />
 					<property name="cvv" value="156" />
@@ -440,9 +440,9 @@
 		<property name="rendezvous"><ref bean="Rendezvous3"></ref></property>
 		<property name="service"><ref bean="Service2"></ref></property>
 		<property name="creditCard"><bean class="domain.CreditCard">
-					<property name="holderName" value="user1" />
+					<property name="holderName" value="user2" />
 					<property name="brandName" value="brand1" />
-					<property name="number" value="5521054892890001" />
+					<property name="number" value="4550071630364666" />
 					<property name="expMonth" value="10" />
 					<property name="expYear" value="18" />
 					<property name="cvv" value="156" />
