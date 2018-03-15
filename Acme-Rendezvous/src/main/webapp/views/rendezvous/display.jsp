@@ -144,65 +144,78 @@
 <spring:message code="rendez.comments" var="commentHeader"/>
 <jstl:out value="${commentHeader}"></jstl:out>
 </h2>
-<jstl:forEach var="comment" items="${comments}">
-	
-	<div class="COMMENT">
-	
-		<div class="COMMENT">
-			<a href="user/display.do?userId=${comment.author.id}"><jstl:out value="${comment.author.name}"/></a>:
-		</div>
-		<div class="COMMENT">
-		&emsp;
-		<jstl:if test="${comment.pictureURL != ''}">	
-			<spring:message code="comment.url" var="urlLink"/>
-			<a href="${comment.pictureURL}"><img src="${comment.pictureURL}" alt="${urlLink}" height="150px" width="150px"></a>
-		</jstl:if>
-			<jstl:out value="${comment.text}"/>
-		</div>
-		<span class="MOMENT">
-			<fmt:formatDate value="${comment.moment}" pattern="${dateFormat2}" />
-		</span>
-	</div>
-	<div>			
-		<security:authorize access="hasRole('ADMIN')">
-			<a href="comment/admin/delete.do?commentId=${comment.id}"><spring:message code="comment.delete"/></a>
-		</security:authorize>
-	</div>	
-	<jstl:forEach var="reply" items="${comment.replies}">
-	<div class="REPLY">
-		
-			<div>
-				&emsp;&emsp;<a href="user/display.do?userId=${reply.author.id}"><jstl:out value="${reply.author.name}"/></a>:	
-			</div>
-			<div>
-				&emsp;&emsp;&emsp;<jstl:out value="${reply.text}"/>
-			</div>
-			
-			<span class="MOMENT">
-				<fmt:formatDate value="${reply.moment}" pattern="${dateFormat2}" />
-			</span>
-			<security:authorize access="hasRole('ADMIN')">
-				<a href="reply/admin/delete.do?replyId=${reply.id}"><spring:message code="comment.reply.delete"/></a>
-			</security:authorize>
-			
-	</div>
-	
-	</jstl:forEach>
-	
-	<security:authorize access="hasRole('USER')">
-		<jstl:if test="${isFinal == true}">
-		<jstl:if test="${rsvpd == true}">
-			<div>
-				<a href="reply/user/create.do?commentId=${comment.id}"><spring:message code="comment.reply.new"/></a>
-			</div>
-		</jstl:if>
-		</jstl:if>
-	</security:authorize>
-	
-	<br/>
-	
-</jstl:forEach>
 
+<jstl:if test="${hasComment == true}">
+	<jstl:forEach var="comment" items="${comments}">
+		
+		<div class="COMMENT">
+		
+			<div class="COMMENT">
+				<a href="user/display.do?userId=${comment.author.id}"><jstl:out value="${comment.author.name}"/></a>:
+			</div>
+			<div class="COMMENT">
+			&emsp;
+			<jstl:if test="${comment.pictureURL != ''}">	
+				<spring:message code="comment.url" var="urlLink"/>
+				<a href="${comment.pictureURL}"><img src="${comment.pictureURL}" alt="${urlLink}" height="150px" width="150px"></a>
+			</jstl:if>
+				<jstl:out value="${comment.text}"/>
+			</div>
+			<span class="MOMENT">
+				<fmt:formatDate value="${comment.moment}" pattern="${dateFormat2}" />
+			</span>
+		</div>
+		<div>			
+			<security:authorize access="hasRole('ADMIN')">
+				<a href="comment/admin/delete.do?commentId=${comment.id}"><spring:message code="comment.delete"/></a>
+			</security:authorize>
+		</div>	
+		<jstl:forEach var="reply" items="${comment.replies}">
+		<div class="REPLY">
+			
+				<div>
+					&emsp;&emsp;<a href="user/display.do?userId=${reply.author.id}"><jstl:out value="${reply.author.name}"/></a>:	
+				</div>
+				<div>
+					&emsp;&emsp;&emsp;<jstl:out value="${reply.text}"/>
+				</div>
+				
+				<span class="MOMENT">
+					<fmt:formatDate value="${reply.moment}" pattern="${dateFormat2}" />
+				</span>
+				<security:authorize access="hasRole('ADMIN')">
+					<a href="reply/admin/delete.do?replyId=${reply.id}"><spring:message code="comment.reply.delete"/></a>
+				</security:authorize>
+				
+		</div>
+		
+		</jstl:forEach>
+		
+		<security:authorize access="hasRole('USER')">
+			<jstl:if test="${isFinal == true}">
+			<jstl:if test="${rsvpd == true}">
+				<div>
+					<a href="reply/user/create.do?commentId=${comment.id}"><spring:message code="comment.reply.new"/></a>
+				</div>
+			</jstl:if>
+			</jstl:if>
+		</security:authorize>
+		
+		<br/>
+		
+	</jstl:forEach>
+</jstl:if>
+
+<jstl:if test="${hasComment == false}">
+	<jstl:if test="${rendezvous.moment > timestamp}">
+		<p><i><spring:message code="comment.empty.future"/></i></p>
+	</jstl:if>
+	
+	<jstl:if test="${rendezvous.moment < timestamp }">
+		<p><i><spring:message code="comment.empty.past"/></i></p>
+	</jstl:if>
+
+</jstl:if>
 <security:authorize access="hasRole('USER')">	
 	<jstl:if test="${isFinal == true}">
 	<jstl:if test="${rsvpd == true}">

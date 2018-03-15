@@ -238,6 +238,7 @@ public class RendezvousController extends AbstractController {
 			Assert.isTrue(mayor);
 
 		final Collection<Comment> commentList = this.commentService.findCommentsOrdered(rendezvousId);
+		final boolean hasComment = !commentList.isEmpty();
 		for (final Comment c : commentList)
 			Hibernate.initialize(c.getReplies());
 		final boolean isFinal = r.isFinalMode();
@@ -249,6 +250,8 @@ public class RendezvousController extends AbstractController {
 		} catch (final Exception e) {
 
 		}
+		final Date currentTime = new Date(System.currentTimeMillis());
+		final Timestamp timestamp = new Timestamp(currentTime.getTime());
 
 		res = new ModelAndView("rendezvous/display");
 		System.out.println();
@@ -257,7 +260,9 @@ public class RendezvousController extends AbstractController {
 		res.addObject("linkedSize", linkedSize);
 		res.addObject("linked2Size", linked2Size);
 		res.addObject("comments", commentList);
+		res.addObject("hasComment", hasComment);
 		res.addObject("isFinal", isFinal);
+		res.addObject("timestamp", timestamp);
 		res.addObject("rsvpd", rsvpd);
 		res.addObject("announcementSize", this.rendezvousService.findAnnouncementsByRendezId(r.getId()).size());
 		res.addObject("serviceSize", this.serviceService.findServicesByRendezvousId(rendezvousId).size());

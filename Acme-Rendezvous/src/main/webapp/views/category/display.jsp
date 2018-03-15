@@ -23,10 +23,15 @@
 
 <p><b><spring:message code="category.description" />:</b> ${category.description}</p>
 
-<a href="rendezvous/list-categorized.do?categoryId=${category.id}"><spring:message code="category.rendezvous.link"/></a>
+<jstl:if test="${hasRendez == true}">
+	<a href="rendezvous/list-categorized.do?categoryId=${category.id}"><spring:message code="category.rendezvous.link"/></a>
+</jstl:if>
+<jstl:if test="${hasRendez == false}">
+	<p><i><spring:message code="category.rendezvous.empty"/></i></p>
+</jstl:if>
 
 <h2><spring:message code="category.services"/></h2>
-
+<jstl:if test="${hasServ == true}">
 <display:table name="services" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 
 	<spring:message code="category.service.name" var="${servNameHeader}"/>
@@ -37,8 +42,15 @@
 	</display:column>
 </display:table>
 
+</jstl:if>
+
+<jstl:if test="${hasServ == false}">
+	<p><i><spring:message code="category.service.empty"/></i></p>
+</jstl:if>
+
 <h2><spring:message code="category.children"/></h2>
 
+<jstl:if test="${hasChild == true}">
 <display:table name="children" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 
 	<spring:message code="category.child.name" var="nameHeader"/>
@@ -50,6 +62,10 @@
 	</display:column>
 
 </display:table>
+</jstl:if>
+<jstl:if test="${hasChild == false}">
+	<p><i><spring:message code="category.children.empty"/></i></p>
+</jstl:if>
 <br/>
 <security:authorize access="hasRole('ADMIN')">
 	<a href="category/admin/create.do?categoryId=${category.id}"><spring:message code="category.child.create"/></a>

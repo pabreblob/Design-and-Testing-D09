@@ -11,18 +11,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
+import services.RendezvousService;
 import services.ServiceService;
 import domain.Category;
 import domain.Service;
 
 @Controller
 @RequestMapping("/category")
-public class CategoryController {
+public class CategoryController extends AbstractController {
 
 	@Autowired
-	private CategoryService	categoryService;
+	private CategoryService		categoryService;
 	@Autowired
-	private ServiceService	serviceService;
+	private ServiceService		serviceService;
+	@Autowired
+	private RendezvousService	rendezvousService;
 
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -34,12 +37,18 @@ public class CategoryController {
 
 		final Collection<Category> children = cat.getChildren();
 		final Collection<Service> services = this.serviceService.findServicesByCategory(categoryId);
+		final boolean hasRendez = !this.rendezvousService.findRendezvousByCategoryId(categoryId).isEmpty();
+		final boolean hasServ = !services.isEmpty();
+		final boolean hasChild = !children.isEmpty();
 
 		res = new ModelAndView("category/display");
 		res.addObject("category", cat);
 		res.addObject("children", children);
 		res.addObject("father", father);
 		res.addObject("services", services);
+		res.addObject("hasRendez", hasRendez);
+		res.addObject("hasServ", hasServ);
+		res.addObject("hasChild", hasChild);
 		res.addObject("requestURI", "category/display.do");
 		if (father)
 			res.addObject("fatherId", cat.getParent().getId());
@@ -48,7 +57,6 @@ public class CategoryController {
 
 		return res;
 	}
-
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView res;
