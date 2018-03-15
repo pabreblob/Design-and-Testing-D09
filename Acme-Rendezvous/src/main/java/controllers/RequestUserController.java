@@ -4,6 +4,8 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +37,31 @@ public class RequestUserController extends AbstractController {
 
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int serviceId) {
+	public ModelAndView create(@RequestParam final int serviceId, final HttpServletResponse response) {
 		final Service s = this.serviceService.findOne(serviceId);
-		final List<Request> reqs = new ArrayList<>(this.requestService.findRequestByPrincipal());
 		final Request r = this.requestService.create(s);
-		if (reqs.size() != 0)
-			r.setCreditCard(reqs.get(0).getCreditCard());
-
+		final List<Request> reqs = new ArrayList<>(this.requestService.findRequestByPrincipal());
+		if (reqs.size() != 0) {
+			final Request last = reqs.get(0);
+			final Cookie cookie = new Cookie("CCHolderName", last.getCreditCard().getHolderName());
+			final Cookie cookie2 = new Cookie("CCBrandName", last.getCreditCard().getBrandName());
+			final Cookie cookie3 = new Cookie("CCNumber", last.getCreditCard().getNumber());
+			final Cookie cookie4 = new Cookie("CCExpMonth", String.valueOf(last.getCreditCard().getExpMonth()));
+			final Cookie cookie5 = new Cookie("CCExpYear", String.valueOf(last.getCreditCard().getExpYear()));
+			final Cookie cookie6 = new Cookie("CCCVV", String.valueOf(last.getCreditCard().getCvv()));
+			cookie.setPath("/");
+			cookie2.setPath("/");
+			cookie3.setPath("/");
+			cookie4.setPath("/");
+			cookie5.setPath("/");
+			cookie6.setPath("/");
+			response.addCookie(cookie);
+			response.addCookie(cookie2);
+			response.addCookie(cookie3);
+			response.addCookie(cookie4);
+			response.addCookie(cookie5);
+			response.addCookie(cookie6);
+		}
 		final ModelAndView res = new ModelAndView("request/edit");
 
 		res.addObject("request", r);
@@ -52,7 +72,7 @@ public class RequestUserController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/create", params = "save", method = RequestMethod.POST)
-	public ModelAndView save(@Valid final Request r, final BindingResult binding) {
+	public ModelAndView save(@Valid final Request r, final BindingResult binding, final HttpServletResponse response) {
 
 		ModelAndView res;
 

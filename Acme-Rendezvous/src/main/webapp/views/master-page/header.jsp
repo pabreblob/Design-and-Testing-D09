@@ -134,7 +134,7 @@
 					<li><a href="user/user/display.do"><spring:message code="master.page.profile.display" /></a></li>					
 				</security:authorize>
 					
-					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+					<li><a href="j_spring_security_logout" onclick="deleteCreditCard()"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message code="master.page.allUsers"/></a>
@@ -151,3 +151,21 @@
 		</li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+	function deleteCreditCard() {
+		if (getCookie("CCHolderName") != '') {
+			delete_cookie("CCHolderName"); 
+			delete_cookie("CCBrandName");
+			delete_cookie("CCNumber");
+			delete_cookie("CCExpMonth");
+			delete_cookie("CCExpYear");
+			delete_cookie("CCCVV");
+		}
+		
+	}
+	
+	var delete_cookie = function(name) {
+	    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;';
+	};
+</script>
