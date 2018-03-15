@@ -13,13 +13,17 @@
 	<a href="category/display.do?categoryId=${fatherId}"><spring:message code="category.father.link"/></a>
 </jstl:if>
 
+
+
 <jstl:if test="${father == false}">
 	<a href="category/list.do"><spring:message code="category.toplist"/></a>
 </jstl:if>
 
 <h1><spring:message code="category.current"/>: ${category.displayName}</h1>
-<br/>
+
 <p><b><spring:message code="category.description" />:</b> ${category.description}</p>
+
+<a href="rendezvous/list-categorized.do?categoryId=${category.id}"><spring:message code="category.rendezvous.link"/></a>
 
 <h2><spring:message code="category.services"/></h2>
 
