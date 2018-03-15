@@ -583,7 +583,7 @@
 		</property>
 		<property name="linkedRendezvous">
 			<list>
-			
+			<ref bean="Rendezvous5" />
 			</list>
 		</property>
 		<property name="announcements">
@@ -686,7 +686,7 @@
 		</property>
 		<property name="linkedRendezvous">
 			<list>
-			
+			<ref bean="Rendezvous3" />
 			</list>
 		</property>
 		<property name="announcements">
