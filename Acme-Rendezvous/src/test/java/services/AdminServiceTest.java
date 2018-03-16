@@ -32,6 +32,11 @@ public class AdminServiceTest extends AbstractTest {
 	private AdminService	adminService;
 
 
+	/**
+	 * Tests the finding of one administrator.
+	 * <p>
+	 * This method checks that the profile of a manager can be accessed to.
+	 */
 	@Test
 	public void testFindOne() {
 		final Administrator res = this.adminService.create();
@@ -51,7 +56,11 @@ public class AdminServiceTest extends AbstractTest {
 		final Administrator found = this.adminService.findOne(saved.getId());
 		Assert.isTrue(found.equals(saved));
 	}
-
+	/**
+	 * Tests the listing of the system administrators.
+	 * <p>
+	 * This method checks that the administrators can be listed.
+	 */
 	@Test
 	public void testFindAll() {
 		final Administrator res = this.adminService.create();
@@ -70,7 +79,9 @@ public class AdminServiceTest extends AbstractTest {
 		final Administrator saved = this.adminService.save(res);
 		Assert.isTrue(this.adminService.findAll().contains(saved));
 	}
-
+	/**
+	 * Tests finding the administrator who is logged in.
+	 */
 	@Test
 	public void testFindByPrincipal() {
 		super.authenticate("admin");
@@ -78,7 +89,9 @@ public class AdminServiceTest extends AbstractTest {
 		final Administrator aux = this.adminService.findOne(principal.getId());
 		Assert.isTrue(principal.equals(aux));
 	}
-
+	/**
+	 * Tests finding administrators by user account.
+	 */
 	@Test
 	public void testFindByUserAccount() {
 		super.authenticate("admin");

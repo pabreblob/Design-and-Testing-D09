@@ -81,6 +81,7 @@ public class UserService {
 		final UserAccount ua = this.userAccountService.save(user.getUserAccount());
 		user.setUserAccount(ua);
 		final User res = this.userRepository.save(user);
+		Assert.notNull(res.getUserAccount().getUsername());
 		return res;
 	}
 	public User findOne(final int idUser) {

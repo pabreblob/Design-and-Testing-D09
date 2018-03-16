@@ -2,6 +2,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import org.junit.Test;
@@ -125,7 +126,8 @@ public class ManagerServiceTest extends AbstractTest {
 	 * This method defines the template used for the tests that check the finding of one manager.
 	 * 
 	 * @param managerId
-	 *            The id of the manager that we want to find.
+	 *            The id of the manager that we want to find. In order to test what would happen
+	 *            when the method receives an invalid id, we will set the managerId value to null when the manager received is Manager2
 	 * @param expected
 	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
 	 */
@@ -142,5 +144,27 @@ public class ManagerServiceTest extends AbstractTest {
 			caught = oops.getClass();
 		}
 		this.checkExceptions(expected, caught);
+	}
+	/**
+	 * Tests the listing of managers.
+	 * <p>
+	 * This method tests the listing of the managers stored in the database.
+	 */
+	@Test
+	public void testFindAllManagers() {
+		final Collection<Manager> res = this.managerService.findAll();
+		Assert.notNull(res);
+		Assert.isTrue(res.size() > 0);
+	}
+	/**
+	 * Tests finding the manager who is logged in.
+	 */
+	@Test
+	public void testFindByPrincipal() {
+		super.authenticate("manager1");
+		final Manager res = this.managerService.findByPrincipal();
+		Assert.isTrue(res.getId() == new ArrayList<Manager>(this.managerService.findAll()).get(0).getId());
+		super.unauthenticate();
+
 	}
 }
