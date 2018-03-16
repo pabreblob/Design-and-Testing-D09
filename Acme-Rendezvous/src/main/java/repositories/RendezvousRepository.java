@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import domain.Announcement;
 import domain.Rendezvous;
 
 @Repository
@@ -35,9 +36,9 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Integer>
 	@Query("select r from Rendezvous r join r.comments c where c.id = ?1 ")
 	Rendezvous findRendezvousByCommentId(int commentId);
 
-	//Announcements
+	//Announcements porque falla  rendez.getAnnouncements() si no estás logeado
 	@Query("select r.announcements from Rendezvous r where r.id = ?1")
-	Collection<Rendezvous> findAnnouncementsByRendezId(int rendezId);
+	Collection<Announcement> findAnnouncementsByRendezId(int rendezId);
 
 	@Query("select r from User u join u.createdRendezvous r join r.requests req where u.id = ?1 and req.service.id = ?2  and r.moment > CURRENT_TIMESTAMP and r.finalMode = true")
 	Collection<Rendezvous> findRendezvousWithRequestByUserId(int id, int serviceId);
