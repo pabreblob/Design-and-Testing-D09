@@ -123,12 +123,14 @@ public class ServiceServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Template for testing the editing of announcements.
+	 * Template for testing the editing of services.
 	 * <p>
-	 * This method defines the template used for the tests that check the editing of announcements.
+	 * This method defines the template used for the tests that check the editing of services.
 	 * 
 	 * @param username
 	 *            The username of the user that logs in.
+	 * @param serviceId
+	 *            The id of the service that the user wants to edit
 	 * @param expected
 	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
 	 */
@@ -173,7 +175,7 @@ public class ServiceServiceTest extends AbstractTest {
 	 * This method defines the template used for the tests that check the finding of one service.
 	 * 
 	 * @param serviceId
-	 *            The id of the service that we want to find.
+	 *            The id of the service that user wants to find.
 	 * @param expected
 	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
 	 */
@@ -243,7 +245,7 @@ public class ServiceServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Tests the cancelattion of a aservice.
+	 * Tests the cancelation of a service.
 	 * <p>
 	 * This method tests that a service can be cancel if it has not been cancelled yet.
 	 */
@@ -285,7 +287,7 @@ public class ServiceServiceTest extends AbstractTest {
 	/**
 	 * Tests the listing of services.
 	 * <p>
-	 * This method tests the listing of the services stored in the database.
+	 * This method tests the listing all of the services stored in the database.
 	 */
 
 	@Test
