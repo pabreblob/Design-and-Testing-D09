@@ -49,6 +49,17 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the saving of rendezvouses.
 	 * <p>
 	 * This method tests the creation and later saving of rendezvouses as it would be done by an user in the corresponding views.
+	 * 
+	 * Case 1: Creation and saved of a rendezvous correctly. Nothing is expected.
+	 * 
+	 * Case 2: Creation and saved of a rendezvous by any user. IllegalArgumentException is expected.
+	 * 
+	 * Case 3: Creation and saved of a rendezvous with date in the past. IllegalArgumentException is expected.
+	 * 
+	 * Case 4: Creation and saved of a rendezvous with adult content by a not adult user. IllegalArgumentException is expected.
+	 * 
+	 * Case 5: Creation and saved of a rendezvous by a not adult user. Nothing is expected.
+	 * 
 	 */
 	@Test
 	public void testSave() {
@@ -109,6 +120,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the editing of rendezvouses.
 	 * <p>
 	 * This method tests the edition of rendezvouses as it would be done by an user in the corresponding views.
+	 * 
+	 * Case 1: Edition and saved of a redezvous. Nothing is expected.
+	 * 
+	 * Case 2: Edition and saved of a rendezvous not created by principal. IllegalArgumentException is expected.
+	 * 
+	 * Case 3: Edition and saved of a rendezvous with moment in the past. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void testEdit() {
@@ -210,6 +227,10 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the linking of rendezvouses.
 	 * <p>
 	 * This method tests the linking of the rendezvouses that an user has created.
+	 * 
+	 * Case 1: An user link a rendezvous created in the test with another rendezvous stored in the database. Nothing is expected.
+	 * 
+	 * Case 2: An user link a rendezvous created in the test with another rendezvous stored in the database not created by him. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void testLink() {
@@ -267,6 +288,10 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the unlinking of rendezvouses.
 	 * <p>
 	 * This method tests the unlinking of the rendezvouses that an user has created.
+	 * 
+	 * Case 1: An user unlink two rendezvous. Nothing is expected.
+	 * 
+	 * Case 2: An user unlink two rendezvous not created by him. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void testUnLink() {
@@ -328,6 +353,14 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the joining of rendezvouses.
 	 * <p>
 	 * This method tests the joining of the rendezvouses by an user.
+	 * 
+	 * Case 1: An user join to a rendezvous. Nothing is expected
+	 * 
+	 * Case 2: An user join to a rendezvous created by him. IllegalArgumentException is expected.
+	 * 
+	 * Case 3: A not adult user join to a rendezvous with adult content. IllegalArgumentException is expected.
+	 * 
+	 * Case 4: A nor adult user join to a rendezvous. Nothing is expected.
 	 */
 	@Test
 	public void testJoin() {
@@ -387,6 +420,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the disjoin of rendezvouses.
 	 * <p>
 	 * This method tests the disjoining of the rendezvouses that an user is joined.
+	 * 
+	 * Case 1: An user disjoin to a rendezvous. Nothing is expected.
+	 * 
+	 * Case 2: An user disjoin to a rendezvous created by him. IllegalArgumentException is expected.
+	 * 
+	 * Case 3: An user disjoin to a rendezvous not joined before. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void testDisjoin() {
@@ -443,6 +482,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the cancelation of a rendezvous.
 	 * <p>
 	 * This method tests that a rendezvous can be cancel.
+	 * 
+	 * Case 1: A rendezvous is cancelled. Nothing is expected.
+	 * 
+	 * Case 2: A rendezvous in final mode is cancelled. IllegalArgumentException is expected.
+	 * 
+	 * Case 3: A rendezvous not created by principal is cancelled. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void testCancel() {
@@ -501,6 +546,14 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the deletion of a rendezvous.
 	 * <p>
 	 * This method tests that a rendezvous can be deleted in any situation by an admin.
+	 * 
+	 * Case 1: A rendezvous is deleted by an admin.
+	 * 
+	 * Case 2: Another rendezvous is deleted by an admin.
+	 * 
+	 * Case 1: Another rendezvous is deleted by an admin.
+	 * 
+	 * Note: Only administrators can delete rendezvous but it's controlled in the security.xml file.
 	 */
 	@Test
 	public void testDelete() {
@@ -556,6 +609,50 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous created by principal.
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user has created.
+	 * 
+	 * Case 1: User 1 lists all rendezvouses created by him. Nothing is expected
+	 * 
+	 * Case 2: User 2 lists all rendezvouses created by him. Nothing is expected
+	 * 
+	 * Case 3: User 3 lists all rendezvouses created by him. Nothing is expected
+	 * 
+	 * Case 4: User 4 lists all rendezvouses created by him. Nothing is expected
+	 * 
+	 * Case 5: User 5 lists all rendezvouses created by him. Nothing is expected
+	 * 
+	 * Case 6: User 6 lists all rendezvouses created by him. Nothing is expected
+	 * 
+	 * Case 7: Null lists all rendezvouses created by him. IllegalArgumentException is expected.
+	 * 
+	 * Case 8: Manager 1 lists all rendezvouses created by him. NullPointerException is expected.
+	 * 
+	 * Case 9: User 10 (it doesn't exist) lists all rendezvouses created by him. IllegalArgumentException.
+	 * 
+	 * Case 10: Manager 2 lists all rendezvouses created by him. NullPointerException is expected.
+	 * 
+	 * Case 11: Admin lists all rendezvouses created by him. IllegalArgumentException.
+	 * 
+	 * Case 12: Rendezvouses (not deleted) created by user 1. Nothing is expected.
+	 * 
+	 * Case 13: Rendezvouses (not deleted) created by user 2. Nothing is expected.
+	 * 
+	 * Case 14: Rendezvouses (not deleted) created by user 3. Nothing is expected.
+	 * 
+	 * Case 15: Rendezvouses (not deleted) created by user 4. Nothing is expected.
+	 * 
+	 * Case 16: Rendezvouses (not deleted) created by anything. IllegalArgumentException is expected.
+	 * 
+	 * Case 17: Rendezvouses (not deleted) created by user 8 (not exist). IllegalArgumentException is expected.
+	 * 
+	 * Case 18: Rendezvouses (not deleted) created by manager 2. NullPointerException is expected.
+	 * 
+	 * Case 19: Rendezvouses (not deleted) created by manager 3 (not exist). NullPointerException is expected.
+	 * 
+	 * Case 20: Rendezvouses (not deleted) created by admin. NullPointerException is expected.
+	 * 
+	 * Note: Case 1 to 11. It's the list that user see when they want to see rendezvouses created by them.
+	 * 
+	 * Note 2 : Case 12 to 20. It's the list that user (or another actor) see when they want to see rendezvouses created by other users.
 	 */
 	@Test
 	public void driverRendezvousCreatedByPrincipal() {
@@ -670,6 +767,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous joined by principal.
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user is joined.
+	 * 
+	 * Case 1: List rendezvouses joined by principal. Nothing is expected.
+	 * 
+	 * Case 2: List rendezvouses joined by principal. Nothing is expected.
+	 * 
+	 * Case 3: List rendezvouses joined by principal. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void driverRendezvousJoinedByPrincipal() {
@@ -717,6 +820,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous joined by an user.
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user is joined.
+	 * 
+	 * 
 	 */
 	@Test
 	public void driverRendezvousJoinedByUserId() {
@@ -761,6 +866,10 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous joined by principal.
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user is joined included with adult content.
+	 * 
+	 * Case 1: List rendezvouses joined by user 1. Nothing is expected.
+	 * 
+	 * Case 2: List rendezvouses joined by user 2. Nothing is expected.
 	 */
 	@Test
 	public void driverRendezvousJoinedAdultByUserId() {
@@ -826,6 +935,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous in final mode linked.
 	 * <p>
 	 * This method tests the listing of the rendezvous in final mode linked.
+	 * 
+	 * Case 1: List rendezvouses without adult content linked by rendezvous 1. Nothing is expected.
+	 * 
+	 * Case 2: List rendezvouses without adult content linked by rendezvous 2. Nothing is expected.
+	 * 
+	 * Case 3: List rendezvouses without adult content linked by rendezvous 5. Nothing is expected.
 	 */
 	@Test
 	public void driverFinalRendezvousLinked() {
@@ -871,6 +986,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous linked.
 	 * <p>
 	 * This method tests the listing of the rendezvous linked with another rendezvous.
+	 * 
+	 * Case 1: List rendezvouses linked by rendezvous 1. Nothing is expected.
+	 * 
+	 * Case 2: List rendezvouses linked by rendezvous 2. Nothing is expected.
+	 * 
+	 * Case 3: List rendezvouses linked by rendezvous 5. Nothing is expected.
 	 */
 	@Test
 	public void driverFinalRendezvousLinkedAdult() {
@@ -915,6 +1036,14 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous linked.
 	 * <p>
 	 * This method tests the listing of the rendezvous linked with another rendezvous. Not necessary that rendezvouses are in final mode to be shown.
+	 * 
+	 * Case 1: List rendezvouses linked by rendezvous 1. Nothing is expected.
+	 * 
+	 * Case 2: List rendezvouses linked by rendezvous 2. Nothing is expected.
+	 * 
+	 * Case 3: List rendezvouses linked by rendezvous 5. Nothing is expected.
+	 * 
+	 * Note: In this test, the method of the service used, return all rendezvouses linked included rendezvouses that not are in final mode.
 	 */
 	@Test
 	public void driverAllRendezvousLinked() {
@@ -959,6 +1088,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the displaying of rendezvous by comment.
 	 * <p>
 	 * This method finds a rendezvous that has the comment.
+	 * 
+	 * Case 1: Search of rendezvous 1 by comment 1. Nothing is expected.
+	 * 
+	 * Case 2: Search of rendezvous 2 by comment 2. Nothing is expected.
+	 * 
+	 * Case 3: Search of rendezvous 3 by comment 3. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void driverRendezvousByCommentId() {
@@ -1000,9 +1135,17 @@ public class RendezvousServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Tests the listing of rendezvouses availables for requests.
+	 * Tests the listing of rendezvouses available for requests.
 	 * <p>
-	 * This method tests de listing of rendezvouses availables for request a service.
+	 * This method tests the listing of rendezvouses available for request a service.
+	 * 
+	 * Case 1: List of rendezvouses available for request the service 1 by user 1. Nothing is expected.
+	 * 
+	 * Case 2: List of rendezvouses available for request the service 2 by user 2. Nothing is expected.
+	 * 
+	 * Case 3: List of rendezvouses available for request the service 1 by user 2. Nothing is expected.
+	 * 
+	 * Case 4: List of available for request the service 1 by anything. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void driverRendezvousForRequestByPrincipal() {
@@ -1053,6 +1196,12 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvouses by categories.
 	 * <p>
 	 * This method tests de listing of rendezvouses that request services with a category.
+	 * 
+	 * Case 1: List the rendezvouses with Category 1. Nothing is expected.
+	 * 
+	 * Case 2: List the rendezvouses with Category 2. Nothing is expected.
+	 * 
+	 * Case 3: List the rendezvouses with Category 3. Nothing is expected.
 	 */
 	@Test
 	public void driverRendezvousByCategory() {
@@ -1094,16 +1243,15 @@ public class RendezvousServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Template for testing the listing of rendezvouses.
+	 * Tests the listing of rendezvouses by categories.
 	 * <p>
-	 * This method defines the template used to test the listing of rendezvouses created by an user. Can contains rendezvouses with adult content.
+	 * This method tests the listing of rendezvouses that request services with a category. Can contain adult content rendezvouses.
 	 * 
-	 * @param categoryId
-	 *            The id of the category that user want to know its rendezvouses
-	 * @param minimumLength
-	 *            The minimum expected length of the list of rendezvouses that the user has created.
-	 * @param expected
-	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
+	 * Case 1: List the rendezvouses with Category 1. Nothing is expected.
+	 * 
+	 * Case 2: List the rendezvouses with Category 2. Nothing is expected.
+	 * 
+	 * Case 3: List the rendezvouses with Category 3. Nothing is expected.
 	 */
 	@Test
 	public void driverRendezvousAdultByCategory() {
@@ -1119,13 +1267,14 @@ public class RendezvousServiceTest extends AbstractTest {
 		for (int i = 0; i < testingData.length; i++)
 			this.templateFindAdultRendezvousByCategory(super.getEntityId((String) testingData[i][0]), (int) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
+
 	/**
 	 * Template for testing the listing of rendezvouses.
 	 * <p>
-	 * This method defines the template used to test the listing of rendezvouses created by an user. Note that the rendezvouses are retrieved from the currently logged in user.
+	 * This method defines the template used to test the listing of rendezvouses created by an user. Can contains rendezvouses with adult content.
 	 * 
-	 * @param username
-	 *            The username of the user that logs in.
+	 * @param categoryId
+	 *            The id of the category that user want to know its rendezvouses
 	 * @param minimumLength
 	 *            The minimum expected length of the list of rendezvouses that the user has created.
 	 * @param expected
