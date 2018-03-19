@@ -176,13 +176,12 @@ public class RendezvousService {
 	}
 
 	public Collection<Rendezvous> findRendezvousCreatedByPrincipal() {
-		final int id = LoginService.getPrincipal().getId();
+		final int id = this.userService.findByPrincipal().getUserAccount().getId();
 		Assert.notNull(id);
 		return this.rendezvousRepository.findRendezvousCreatedByUserAccountId(id);
 	}
-
 	public Collection<Rendezvous> findRendezvousNotDeletedCreatedByPrincipal() {
-		final int id = LoginService.getPrincipal().getId();
+		final int id = this.userService.findByPrincipal().getUserAccount().getId();
 		Assert.notNull(id);
 		return this.rendezvousRepository.findRendezvousNotDeletedCreatedByUserId(id);
 	}
@@ -225,7 +224,7 @@ public class RendezvousService {
 		return this.rendezvousRepository.findRendezvousByCommentId(commentId);
 	}
 
-	public Collection<Rendezvous> findAnnouncementsByRendezId(final int rendezId) {
+	public Collection<Announcement> findAnnouncementsByRendezId(final int rendezId) {
 		return this.rendezvousRepository.findAnnouncementsByRendezId(rendezId);
 	}
 
