@@ -35,34 +35,53 @@
 <link rel="stylesheet" href="styles/displaytag.css" type="text/css">
 
 <style type="text/css">
-	.NOBORRADO {
-		background-color: green;
-	}
-	.BORRADO {
-		background-color: red;
-	}
-	.NOEXPIRADO {
-		background-color: green;
-	}
-	.EXPIRADO {
-		background-color: red;
-	}
-	.COMMENT{
-		background-color: Aquamarine ;
-		font-size: 110%;
-	}	
-	.REPLY{
-		background-color: lightcyan;
-	}
-	
-	.MOMENT{
-		color: grey;
-	}
-	.LINK{
-		color: blue;
-		text-decoration: underline;
-    	text-decoration-color: blue;
-	}
+.NOBORRADO {
+	background-color: green;
+}
+
+.BORRADO {
+	background-color: red;
+}
+
+.NOEXPIRADO {
+	background-color: green;
+}
+
+.EXPIRADO {
+	background-color: red;
+}
+
+.COMMENT {
+	background-color: Aquamarine;
+	font-size: 110%;
+}
+
+.REPLY {
+	background-color: lightcyan;
+}
+
+.MOMENT {
+	color: grey;
+}
+
+.LINK {
+	color: blue;
+	text-decoration: underline;
+	text-decoration-color: blue;
+}
+
+.centralDiv {
+	padding: 10px 10px 10px 10px;
+	background-color: #FAF9F9;
+	margin: auto;
+	width: 100%;
+	max-width: 955px;
+}
+.centralDiv img{
+	margin-left:10%;
+	width: 80%;
+	height: auto;
+}
 </style>
 
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
@@ -95,7 +114,7 @@
 	<div>
 		<tiles:insertAttribute name="header" />
 	</div>
-	<div>
+	<div  class="centralDiv">
 		<h1>
 			<tiles:insertAttribute name="title" />
 		</h1>
