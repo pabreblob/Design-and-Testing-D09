@@ -223,6 +223,7 @@
 		<property name="reservedRendezvous">
 			<list>
 				<ref bean="Rendezvous6" />
+				<ref bean="Rendezvous7" />
 			</list>
 		</property>
 	</bean>
@@ -928,6 +929,60 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="Rendezvous7" class="domain.Rendezvous">
+		<property name="name" value="rendezvous7" />
+		<property name="description" value="description7" />
+		<property name="moment" value="2018/07/21 17:30" />
+		<property name="pictureURL" value="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Central_park_manhattan_2_New_York_photo_D_Ramey_Logan.jpg/250px-Central_park_manhattan_2_New_York_photo_D_Ramey_Logan.jpg" />
+		<property name="gpsCoordinates">
+			<bean class="domain.GPSCoordinates">
+				<property name="latitude" value="27.4024385" />
+				<property name="longitude" value="-5.9582" />
+			</bean>
+		</property>
+		<property name="finalMode" value="false" />
+		<property name="adultContent" value="false" />
+		<property name="deleted" value="false" />
+		<property name="creator">
+			<ref bean="User4" />
+		</property>
+		<property name="attendants">
+			<list>
+			
+				<ref bean="User4" />
+			</list>
+		</property>
+		<property name="linkedRendezvous">
+			<list>
+			
+			</list>
+		</property>
+		<property name="announcements">
+			<list>
+				
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="Question5" />
+				<ref bean="Question6" />
+				<ref bean="Question7" />
+				
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				
+			</list>
+		</property>
+		<property name="requests">
+			<list>
+				
+				
+			</list>
+		</property>
+	</bean>
+
 
 	<bean id="Announcement1" class="domain.Announcement">
 		<property name="moment" value="2017/07/21 12:30" />
@@ -1078,6 +1133,39 @@
 			</list>
 		</property>
 	<property name="rendezvous"><ref bean="Rendezvous4" /></property>	
+		
+	</bean>
+	<bean id="Question5" class="domain.Question">
+		
+		<property name="text" value="question4" />
+		<property name="answers">
+			<list>
+				
+			</list>
+		</property>
+	<property name="rendezvous"><ref bean="Rendezvous7" /></property>	
+		
+	</bean>
+	<bean id="Question6" class="domain.Question">
+		
+		<property name="text" value="question4" />
+		<property name="answers">
+			<list>
+				
+			</list>
+		</property>
+	<property name="rendezvous"><ref bean="Rendezvous7" /></property>	
+		
+	</bean>
+	<bean id="Question7" class="domain.Question">
+		
+		<property name="text" value="question4" />
+		<property name="answers">
+			<list>
+				
+			</list>
+		</property>
+	<property name="rendezvous"><ref bean="Rendezvous7" /></property>	
 		
 	</bean>
 	<bean id="Answer1" class="domain.Answer">
