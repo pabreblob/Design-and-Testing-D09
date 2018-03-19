@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ConfigurationService;
 import services.ServiceService;
 import domain.Service;
 
@@ -17,7 +18,9 @@ import domain.Service;
 public class ServiceUserController extends AbstractController {
 
 	@Autowired
-	ServiceService	serviceService;
+	ServiceService			serviceService;
+	@Autowired
+	ConfigurationService	configurationService;
 
 
 	//	Listing
@@ -27,8 +30,10 @@ public class ServiceUserController extends AbstractController {
 		Collection<Service> services;
 		services = this.serviceService.findAvailableServices();
 		res = new ModelAndView("service/list");
+		final String currency = this.configurationService.find().getCurrency();
 
 		res.addObject("services", services);
+		res.addObject("currency", currency);
 		res.addObject("requestURI", "service/user/list.do");
 
 		return res;

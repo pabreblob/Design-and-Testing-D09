@@ -119,7 +119,7 @@
 		<property name="welcomeEng" value="Your place to organise your adventure meetups!" />
 		<property name="welcomeEsp" value="Tu sitio para organizar quedadas de aventura." />
 		<property name="businessName" value="Adventure meetups" />
-		<property name="currency" value="eur." />		
+		<property name="currency" value="€" />		
 	
 	</bean>
 	<!-- Other domain beans come here -->	
@@ -300,6 +300,12 @@
 		<property name="services">
 			<list>
 				<ref bean="Service3"></ref>
+				<ref bean="Service4"></ref>
+				<ref bean="Service5"></ref>
+				<ref bean="Service6"></ref>
+				<ref bean="Service7"></ref>
+				<ref bean="Service8"></ref>
+				<ref bean="Service9"></ref>
 			</list>
 		</property>
 	</bean>
@@ -350,10 +356,85 @@
 		</property>
 		<property name="parent"><ref bean="Category1"></ref></property>
 	</bean>
+	<bean id="Category4" class="domain.Category">
+		<property name="name" value="categoryparent2" />
+		<property name="description" value="desc4" />
+		<property name="services">
+			<list>
+				
+			</list>
+		</property>
+		<property name="children">
+			<list>
+				
+			</list>
+		</property>
+		<property name="parent"><null/></property>
+	</bean>
+	<bean id="Category5" class="domain.Category">
+		<property name="name" value="categoryparent3" />
+		<property name="description" value="desc5" />
+		<property name="services">
+			<list>
+				
+			</list>
+		</property>
+		<property name="children">
+			<list>
+				
+			</list>
+		</property>
+		<property name="parent"><null/></property>
+	</bean>
+		<bean id="Category6" class="domain.Category">
+		<property name="name" value="categoryparent4" />
+		<property name="description" value="desc6" />
+		<property name="services">
+			<list>
+				
+			</list>
+		</property>
+		<property name="children">
+			<list>
+				
+			</list>
+		</property>
+		<property name="parent"><null/></property>
+	</bean>
+			<bean id="Category7" class="domain.Category">
+		<property name="name" value="categoryparent5" />
+		<property name="description" value="desc7" />
+		<property name="services">
+			<list>
+				
+			</list>
+		</property>
+		<property name="children">
+			<list>
+				
+			</list>
+		</property>
+		<property name="parent"><null/></property>
+	</bean>
+			<bean id="Category8" class="domain.Category">
+		<property name="name" value="categoryparent6" />
+		<property name="description" value="desc8" />
+		<property name="services">
+			<list>
+				
+			</list>
+		</property>
+		<property name="children">
+			<list>
+				
+			</list>
+		</property>
+		<property name="parent"><null/></property>
+	</bean>
 	<bean id="Service1" class="domain.Service">
 		<property name="name" value="service1" />
 		<property name="description" value="desc1" />
-		<property name="pictureUrl" value="http://www.placeholder.png" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
 		<property name="cancelled" value="false" />
 		<property name="requests">
 			<list>
@@ -369,7 +450,7 @@
 	<bean id="Service2" class="domain.Service">
 		<property name="name" value="service2" />
 		<property name="description" value="desc2" />
-		<property name="pictureUrl" value="http://www.placeholder.png" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
 		<property name="cancelled" value="false" />
 		<property name="requests">
 			<list>
@@ -383,8 +464,92 @@
 	<bean id="Service3" class="domain.Service">
 		<property name="name" value="service3" />
 		<property name="description" value="desc3" />
-		<property name="pictureUrl" value="http://www.placeholder.png" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
 		<property name="cancelled" value="true" />
+		<property name="requests">
+			<list>
+				
+			</list>
+		</property>
+		<property name="category"><ref bean="Category3"></ref></property>
+		<property name="price" value="10.0" />
+		<property name="manager"><ref bean="Manager2"></ref></property>
+	</bean>
+	<bean id="Service4" class="domain.Service">
+		<property name="name" value="service4" />
+		<property name="description" value="desc4" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
+		<property name="cancelled" value="true" />
+		<property name="requests">
+			<list>
+				
+			</list>
+		</property>
+		<property name="category"><ref bean="Category3"></ref></property>
+		<property name="price" value="10.0" />
+		<property name="manager"><ref bean="Manager2"></ref></property>
+	</bean>
+	<bean id="Service5" class="domain.Service">
+		<property name="name" value="service5" />
+		<property name="description" value="desc5" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
+		<property name="cancelled" value="true" />
+		<property name="requests">
+			<list>
+				
+			</list>
+		</property>
+		<property name="category"><ref bean="Category3"></ref></property>
+		<property name="price" value="10.0" />
+		<property name="manager"><ref bean="Manager2"></ref></property>
+	</bean>
+	<bean id="Service6" class="domain.Service">
+		<property name="name" value="service6" />
+		<property name="description" value="desc6" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
+		<property name="cancelled" value="false" />
+		<property name="requests">
+			<list>
+				
+			</list>
+		</property>
+		<property name="category"><ref bean="Category3"></ref></property>
+		<property name="price" value="10.0" />
+		<property name="manager"><ref bean="Manager2"></ref></property>
+	</bean>
+	<bean id="Service7" class="domain.Service">
+		<property name="name" value="service7" />
+		<property name="description" value="desc7" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
+		<property name="cancelled" value="false" />
+		<property name="requests">
+			<list>
+				
+			</list>
+		</property>
+		<property name="category"><ref bean="Category3"></ref></property>
+		<property name="price" value="10.0" />
+		<property name="manager"><ref bean="Manager2"></ref></property>
+	</bean>
+		<bean id="Service8" class="domain.Service">
+		<property name="name" value="service8" />
+		<property name="description" value="desc8" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
+		<property name="cancelled" value="false" />
+		<property name="requests">
+			<list>
+				
+			</list>
+		</property>
+		<property name="category"><ref bean="Category3"></ref></property>
+		<property name="price" value="10.0" />
+		<property name="manager"><ref bean="Manager2"></ref></property>
+	</bean>
+		<bean id="Service9" class="domain.Service">
+		<property name="name" value="service9" />
+		<property name="description" value="desc9" />
+		<property name="pictureUrl" value="http://absfreepic.com/absolutely_free_photos/small_photos/modern-city-landscape-2527x1896_96116.jpg" />
+		<property name="cancelled" value="false" />
 		<property name="requests">
 			<list>
 				

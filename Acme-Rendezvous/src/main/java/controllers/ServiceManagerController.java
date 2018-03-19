@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
+import services.ConfigurationService;
 import services.ManagerService;
 import services.ServiceService;
 import domain.Service;
@@ -22,12 +23,14 @@ import domain.Service;
 public class ServiceManagerController extends AbstractController {
 
 	@Autowired
-	ServiceService	serviceService;
+	ServiceService			serviceService;
 
 	@Autowired
-	CategoryService	categoryService;
+	CategoryService			categoryService;
 	@Autowired
-	ManagerService	managerService;
+	ManagerService			managerService;
+	@Autowired
+	ConfigurationService	configurationService;
 
 
 	//	Listing
@@ -36,9 +39,11 @@ public class ServiceManagerController extends AbstractController {
 		ModelAndView res;
 		Collection<Service> services;
 		services = this.serviceService.findAvailableServices();
+		final String currency = this.configurationService.find().getCurrency();
 		res = new ModelAndView("service/list");
 
 		res.addObject("services", services);
+		res.addObject("currency", currency);
 		res.addObject("requestURI", "service/manager/list.do");
 
 		return res;
@@ -50,9 +55,11 @@ public class ServiceManagerController extends AbstractController {
 		ModelAndView res;
 		Collection<Service> services;
 		services = this.serviceService.findServicesCreatedByPrincipal();
+		final String currency = this.configurationService.find().getCurrency();
 		res = new ModelAndView("service/list");
 
 		res.addObject("services", services);
+		res.addObject("currency", currency);
 		res.addObject("requestURI", "service/manager/list-created.do");
 
 		return res;

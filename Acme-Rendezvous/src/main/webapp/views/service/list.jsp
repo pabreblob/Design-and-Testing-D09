@@ -73,7 +73,9 @@
 		title="${categoryHeader}" />
 
 	<spring:message code="service.price" var="priceHeader" />
-	<display:column property="price" title="${priceHeader}" />
+	<display:column title="${priceHeader}" >
+	<jstl:out value="${s.price}"/> <jstl:out value="${currency}"/>
+	</display:column>
 
 	<jstl:if test="${requestURI == 'service/manager/list-created.do' }">
 		<spring:message code="service.cancelled" var="cancelledHeader" />

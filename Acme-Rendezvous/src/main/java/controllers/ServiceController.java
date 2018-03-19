@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ConfigurationService;
 import services.ServiceService;
 import domain.Service;
 
@@ -19,7 +20,9 @@ import domain.Service;
 public class ServiceController extends AbstractController {
 
 	@Autowired
-	ServiceService	serviceService;
+	ServiceService			serviceService;
+	@Autowired
+	ConfigurationService	configurationService;
 
 
 	//Displaying
@@ -28,10 +31,12 @@ public class ServiceController extends AbstractController {
 		ModelAndView res;
 
 		final Service s = this.serviceService.findOne(serviceId);
+		final String currency = this.configurationService.find().getCurrency();
 		Assert.isTrue(!s.isCancelled());
 
 		res = new ModelAndView("service/display");
 		res.addObject("service", s);
+		res.addObject("currency", currency);
 		int pictureSize;
 		if (s.getPictureUrl() == null || s.getPictureUrl().length() == 0)
 			pictureSize = 0;
@@ -47,10 +52,12 @@ public class ServiceController extends AbstractController {
 	public ModelAndView list(@RequestParam final int rendezId) {
 		ModelAndView res;
 		Collection<Service> services;
+		final String currency = this.configurationService.find().getCurrency();
 		services = this.serviceService.findServicesByRendezvousId(rendezId);
 		res = new ModelAndView("service/list");
 
 		res.addObject("services", services);
+		res.addObject("currency", currency);
 		res.addObject("requestURI", "service/list.do");
 
 		return res;

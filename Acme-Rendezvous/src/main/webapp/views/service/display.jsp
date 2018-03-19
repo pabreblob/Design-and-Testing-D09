@@ -34,7 +34,7 @@
 		
 	<div>
 	<p>
-	<spring:message code="service.price"/>: <jstl:out value="${service.price}"/>
+	<spring:message code="service.price"/>: <jstl:out value="${service.price}"/> <jstl:out value="${currency}"/>
 	</p>
 	</div>
 	

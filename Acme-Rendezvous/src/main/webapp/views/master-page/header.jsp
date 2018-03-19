@@ -66,7 +66,7 @@
 			
 			<li><a class="fNiv"> <spring:message code="master.page.services" /></a>
 				<ul>	
-					<li><a href="category/user/list.do"><spring:message code="master.page.category.list"/></a></li>
+					<li><a href="category/list.do"><spring:message code="master.page.category.list"/></a></li>
 					<li><a href="service/user/list.do"><spring:message code="master.page.user.service.list"/></a></li>		
 				</ul>
 			</li>	
