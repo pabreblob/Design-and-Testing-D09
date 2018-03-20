@@ -201,6 +201,7 @@ public class RendezvousController extends AbstractController {
 		ModelAndView res;
 		boolean mayor = false;
 		final Rendezvous r = this.rendezvousService.findOne(rendezvousId);
+		Assert.notNull(r);
 		Assert.isTrue(!r.isDeleted());
 		final int linkedSize = r.getLinkedRendezvous().size();
 		int linked2Size = this.rendezvousService.findFinalRendezvousLinked(rendezvousId).size();
