@@ -132,7 +132,7 @@ public class QuestionServiceTest extends AbstractTest {
 	/**
 	 * Template for testing the saving of a question
 	 * <p>
-	 * This template create a question and set the data according to this parameters, in order to see if it can be saved or not:
+	 * This template create a question and set the data according to these parameters, in order to see if it can be saved or not:
 	 * 
 	 * @param questionText
 	 *            The text of the question we want to save
