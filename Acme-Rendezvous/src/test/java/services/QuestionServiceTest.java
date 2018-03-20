@@ -141,7 +141,7 @@ public class QuestionServiceTest extends AbstractTest {
 	 * @param username
 	 *            The user who is logged.
 	 * @param expected
-	 *            This method is used to test the creation of empty question before passing them to the corresponding views.
+	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
 	 */
 	protected void templateSave(final String questionText, final String rendezvousId, final String username, final Class<?> expected) {
 		super.authenticate(username);
@@ -222,7 +222,7 @@ public class QuestionServiceTest extends AbstractTest {
 	 * @param username
 	 *            The user who is logged.
 	 * @param expected
-	 *            This method is used to test the creation of empty question before passing them to the corresponding views.
+	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
 	 */
 	protected void templateDelete(final String questionId, final String rendezvousId, final String username, final Class<?> expected) {
 		super.authenticate(username);
