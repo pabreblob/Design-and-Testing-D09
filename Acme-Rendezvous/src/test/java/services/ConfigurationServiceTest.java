@@ -37,6 +37,18 @@ public class ConfigurationServiceTest extends AbstractTest {
 
 	/**
 	 * Tests the finding of the configuration of the website
+	 * <p>
+	 * Case 1-5: All tests are ok
+	 * <p>
+	 * Case 6: The banner is in blank
+	 * <p>
+	 * Case 7: The welcome message in English is in blank
+	 * <p>
+	 * Case 8: The welcome message in Spanish is in blank
+	 * <p>
+	 * Case 9: The name of the business is in blank
+	 * <p>
+	 * Case 10: The currency is in blank
 	 */
 	@Test
 	public void driverSaveConfiguration() {
@@ -73,15 +85,15 @@ public class ConfigurationServiceTest extends AbstractTest {
 	 * This method defines the template used for the tests that check the saving of configurations
 	 * 
 	 * @param bannerUrl
-	 * 
+	 *            The banner of the website. Cannot be blank
 	 * @param welcomeEng
-	 * 
+	 *            The welcome message in English. Cannot be blank
 	 * @param welcomeEsp
-	 * 
+	 *            The welcome message in Spanish. Cannot be blank
 	 * @param businessName
-	 * 
+	 *            The name of the business. Cannot be blank
 	 * @param currency
-	 * 
+	 *            The currency we're using. Cannot be blank
 	 * @param expected
 	 *            The expected exception to be thrown. Use <code>null</code> if no exception is expected.
 	 */
