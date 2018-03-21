@@ -154,6 +154,7 @@
 			<list>
 				<ref bean="Rendezvous1" />
 				<ref bean="Rendezvous2" />
+				<ref bean="Rendezvous3" />
 				
 			</list>
 		</property>
@@ -265,7 +266,7 @@
 		</property>
 		<property name="reservedRendezvous">
 			<list>
-				
+				<ref bean="Rendezvous2" />
 			</list>
 		</property>
 	</bean>
@@ -694,6 +695,7 @@
 			<list>
 				<ref bean="User1" />
 				<ref bean="User3" />
+				<ref bean="User6" />
 			</list>
 		</property>
 		<property name="linkedRendezvous">
@@ -1119,6 +1121,8 @@
 		<property name="answers">
 			<list>
 				<ref bean="Answer1" />
+				<ref bean="Answer2" />
+				<ref bean="Answer3" />
 			</list>
 		</property>
 	<property name="rendezvous"><ref bean="Rendezvous2" /></property>	
@@ -1137,7 +1141,7 @@
 	</bean>
 	<bean id="Question5" class="domain.Question">
 		
-		<property name="text" value="question4" />
+		<property name="text" value="question5" />
 		<property name="answers">
 			<list>
 				
@@ -1148,7 +1152,7 @@
 	</bean>
 	<bean id="Question6" class="domain.Question">
 		
-		<property name="text" value="question4" />
+		<property name="text" value="question6" />
 		<property name="answers">
 			<list>
 				
@@ -1159,7 +1163,7 @@
 	</bean>
 	<bean id="Question7" class="domain.Question">
 		
-		<property name="text" value="question4" />
+		<property name="text" value="question7" />
 		<property name="answers">
 			<list>
 				
@@ -1173,6 +1177,24 @@
 		<property name="text" value="answer1" />
 		<property name="question"><ref bean="Question3" /></property>
 		<property name="author"><ref bean="User3" /></property>
+		
+		
+		
+	</bean>
+	<bean id="Answer2" class="domain.Answer">
+		
+		<property name="text" value="answer2" />
+		<property name="question"><ref bean="Question3" /></property>
+		<property name="author"><ref bean="User2" /></property>
+		
+		
+		
+	</bean>
+	<bean id="Answer3" class="domain.Answer">
+		
+		<property name="text" value="answer3" />
+		<property name="question"><ref bean="Question3" /></property>
+		<property name="author"><ref bean="User1" /></property>
 		
 		
 		
