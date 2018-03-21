@@ -75,6 +75,12 @@ public class QuestionServiceTest extends AbstractTest {
 	 * Tests the creation of a question
 	 * <p>
 	 * This method is used to test the creation of empty question before passing them to the corresponding views.
+	 * <p>
+	 * Functional Requirement:
+	 * <p>
+	 * 21. An actor who is authenticated as a user must be able to
+	 * <p>
+	 * 1. Manage the questions that are associated with a rendezvous that he or she’s created previously
 	 */
 	@Test
 	public void testCreate() {
@@ -86,6 +92,12 @@ public class QuestionServiceTest extends AbstractTest {
 	 * Tests the saving of a question
 	 * <p>
 	 * This method tests the saving of a question after the user writes the corresponding data.
+	 * <p>
+	 * Functional Requirement:
+	 * <p>
+	 * 21. An actor who is authenticated as a user must be able to
+	 * <p>
+	 * 1. Manage the questions that are associated with a rendezvous that he or she’s created previously
 	 * <p>
 	 * - Case 1-5: All tests are ok
 	 * <p>
@@ -168,6 +180,12 @@ public class QuestionServiceTest extends AbstractTest {
 	 * Tests the deleting of a question
 	 * <p>
 	 * This method tests the deleting of a question.
+	 * <p>
+	 * Functional Requirement:
+	 * <p>
+	 * 21. An actor who is authenticated as a user must be able to
+	 * <p>
+	 * 1. Manage the questions that are associated with a rendezvous that he or she’s created previously
 	 * <p>
 	 * Case 1-2: All tests are ok
 	 * <p>
