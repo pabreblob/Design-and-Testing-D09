@@ -45,7 +45,6 @@ public class RendezvousUserController extends AbstractController {
 		Collection<Rendezvous> rendezvous;
 		rendezvous = this.rendezvousService.findRendezvousCreatedByPrincipal();
 		final int rendezSizeLinked = this.rendezvousService.findRendezvousNotDeletedCreatedByPrincipal().size() - 1;
-		System.out.println(rendezSizeLinked);
 		res = new ModelAndView("rendezvous/list");
 		final Date currentTime = new Date(System.currentTimeMillis());
 		final Timestamp timestamp = new Timestamp(currentTime.getTime());

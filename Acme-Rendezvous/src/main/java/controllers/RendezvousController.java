@@ -205,7 +205,7 @@ public class RendezvousController extends AbstractController {
 		Assert.isTrue(!r.isDeleted());
 		final int linkedSize = r.getLinkedRendezvous().size();
 		int linked2Size = this.rendezvousService.findFinalRendezvousLinked(rendezvousId).size();
-		System.out.println(linked2Size);
+
 		try {
 			final User user = this.userService.findByPrincipal();
 			final Integer edad = this.calculateAge(user.getBirthdate());
@@ -255,7 +255,7 @@ public class RendezvousController extends AbstractController {
 		final Timestamp timestamp = new Timestamp(currentTime.getTime());
 
 		res = new ModelAndView("rendezvous/display");
-		System.out.println();
+
 		res.addObject("rendezvous", r);
 		res.addObject("rendezvousId", rendezvousId);
 		res.addObject("linkedSize", linkedSize);

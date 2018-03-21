@@ -31,14 +31,13 @@ public class StringToActorConverter implements Converter<String, Actor> {
 				res = null;
 			else {
 				id = Integer.valueOf(arg0);
-				System.out.println(id);
 				final Collection<Actor> actors = this.actorRepository.findAll();
 				for (final Actor a : actors)
 					if (a.getId() == id) {
 						res = a;
 						break;
 					}
-				System.out.println(res);
+
 			}
 
 		} catch (final Throwable oops) {
