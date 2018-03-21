@@ -202,6 +202,7 @@ public class RendezvousUserController extends AbstractController {
 	public ModelAndView link(@RequestParam final int rendezvousId) {
 		ModelAndView res;
 		final Rendezvous rendez = this.rendezvousService.findOne(rendezvousId);
+		Assert.isTrue(this.userService.findByPrincipal().equals(rendez.getCreator()));
 		final Collection<Rendezvous> rendezs = this.rendezvousService.findRendezvousNotDeletedCreatedByPrincipal();
 		rendezs.remove(rendez);
 		res = new ModelAndView("rendezvous/link");

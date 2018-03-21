@@ -103,7 +103,7 @@
 	</a>
 	</div>
 	
-	<jstl:if test="${requestURI == 'rendezvous/user/list.do' }">
+	<jstl:if test="${requestURI == 'rendezvous/user/display.do' }">
 	<jstl:if test = "${linkedSize > 0}">
 	<div>
 	<a href="rendezvous/user/list-linked.do?rendezvousId=${rendezvous.id }">
@@ -113,7 +113,7 @@
 	</jstl:if>
 	</jstl:if>
 	
-	<jstl:if test="${requestURI != 'rendezvous/user/list.do' }">
+	<jstl:if test="${requestURI != 'rendezvous/user/display.do' }">
 	<jstl:if test = "${linked2Size > 0}">
 	<div>
 	<a href="rendezvous/list-linked.do?rendezvousId=${rendezvous.id }">

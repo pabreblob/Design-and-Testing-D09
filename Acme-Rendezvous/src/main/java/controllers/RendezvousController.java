@@ -200,6 +200,8 @@ public class RendezvousController extends AbstractController {
 	public ModelAndView display(@RequestParam final int rendezvousId) {
 		ModelAndView res;
 		boolean mayor = false;
+		boolean principal = false;
+		String requestURI = "rendezvous/display.do";
 		final Rendezvous r = this.rendezvousService.findOne(rendezvousId);
 		Assert.notNull(r);
 		Assert.isTrue(!r.isDeleted());
@@ -208,6 +210,10 @@ public class RendezvousController extends AbstractController {
 
 		try {
 			final User user = this.userService.findByPrincipal();
+			if (user.getCreatedRendezvous().contains(r)) {
+				principal = true;
+				requestURI = "rendezvous/user/display.do";
+			}
 			final Integer edad = this.calculateAge(user.getBirthdate());
 			if (edad >= 18)
 				mayor = true;
@@ -215,7 +221,8 @@ public class RendezvousController extends AbstractController {
 		} catch (final Exception e) {
 
 		}
-
+		if (r.isFinalMode() == false)
+			Assert.isTrue(principal);
 		try {
 			final Manager manager = this.managerService.findByPrincipal();
 			final Integer edad = this.calculateAge(manager.getBirthdate());
@@ -257,6 +264,7 @@ public class RendezvousController extends AbstractController {
 		res = new ModelAndView("rendezvous/display");
 
 		res.addObject("rendezvous", r);
+		res.addObject("requestURI", requestURI);
 		res.addObject("rendezvousId", rendezvousId);
 		res.addObject("linkedSize", linkedSize);
 		res.addObject("linked2Size", linked2Size);

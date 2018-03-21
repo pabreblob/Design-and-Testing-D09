@@ -27,10 +27,10 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Integer>
 	Collection<Rendezvous> findFinalRendezvousAdult();
 	@Query("select r from Rendezvous r where r.adultContent = false and r.finalMode = true and r.deleted = false")
 	Collection<Rendezvous> findFinalRendezvous();
-	@Query("select lr from Rendezvous r join r.linkedRendezvous lr where lr.deleted = false and r.id = ?1")
-	Collection<Rendezvous> findRendezvousLinkedAdult(int rendezId);
-	@Query("select lr from Rendezvous r join r.linkedRendezvous lr where lr.adultContent = false and lr.deleted = false and r.id = ?1")
-	Collection<Rendezvous> findRendezvousLinked(int rendezId);
+	@Query("select lr from Rendezvous r join r.linkedRendezvous lr where lr.finalMode = true and lr.deleted = false and r.id = ?1")
+	Collection<Rendezvous> findFinalRendezvousLinkedAdult(int rendezId);
+	@Query("select lr from Rendezvous r join r.linkedRendezvous lr where lr.finalMode = true and lr.adultContent = false and lr.deleted = false and r.id = ?1")
+	Collection<Rendezvous> findFinalRendezvousLinked(int rendezId);
 	@Query("select r.linkedRendezvous from Rendezvous r where r.id = ?1")
 	Collection<Rendezvous> findAllRendezvousLinked(int rendezId);
 	@Query("select r from Rendezvous r join r.comments c where c.id = ?1 ")

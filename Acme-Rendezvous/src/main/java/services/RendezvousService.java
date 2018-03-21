@@ -211,10 +211,10 @@ public class RendezvousService {
 	}
 
 	public Collection<Rendezvous> findFinalRendezvousLinked(final int rendezvousId) {
-		return this.rendezvousRepository.findRendezvousLinked(rendezvousId);
+		return this.rendezvousRepository.findFinalRendezvousLinked(rendezvousId);
 	}
 	public Collection<Rendezvous> findFinalRendezvousLinkedAdult(final int rendezvousId) {
-		return this.rendezvousRepository.findRendezvousLinkedAdult(rendezvousId);
+		return this.rendezvousRepository.findFinalRendezvousLinkedAdult(rendezvousId);
 	}
 
 	public Collection<Rendezvous> findAllRendezvousLinked(final int rendezId) {
