@@ -34,6 +34,8 @@ public class AnnouncementTest extends AbstractTest {
 	 * Tests the creation of announcements.
 	 * <p>
 	 * This method is used to test the creation of empty announcements before passing them to the corresponding views.
+	 * <p>
+	 * Req 16.1: An actor who is authenticated as a user must be able to create an announcement regarding one of the rendezvouses that he or she's created previously.
 	 */
 	@Test
 	public void testCreateAnnouncement() {
@@ -47,6 +49,12 @@ public class AnnouncementTest extends AbstractTest {
 	 * Tests the saving of announcements.
 	 * <p>
 	 * This method tests the creation and later saving of announcements as it would be done by an user in the corresponding views.
+	 * <p>
+	 * Case 1: the user 1 logs in. No exception should be thrown.<br>
+	 * Case 2: the user 2 logs in. No exception should be thrown.<br>
+	 * Case 3: no user is logged in. An exception must be thrown.
+	 * <p>
+	 * Req 16.1: An actor who is authenticated as a user must be able to create an announcement regarding one of the rendezvouses that he or she's created previously.
 	 */
 	@Test
 	public void driverSaveAnnouncement() {
@@ -67,6 +75,8 @@ public class AnnouncementTest extends AbstractTest {
 	 * Template for testing the saving of announcements.
 	 * <p>
 	 * This method defines the template used for the tests that check the saving of announcements.
+	 * <p>
+	 * Req 16.1: An actor who is authenticated as a user must be able to create an announcement regarding one of the rendezvouses that he or she's created previously.
 	 * 
 	 * @param username
 	 *            The username of the user that logs in. Use <code>null</code> if no user should be logged in.
@@ -95,6 +105,10 @@ public class AnnouncementTest extends AbstractTest {
 
 	/**
 	 * Tests the finding of one announcement.
+	 * <p>
+	 * Case 1: the user 1 logs in. No exception should be thrown.<br>
+	 * Case 2: the user 2 logs in. No exception should be thrown.<br>
+	 * Case 3: no user is logged in. An exception must be thrown.
 	 * <p>
 	 * This method checks that an announcement can be saved and later correctly found.
 	 */
@@ -147,6 +161,12 @@ public class AnnouncementTest extends AbstractTest {
 	 * Tests the deletion of an announcement.
 	 * <p>
 	 * This method tests that an announcement can be saved and later deleted, and checks that it cannot be found.
+	 * <p>
+	 * Case 1: the user 1 logs in. No exception should be thrown.<br>
+	 * Case 2: the user 2 logs in. No exception should be thrown.<br>
+	 * Case 3: no user is logged in. An exception must be thrown.
+	 * <p>
+	 * Req 17.1: An actor who is authenticated as an administrator must be able to remove an announcement that he or she thinks is inappropriate.
 	 */
 	@Test
 	public void driverDeleteAnnouncement() {
@@ -167,6 +187,8 @@ public class AnnouncementTest extends AbstractTest {
 	 * Template for testing the deletion of an announcement.
 	 * <p>
 	 * This method defines the template used to test the deletion of an announcement.
+	 * <p>
+	 * Req 17.1: An actor who is authenticated as an administrator must be able to remove an announcement that he or she thinks is inappropriate.
 	 * 
 	 * @param username
 	 *            The username of the user that logs in. Use <code>null</code> if no user should be logged in.
@@ -183,6 +205,8 @@ public class AnnouncementTest extends AbstractTest {
 			res.setDescription("desctest");
 			res.setRendezvous(new ArrayList<Rendezvous>(this.userService.findByPrincipal().getCreatedRendezvous()).get(0));
 			final Announcement a = this.announcementService.save(res);
+			super.authenticate(null);
+			super.authenticate("admin");
 			this.announcementService.delete(a);
 			final Announcement found = this.announcementService.findOne(a.getId());
 			Assert.notNull(a);
@@ -197,7 +221,13 @@ public class AnnouncementTest extends AbstractTest {
 	/**
 	 * Tests the listing of announcements.
 	 * <p>
-	 * This method tests the listing of the announcements that a user has created.
+	 * This method tests the listing of the announcements of the rendezvouses that a user has RSVPd.
+	 * <p>
+	 * Case 1: the user 1 logs in. No exception should be thrown.<br>
+	 * Case 2: the user 2 logs in. No exception should be thrown.<br>
+	 * Case 3: no user is logged in. An exception must be thrown.
+	 * <p>
+	 * Req 16.5: An actor who is authenticated a user must be able to display a stream of announcements that have been posted to the rendezvouses that he or she's RSVPd. The announcements must be listed chronologically in descending order.
 	 */
 	@Test
 	public void driverFindAnnouncementsByUserId() {
@@ -218,6 +248,8 @@ public class AnnouncementTest extends AbstractTest {
 	 * Template for testing the listing of announcements.
 	 * <p>
 	 * This method defines the template used to test the listing of announcements. Note that the announcements are retrieved from the currently logged in user.
+	 * <p>
+	 * Req 16.5: An actor who is authenticated a user must be able to display a stream of announcements that have been posted to the rendezvouses that he or she's RSVPd. The announcements must be listed chronologically in descending order.
 	 * 
 	 * @param username
 	 *            The username of the user that logs in. Use <code>null</code> if no user should be logged in.
