@@ -50,15 +50,15 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the creation and later saving of rendezvouses as it would be done by an user in the corresponding views.
 	 * 
-	 * Case 1: Creation and saved of a rendezvous correctly. Nothing is expected.
+	 * Case 1: Creation and saving of a rendezvous correctly. Nothing is expected.
 	 * 
-	 * Case 2: Creation and saved of a rendezvous by any user. IllegalArgumentException is expected.
+	 * Case 2: Creation and saving of a rendezvous by any user. IllegalArgumentException is expected.
 	 * 
-	 * Case 3: Creation and saved of a rendezvous with date in the past. IllegalArgumentException is expected.
+	 * Case 3: Creation and saving of a rendezvous with date in the past. IllegalArgumentException is expected.
 	 * 
-	 * Case 4: Creation and saved of a rendezvous with adult content by a not adult user. IllegalArgumentException is expected.
+	 * Case 4: Creation and saving of a rendezvous with adult content by a not adult user. IllegalArgumentException is expected.
 	 * 
-	 * Case 5: Creation and saved of a rendezvous by a not adult user. Nothing is expected.
+	 * Case 5: Creation and saving of a rendezvous by a not adult user. Nothing is expected.
 	 * 
 	 */
 	@Test

@@ -54,6 +54,9 @@ public class UserServiceTest extends AbstractTest {
 	 * An actor who is not authenticated must be able to:
 	 * <p>
 	 * Register to the system as an user.
+	 * <p>
+	 * Case 1: An actor registers as an user and inputs a valid username. The registration is done succesfully. <br>
+	 * Case 2: An actor registers as an user and does not input any username. The registration is expected to fail.
 	 */
 	@Test
 	public void driverSaveUser() {
@@ -106,6 +109,9 @@ public class UserServiceTest extends AbstractTest {
 	 * Tests the finding of one user.
 	 * <p>
 	 * This method checks that the profile of an user can be accessed to.
+	 * <p>
+	 * Case 1: The system looks for an existing user and retrieves his data succesfully. <br>
+	 * Case 2: The system looks for a non existent user and is expected to fail when trying to retrieve his data.
 	 */
 	@Test
 	public void driverFindOneUser() {

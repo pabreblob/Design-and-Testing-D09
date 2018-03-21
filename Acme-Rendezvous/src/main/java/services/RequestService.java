@@ -34,6 +34,9 @@ public class RequestService {
 	public Request save(final Request request) {
 		for (final Request r : request.getRendezvous().getRequests())
 			Assert.isTrue(!r.getService().equals(request.getService()));
+		Assert.isTrue(request.getRendezvous().getCreator().equals(this.userService.findByPrincipal()));
+		Assert.isTrue(request.getRendezvous().isFinalMode() == true);
+		Assert.isTrue(request.getRendezvous().isDeleted() == false);
 		final Request saved = this.requestRepository.save(request);
 		saved.getService().getRequests().add(saved);
 		saved.getRendezvous().getRequests().add(saved);

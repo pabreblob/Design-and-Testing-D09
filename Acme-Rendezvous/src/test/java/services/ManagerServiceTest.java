@@ -52,7 +52,10 @@ public class ManagerServiceTest extends AbstractTest {
 	 * <p>
 	 * An actor who is not authenticated must be able to:
 	 * <p>
-	 * 1. Register to the system as a manager.
+	 * 1. Register to the system as a manager. *
+	 * <p>
+	 * Case 1: An actor registers as a manager and inputs a valid username. The registration is done succesfully. <br>
+	 * Case 2: An actor registers as a manager and does not input any username. The registration is expected to fail.
 	 */
 	@Test
 	public void driverSaveManager() {
@@ -106,6 +109,9 @@ public class ManagerServiceTest extends AbstractTest {
 	 * Tests the finding of one manager.
 	 * <p>
 	 * This method checks that the profile of a manager can be accessed to.
+	 * <p>
+	 * Case 1: The system looks for an existing manager and retrieves his data succesfully. <br>
+	 * Case 2: The system looks for a non existent manager and is expected to fail when trying to retrieve his data.
 	 */
 	@Test
 	public void driverFindOneManager() {
