@@ -157,7 +157,7 @@ public class CommentServiceTest extends AbstractTest {
 	 * 
 	 * Case 1: A valid bean name is given. No exception expected.
 	 * Case 2: An invalid bean name is given, which is the most similar case to
-	 * giving an invalid ID. An <code>AssertionError</code> is expected.
+	 * giving an invalid ID. A <code>NumberFormatException</code> is expected.
 	 * 
 	 * (*) Even if the requirements don't explicitly say that an actor
 	 * of any kind has to be able to retrieve a single Comment from the
@@ -171,7 +171,7 @@ public class CommentServiceTest extends AbstractTest {
 			{
 				"Comment1", null
 			}, {
-				"non-valid", AssertionError.class
+				"non-valid", NumberFormatException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -207,7 +207,7 @@ public class CommentServiceTest extends AbstractTest {
 	 */
 	@Test
 	public void testFindAllComments() {
-		final String s = "no estoy usando este servicio en ninguna parte, si os parece bien, lo podria quitar";
+
 		final Collection<Comment> res = this.commentService.findAll();
 		Assert.notNull(res);
 		Assert.notEmpty(res);
@@ -271,7 +271,7 @@ public class CommentServiceTest extends AbstractTest {
 	 */
 	@Test
 	public void testFindCommentsByUserId() {
-		final String s = "No estoy usando este servicio tampoco, se podría eliminar";
+
 		super.authenticate("User1");
 		final User u = this.userService.findByPrincipal();
 		final Collection<Comment> res = this.commentService.findCommentsByUserId(u.getId());

@@ -70,17 +70,6 @@
 	text-decoration-color: blue;
 }
 
-.centralDiv {
-	padding: 10px 10px 10px 10px;
-	background-color: #FAF9F9;
-	margin: auto;
-	width: 100%;
-	max-width: 955px;
-}
-.centralDiv img{
-	margin-left:10%;
-	width: 80%;
-	height: auto;
 }
 </style>
 
@@ -114,7 +103,7 @@
 	<div>
 		<tiles:insertAttribute name="header" />
 	</div>
-	<div  class="centralDiv">
+	<div  >
 		<h1>
 			<tiles:insertAttribute name="title" />
 		</h1>

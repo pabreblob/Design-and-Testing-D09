@@ -50,7 +50,7 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the creation and later saving of rendezvouses as it would be done by an user in the corresponding views.
 	 * 
-	 * Case 1: Creation and saving of a rendezvous correctly. Nothing is expected.
+	 * Case 1: Creation and saving of a rendezvous correctly. No exception is expected.
 	 * 
 	 * Case 2: Creation and saving of a rendezvous by any user. IllegalArgumentException is expected.
 	 * 
@@ -58,7 +58,7 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * 
 	 * Case 4: Creation and saving of a rendezvous with adult content by a not adult user. IllegalArgumentException is expected.
 	 * 
-	 * Case 5: Creation and saving of a rendezvous by a not adult user. Nothing is expected.
+	 * Case 5: Creation and saving of a rendezvous by a not adult user. No exception is expected.
 	 * 
 	 */
 	@Test
@@ -121,7 +121,7 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the edition of rendezvouses as it would be done by an user in the corresponding views.
 	 * 
-	 * Case 1: Edition and saved of a redezvous. Nothing is expected.
+	 * Case 1: Edition and saved of a rendezvous. No exception is expected.
 	 * 
 	 * Case 2: Edition and saved of a rendezvous not created by principal. IllegalArgumentException is expected.
 	 * 
@@ -228,7 +228,7 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the linking of the rendezvouses that an user has created.
 	 * 
-	 * Case 1: An user link a rendezvous created in the test with another rendezvous stored in the database. Nothing is expected.
+	 * Case 1: An user link a rendezvous created in the test with another rendezvous stored in the database. No exception is expected.
 	 * 
 	 * Case 2: An user link a rendezvous created in the test with another rendezvous stored in the database not created by him. IllegalArgumentException is expected.
 	 */
@@ -289,7 +289,7 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the unlinking of the rendezvouses that an user has created.
 	 * 
-	 * Case 1: An user unlink two rendezvous. Nothing is expected.
+	 * Case 1: An user unlink two rendezvous. No exception is expected.
 	 * 
 	 * Case 2: An user unlink two rendezvous not created by him. IllegalArgumentException is expected.
 	 */
@@ -354,13 +354,13 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the joining of the rendezvouses by an user.
 	 * 
-	 * Case 1: An user join to a rendezvous. Nothing is expected
+	 * Case 1: An user join to a rendezvous. No exception is expected
 	 * 
 	 * Case 2: An user join to a rendezvous created by him. IllegalArgumentException is expected.
 	 * 
 	 * Case 3: A not adult user join to a rendezvous with adult content. IllegalArgumentException is expected.
 	 * 
-	 * Case 4: A nor adult user join to a rendezvous. Nothing is expected.
+	 * Case 4: A nor adult user join to a rendezvous. No exception is expected.
 	 */
 	@Test
 	public void testJoin() {
@@ -417,15 +417,15 @@ public class RendezvousServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Tests the disjoin of rendezvouses.
+	 * Tests the user cancelling his attendance to a Rendezvous.
 	 * <p>
-	 * This method tests the disjoining of the rendezvouses that an user is joined.
+	 * This method tests cancelling the attendance to rendezvouses that an user has joined.
 	 * 
-	 * Case 1: An user disjoin to a rendezvous. Nothing is expected.
+	 * Case 1: An user no longer attends to a rendezvous. No exception is expected.
 	 * 
-	 * Case 2: An user disjoin to a rendezvous created by him. IllegalArgumentException is expected.
+	 * Case 2: An user no longer attends to a rendezvous created by him. IllegalArgumentException is expected.
 	 * 
-	 * Case 3: An user disjoin to a rendezvous not joined before. IllegalArgumentException is expected.
+	 * Case 3: An user no longer attends to a rendezvous not joined before. IllegalArgumentException is expected.
 	 */
 	@Test
 	public void testDisjoin() {
@@ -448,12 +448,12 @@ public class RendezvousServiceTest extends AbstractTest {
 
 	}
 	/**
-	 * Template for testing the disjoining of rendezvouses.
+	 * Template for testing cancelling the attendance to rendezvouses.
 	 * <p>
-	 * This method defines the template used to test the disjoining of rendezvouses by an user.
+	 * This method defines the template used to test cancelling the attendance to rendezvouses by an user.
 	 * 
 	 * @param rendezvousId
-	 *            The rendezvous that user wants to disjoin.
+	 *            The rendezvous that user wants to no longer attend
 	 * @param username
 	 *            The username of the user that logs in.
 	 * @param expected
@@ -479,11 +479,11 @@ public class RendezvousServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Tests the cancelation of a rendezvous.
+	 * Tests the cancellation of a rendezvous.
 	 * <p>
-	 * This method tests that a rendezvous can be cancel.
+	 * This method tests that a rendezvous can be cancelled.
 	 * 
-	 * Case 1: A rendezvous is cancelled. Nothing is expected.
+	 * Case 1: A rendezvous is cancelled. No exception is expected.
 	 * 
 	 * Case 2: A rendezvous in final mode is cancelled. IllegalArgumentException is expected.
 	 * 
@@ -610,17 +610,17 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user has created.
 	 * 
-	 * Case 1: User 1 lists all rendezvouses created by him. Nothing is expected
+	 * Case 1: User 1 lists all rendezvouses created by him. No exception is expected
 	 * 
-	 * Case 2: User 2 lists all rendezvouses created by him. Nothing is expected
+	 * Case 2: User 2 lists all rendezvouses created by him. No exception is expected
 	 * 
-	 * Case 3: User 3 lists all rendezvouses created by him. Nothing is expected
+	 * Case 3: User 3 lists all rendezvouses created by him. No exception is expected
 	 * 
-	 * Case 4: User 4 lists all rendezvouses created by him. Nothing is expected
+	 * Case 4: User 4 lists all rendezvouses created by him. No exception is expected
 	 * 
-	 * Case 5: User 5 lists all rendezvouses created by him. Nothing is expected
+	 * Case 5: User 5 lists all rendezvouses created by him. No exception is expected
 	 * 
-	 * Case 6: User 6 lists all rendezvouses created by him. Nothing is expected
+	 * Case 6: User 6 lists all rendezvouses created by him. No exception is expected
 	 * 
 	 * Case 7: Null lists all rendezvouses created by him. IllegalArgumentException is expected.
 	 * 
@@ -632,27 +632,27 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * 
 	 * Case 11: Admin lists all rendezvouses created by him. IllegalArgumentException.
 	 * 
-	 * Case 12: Rendezvouses (not deleted) created by user 1. Nothing is expected.
+	 * Case 12: Rendezvouses (not deleted) created by user 1. No exception is expected.
 	 * 
-	 * Case 13: Rendezvouses (not deleted) created by user 2. Nothing is expected.
+	 * Case 13: Rendezvouses (not deleted) created by user 2. No exception is expected.
 	 * 
-	 * Case 14: Rendezvouses (not deleted) created by user 3. Nothing is expected.
+	 * Case 14: Rendezvouses (not deleted) created by user 3. No exception is expected.
 	 * 
-	 * Case 15: Rendezvouses (not deleted) created by user 4. Nothing is expected.
+	 * Case 15: Rendezvouses (not deleted) created by user 4. No exception is expected.
 	 * 
 	 * Case 16: Rendezvouses (not deleted) created by anything. IllegalArgumentException is expected.
 	 * 
-	 * Case 17: Rendezvouses (not deleted) created by user 8 (not exist). IllegalArgumentException is expected.
+	 * Case 17: Rendezvouses (not deleted) created by user 8 (does not exist). IllegalArgumentException is expected.
 	 * 
 	 * Case 18: Rendezvouses (not deleted) created by manager 2. NullPointerException is expected.
 	 * 
-	 * Case 19: Rendezvouses (not deleted) created by manager 3 (not exist). NullPointerException is expected.
+	 * Case 19: Rendezvouses (not deleted) created by manager 3 (does not exist). NullPointerException is expected.
 	 * 
 	 * Case 20: Rendezvouses (not deleted) created by admin. NullPointerException is expected.
 	 * 
 	 * Note: Case 1 to 11. It's the list that user see when they want to see rendezvouses created by them.
 	 * 
-	 * Note 2 : Case 12 to 20. It's the list that user (or another actor) see when they want to see rendezvouses created by other users.
+	 * Note 2 : Case 12 to 20. It's the list that an user (or another actor) sees when they want to see rendezvouses created by other users.
 	 */
 	@Test
 	public void driverRendezvousCreatedByPrincipal() {
@@ -768,9 +768,9 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user is joined.
 	 * 
-	 * Case 1: List rendezvouses joined by principal. Nothing is expected.
+	 * Case 1: List rendezvouses joined by principal. No exception is expected.
 	 * 
-	 * Case 2: List rendezvouses joined by principal. Nothing is expected.
+	 * Case 2: List rendezvouses joined by principal. No exception is expected.
 	 * 
 	 * Case 3: List rendezvouses joined by principal. IllegalArgumentException is expected.
 	 */
@@ -819,7 +819,7 @@ public class RendezvousServiceTest extends AbstractTest {
 	/**
 	 * Tests the listing of rendezvous joined by an user.
 	 * <p>
-	 * This method tests the listing of the rendezvous that an user is joined.
+	 * This method tests the listing of the rendezvous that an user has joined.
 	 * 
 	 * 
 	 */

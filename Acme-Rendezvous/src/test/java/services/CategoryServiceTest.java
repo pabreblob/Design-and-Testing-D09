@@ -222,7 +222,7 @@ public class CategoryServiceTest extends AbstractTest {
 	 * 
 	 * Case 1: A valid bean name is given. No exception expected.
 	 * Case 2: An invalid bean name is given, which is the most similar case to
-	 * giving an invalid ID. An <code>AssertionError</code> is expected.
+	 * giving an invalid ID. A <code>NumberFormatException</code> is expected.
 	 * 
 	 * (*) Even if the requirements don't explicitly say that an actor of any kind has
 	 * to be able to retrieve one Category from the Database, it makes
@@ -237,14 +237,15 @@ public class CategoryServiceTest extends AbstractTest {
 			{
 				"Category1", null
 			}, {
-				"non-valid", AssertionError.class
+				"non-valid", NumberFormatException.class
 			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			this.templateFindOne((String) testingData[i][0], (Class<?>) testingData[i][1]);
-	}
 
+			this.templateFindOne((String) testingData[i][0], (Class<?>) testingData[i][1]);
+
+	}
 	/**
 	 * Template for testing the finding of one Category.
 	 * This method defines the template used for the tests that check the finding
