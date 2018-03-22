@@ -1,8 +1,6 @@
 
 package services;
 
-import java.util.Collection;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import utilities.AbstractTest;
 import domain.Comment;
 import domain.Rendezvous;
 import domain.Reply;
-import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -28,8 +25,6 @@ public class CommentServiceTest extends AbstractTest {
 	private CommentService		commentService;
 	@Autowired
 	private RendezvousService	rendezvousService;
-	@Autowired
-	private UserService			userService;
 	@Autowired
 	private ReplyService		replyService;
 
@@ -114,7 +109,7 @@ public class CommentServiceTest extends AbstractTest {
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.templateCreateComment((String) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2]);
+			this.templateSaveComment((String) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 
 	/**
@@ -157,7 +152,7 @@ public class CommentServiceTest extends AbstractTest {
 	 * 
 	 * Case 1: A valid bean name is given. No exception expected.
 	 * Case 2: An invalid bean name is given, which is the most similar case to
-	 * giving an invalid ID. A <code>NumberFormatException</code> is expected.
+	 * giving an invalid ID. An <code>AssertionError</code> is expected.
 	 * 
 	 * (*) Even if the requirements don't explicitly say that an actor
 	 * of any kind has to be able to retrieve a single Comment from the
@@ -171,7 +166,7 @@ public class CommentServiceTest extends AbstractTest {
 			{
 				"Comment1", null
 			}, {
-				"non-valid", NumberFormatException.class
+				"non-valid", AssertionError.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -184,7 +179,7 @@ public class CommentServiceTest extends AbstractTest {
 	 * of one Comment.
 	 * 
 	 * @param commentBean
-	 *            The name of the bean of the Category that the user wants
+	 *            The name of the bean of the Comment that the user wants
 	 *            to retrieve.
 	 * @param expected
 	 *            The expected exception to be thrown.
@@ -200,17 +195,6 @@ public class CommentServiceTest extends AbstractTest {
 			caught = oops.getClass();
 		}
 		this.checkExceptions(expected, caught);
-	}
-
-	/**
-	 * 
-	 */
-	@Test
-	public void testFindAllComments() {
-
-		final Collection<Comment> res = this.commentService.findAll();
-		Assert.notNull(res);
-		Assert.notEmpty(res);
 	}
 
 	/**
@@ -264,19 +248,6 @@ public class CommentServiceTest extends AbstractTest {
 			caught = oops.getClass();
 		}
 		this.checkExceptions(expected, caught);
-	}
-
-	/**
-	 *
-	 */
-	@Test
-	public void testFindCommentsByUserId() {
-
-		super.authenticate("User1");
-		final User u = this.userService.findByPrincipal();
-		final Collection<Comment> res = this.commentService.findCommentsByUserId(u.getId());
-		for (final Comment c : res)
-			Assert.isTrue(c.getAuthor().equals(u));
 	}
 
 	/**
