@@ -26,7 +26,7 @@ public class ConfigurationServiceTest extends AbstractTest {
 	/**
 	 * Finding the configurations of the website
 	 * <p>
-	 * This tests check the method of the service Configuration which find the configuration of the website
+	 * This tests check the method of the service Configuration which finds the configuration of the website
 	 * 
 	 */
 	@Test

@@ -132,7 +132,7 @@ public class AnswerServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Tests the deleting of an answer
+	 * Tests the deletion of an answer
 	 * <p>
 	 * Case 1: User1 is the owner of the Question3, so he didn't answer the question
 	 * <p>
@@ -154,7 +154,7 @@ public class AnswerServiceTest extends AbstractTest {
 	}
 
 	/**
-	 * Template for testing the deleting of an answer
+	 * Template for testing the deletion of an answer
 	 * <p>
 	 * This template searches the answers of a given question and try to delete one of them
 	 * 
