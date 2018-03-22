@@ -94,6 +94,12 @@ public class CategoryService {
 	public void move(final Category child, final Category parent) {
 		Assert.notNull(child);
 		Assert.notNull(this.adminService.findByPrincipal());
+		final Collection<Category> all = this.categoryRepository.findAll();
+		final Collection<Category> copy = new ArrayList<Category>(all);
+		final Collection<Category> valid = this.removeCategories(copy, child);
+		valid.remove(child);
+		valid.remove(child.getParent());
+		Assert.isTrue(valid.contains(parent));
 
 		if (child.getParent() != null)
 			child.getParent().getChildren().remove(child);
@@ -124,6 +130,17 @@ public class CategoryService {
 		this.validator.validate(res, binding);
 
 		return res;
+	}
+
+	protected Collection<Category> removeCategories(Collection<Category> allCategories, final Category category) {
+		if (!category.getChildren().isEmpty()) {
+			final Collection<Category> categories = category.getChildren();
+			for (final Category c : categories)
+				allCategories = this.removeCategories(allCategories, c);
+		}
+		allCategories.remove(category);
+
+		return allCategories;
 	}
 
 }

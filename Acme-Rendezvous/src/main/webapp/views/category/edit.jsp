@@ -19,7 +19,11 @@
 	<acme:textarea code="category.description" path="description"/>
 	
 	<acme:submit name="submit" code="category.submit"/>
-	<acme:cancel url="category/display.do?categoryId=${parentId}" code="category.cancel"/>
-	
+	<jstl:if test="${parentId == 0}">
+		<acme:cancel url="category/list.do" code="category.cancel"/>
+	</jstl:if>
+	<jstl:if test="${parentId != 0}">
+		<acme:cancel url="category/display.do?categoryId=${parentId}" code="category.cancel"/>
+	</jstl:if>
 </form:form>
 

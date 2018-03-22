@@ -184,16 +184,15 @@ public class CategoryAdminController extends AbstractController {
 		return res;
 	}
 
-	//Auxiliar
+	//Auxiliary
 
 	protected Collection<Category> removeCategories(Collection<Category> allCategories, final Category category) {
-		if (category.getChildren().isEmpty())
-			allCategories.remove(category);
-		else {
+		if (!category.getChildren().isEmpty()) {
 			final Collection<Category> categories = category.getChildren();
 			for (final Category c : categories)
 				allCategories = this.removeCategories(allCategories, c);
 		}
+		allCategories.remove(category);
 		return allCategories;
 	}
 }
