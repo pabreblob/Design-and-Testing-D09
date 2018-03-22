@@ -36,6 +36,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the creation of Services.
 	 * <p>
 	 * This method is used to test the creation of empty services before passing them to the corresponding views.
+	 * 
+	 * 5.2 Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses.
 	 */
 	@Test
 	public void testCreateService() {
@@ -50,6 +52,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the saving of services.
 	 * <p>
 	 * This method tests the creation and later saving of services as it would be done by a manager in the corresponding views.
+	 * 
+	 * 5.2 Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses.
 	 * 
 	 * Case 1: Manager 1 create and save a service. Nothing is expected.
 	 * 
@@ -110,6 +114,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the editing of services.
 	 * <p>
 	 * This method tests the edition of services as it would be done by a manager in the corresponding views.
+	 * 
+	 * 5.2 Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses
 	 * 
 	 * Case 1: Service 1 is edited by manager 1 (creator). Nothing is expected.
 	 * 
@@ -174,6 +180,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * <p>
 	 * This method checks that a service stored in the database can be found.
 	 * 
+	 * Not exist explicit requirement for this method.
+	 * 
 	 * Case 1: Find service 1. Nothing is expected.
 	 * 
 	 * Case 2: Find service 2. Nothing is expected.
@@ -217,6 +225,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the deletion of a service.
 	 * <p>
 	 * This method tests that a service can be saved and later deleted.
+	 * 
+	 * 5.2 Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses
 	 * 
 	 * Case 1: Manager 1 delete a service created by him and not request. Nothing is expected
 	 * 
@@ -275,6 +285,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests that a service can be cancel if it has not been cancelled yet.
 	 * 
+	 * 6.1. Administraror: Cancel a service that he or she finds inappropiate. Such services cannot be requested for any rendezvous. Such services cannot be renquested for any rendezvous
+	 * 
 	 * Case 1: Cancellation of a service 1. Nothing is expected.
 	 * 
 	 * Case 2: Cancellation of a service 2. Nothing is expected.
@@ -320,6 +332,9 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the listing of services.
 	 * <p>
 	 * This method tests the listing all of the services stored in the database.
+	 * 
+	 * 6.1. Administraror: Cancel a service that he or she finds inappropiate. Such services cannot be requested for any rendezvous. Such services cannot be renquested for any rendezvous
+	 * 
 	 */
 
 	@Test
@@ -333,6 +348,9 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the listing of services available.
 	 * <p>
 	 * This method tests the listing of the services stored in the database if they isn't cancelled.
+	 * 
+	 * 4.2 and 5.1. List the services that are available in the system.
+	 * 
 	 */
 
 	@Test
@@ -346,6 +364,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the listing of services created by principal.
 	 * <p>
 	 * This method tests the listing of the services that a manager has created.
+	 * 
+	 * 5.2 Manage his or her services, which includes listing them, creating them, updating them, and deleting them as long as they are not required by any rendezvouses
 	 * 
 	 * Case 1: List of services created by principal (Manager 1 is logged). Nothing is expected.
 	 * 
@@ -400,6 +420,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the listing of services that a rendezvous has requested.
 	 * 
+	 * Not exist explicit requirement for this method.
+	 * 
 	 * Case 1: List of services request by rendezvous 1. Nothing is expected.
 	 * 
 	 * Case 2: List of services request by rendezvous 2. Nothing is expected.
@@ -449,6 +471,8 @@ public class ServiceServiceTest extends AbstractTest {
 	 * Tests the listing of services associated with a category.
 	 * <p>
 	 * This method tests the listing of the services associated with a category.
+	 * 
+	 * Not exist explicit requirement for this method.
 	 * 
 	 * Case 1: List of services associated with category 1. Nothing is expected.
 	 * 

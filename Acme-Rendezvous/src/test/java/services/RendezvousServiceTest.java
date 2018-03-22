@@ -34,6 +34,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the creation of Rendezvouses.
 	 * <p>
 	 * This method is used to test the creation of empty rendezvous before passing them to the corresponding views.
+	 * 
+	 * 5.2. Create a rendezvous, which he’s implicitly assumed to attend.
 	 */
 	@Test
 	public void testCreate() {
@@ -49,6 +51,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the saving of rendezvouses.
 	 * <p>
 	 * This method tests the creation and later saving of rendezvouses as it would be done by an user in the corresponding views.
+	 * 
+	 * 5.2. Create a rendezvous, which he’s implicitly assumed to attend.
 	 * 
 	 * Case 1: Creation and saving of a rendezvous correctly. No exception is expected.
 	 * 
@@ -121,6 +125,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the edition of rendezvouses as it would be done by an user in the corresponding views.
 	 * 
+	 * 5.3. Update or delete the rendezvouses that he or she’s created. Deletion is virtual, that is: the information is not removed from the database, but the rendezvous cannot be updated. Deleted rendezvouses are flagged as such when they are displayed
+	 * 
 	 * Case 1: Edition and saved of a rendezvous. No exception is expected.
 	 * 
 	 * Case 2: Edition and saved of a rendezvous not created by principal. IllegalArgumentException is expected.
@@ -192,6 +198,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the finding of one rendezvous.
 	 * <p>
 	 * This method checks that a rendezvous stored in the database can be found.
+	 * 
+	 * Not exist explicit requirement for this method.
 	 */
 	@Test
 	public void testFindOne() {
@@ -210,6 +218,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the finding of all rendezvouses.
 	 * <p>
 	 * This method checks that a rendezvous stored in the database is contained by all rendezvouses.
+	 * 
+	 * 6.2. Remove a rendezvous that he or she thinks is inappropriate.
 	 */
 	@Test
 	public void testFindAll() {
@@ -227,6 +237,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the linking of rendezvouses.
 	 * <p>
 	 * This method tests the linking of the rendezvouses that an user has created.
+	 * 
+	 * 16.4. Link one of the rendezvouses that he or she’s created to other similar rendezvouses.
 	 * 
 	 * Case 1: An user link a rendezvous created in the test with another rendezvous stored in the database. No exception is expected.
 	 * 
@@ -288,6 +300,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the unlinking of rendezvouses.
 	 * <p>
 	 * This method tests the unlinking of the rendezvouses that an user has created.
+	 * 
+	 * 16.4. Link one of the rendezvouses that he or she’s created to other similar rendezvouses.
 	 * 
 	 * Case 1: An user unlink two rendezvous. No exception is expected.
 	 * 
@@ -353,6 +367,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the joining of rendezvouses.
 	 * <p>
 	 * This method tests the joining of the rendezvouses by an user.
+	 * 
+	 * 5.4. RSVP a rendezvous or cancel it.
 	 * 
 	 * Case 1: An user join to a rendezvous. No exception is expected
 	 * 
@@ -421,6 +437,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests cancelling the attendance to rendezvouses that an user has joined.
 	 * 
+	 * 5.4. RSVP a rendezvous or cancel it.
+	 * 
 	 * Case 1: An user no longer attends to a rendezvous. No exception is expected.
 	 * 
 	 * Case 2: An user no longer attends to a rendezvous created by him. IllegalArgumentException is expected.
@@ -482,6 +500,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the cancellation of a rendezvous.
 	 * <p>
 	 * This method tests that a rendezvous can be cancelled.
+	 * 
+	 * 5.3. Update or delete the rendezvouses that he or she’s created. Deletion is virtual, that is: the information is not removed from the database, but the rendezvous cannot be updated. Deleted rendezvouses are flagged as such when they are displayed
 	 * 
 	 * Case 1: A rendezvous is cancelled. No exception is expected.
 	 * 
@@ -547,6 +567,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests that a rendezvous can be deleted in any situation by an admin.
 	 * 
+	 * 6.2. Remove a rendezvous that he or she thinks is inappropriate.
+	 * 
 	 * Case 1: A rendezvous is deleted by an admin.
 	 * 
 	 * Case 2: Another rendezvous is deleted by an admin.
@@ -609,6 +631,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous created by principal.
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user has created.
+	 * 
+	 * 4.3. List the rendezvouses in the system and navigate to the profiles of the corresponding creators and attendants.
 	 * 
 	 * Case 1: User 1 lists all rendezvouses created by him. No exception is expected
 	 * 
@@ -768,12 +792,15 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user is joined.
 	 * 
+	 * 5.5. List the rendezvouses that he or she’s RSVPd.
+	 * 
 	 * Case 1: List rendezvouses joined by principal. No exception is expected.
 	 * 
 	 * Case 2: List rendezvouses joined by principal. No exception is expected.
 	 * 
 	 * Case 3: List rendezvouses joined by principal. IllegalArgumentException is expected.
 	 */
+
 	@Test
 	public void driverRendezvousJoinedByPrincipal() {
 		final Object testingData[][] = {
@@ -821,7 +848,7 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user has joined.
 	 * 
-	 * 
+	 * 5.5. List the rendezvouses that he or she’s RSVPd.
 	 */
 	@Test
 	public void driverRendezvousJoinedByUserId() {
@@ -866,6 +893,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous joined by principal.
 	 * <p>
 	 * This method tests the listing of the rendezvous that an user is joined included with adult content.
+	 * 
+	 * 5.5. List the rendezvouses that he or she’s RSVPd.
 	 * 
 	 * Case 1: List rendezvouses joined by user 1. Nothing is expected.
 	 * 
@@ -915,6 +944,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous in final mode.
 	 * <p>
 	 * This method tests the listing of the rendezvous in final mode.
+	 * 
+	 * 4.3. List the rendezvouses in the system and navigate to the profiles of the corresponding creators and attendants.
 	 */
 	@Test
 	public void testFindFinalRendezvous() {
@@ -925,6 +956,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous in final mode.
 	 * <p>
 	 * This method tests the listing of the rendezvous in final mode included with adult content.
+	 * 
+	 * 4.3. List the rendezvouses in the system and navigate to the profiles of the corresponding creators and attendants.
 	 */
 	@Test
 	public void testFindFinalAdultRendezvous() {
@@ -935,6 +968,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous in final mode linked.
 	 * <p>
 	 * This method tests the listing of the rendezvous in final mode linked.
+	 * 
+	 * 16.4. Link one of the rendezvouses that he or she’s created to other similar rendezvouses.
 	 * 
 	 * Case 1: List rendezvouses without adult content linked by rendezvous 1. Nothing is expected.
 	 * 
@@ -987,6 +1022,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests the listing of the rendezvous linked with another rendezvous.
 	 * 
+	 * 16.4. Link one of the rendezvouses that he or she’s created to other similar rendezvouses.
+	 * 
 	 * Case 1: List rendezvouses linked by rendezvous 1. Nothing is expected.
 	 * 
 	 * Case 2: List rendezvouses linked by rendezvous 2. Nothing is expected.
@@ -1036,6 +1073,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvous linked.
 	 * <p>
 	 * This method tests the listing of the rendezvous linked with another rendezvous. Not necessary that rendezvouses are in final mode to be shown.
+	 * 
+	 * 16.4. Link one of the rendezvouses that he or she’s created to other similar rendezvouses.
 	 * 
 	 * Case 1: List rendezvouses linked by rendezvous 1. Nothing is expected.
 	 * 
@@ -1089,6 +1128,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method finds a rendezvous that has the comment.
 	 * 
+	 * Not exist a explicit requirement for this method.
+	 * 
 	 * Case 1: Search of rendezvous 1 by comment 1. Nothing is expected.
 	 * 
 	 * Case 2: Search of rendezvous 2 by comment 2. Nothing is expected.
@@ -1138,6 +1179,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvouses available for requests.
 	 * <p>
 	 * This method tests the listing of rendezvouses available for request a service.
+	 * 
+	 * 4.3. Request a service for one of the rendezvouses that he or she’s created. He or she must specify a valid credit card in every request for a service. Optionally, he or she can provide some comments in the request.
 	 * 
 	 * Case 1: List of rendezvouses available for request the service 1 by user 1. Nothing is expected.
 	 * 
@@ -1197,6 +1240,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * <p>
 	 * This method tests de listing of rendezvouses that request services with a category.
 	 * 
+	 * 10.1. List the rendezvouses in the system grouped by category.
+	 * 
 	 * Case 1: List the rendezvouses with Category 1. Nothing is expected.
 	 * 
 	 * Case 2: List the rendezvouses with Category 2. Nothing is expected.
@@ -1246,6 +1291,8 @@ public class RendezvousServiceTest extends AbstractTest {
 	 * Tests the listing of rendezvouses by categories.
 	 * <p>
 	 * This method tests the listing of rendezvouses that request services with a category. Can contain adult content rendezvouses.
+	 * 
+	 * 16.1. List the rendezvouses in the system grouped by category.
 	 * 
 	 * Case 1: List the rendezvouses with Category 1. Nothing is expected.
 	 * 
