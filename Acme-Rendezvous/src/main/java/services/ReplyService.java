@@ -45,12 +45,13 @@ public class ReplyService {
 		final Reply res = new Reply();
 		final Date moment = new Date(System.currentTimeMillis() - 1000);
 
+		Assert.isTrue(rendezvous.getMoment().after(moment));
+
 		res.setMoment(moment);
 		res.setAuthor(author);
 
 		return res;
 	}
-
 	public Reply save(final Reply reply, final Comment comment) {
 		Assert.notNull(reply);
 		Assert.notNull(comment);
