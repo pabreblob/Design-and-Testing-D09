@@ -90,16 +90,21 @@ public class ServiceManagerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(Service s, final BindingResult binding) {
 		ModelAndView res;
-		s = this.serviceService.reconstruct(s, binding);
-		if (binding.hasErrors())
-			res = this.createEditModelAndView(s);
-		else
-			try {
-				this.serviceService.save(s);
-				res = new ModelAndView("redirect:list-created.do");
-			} catch (final Throwable oops) {
-				res = this.createEditModelAndView(s, "service.commit.error");
-			}
+		if (s.getCategory() == null)
+			res = this.createEditModelAndView(s, "service.category.error");
+		else {
+			s = this.serviceService.reconstruct(s, binding);
+			if (binding.hasErrors())
+				res = this.createEditModelAndView(s);
+			else
+				try {
+					this.serviceService.save(s);
+					res = new ModelAndView("redirect:list-created.do");
+				} catch (final Throwable oops) {
+					res = this.createEditModelAndView(s, "service.commit.error");
+				}
+
+		}
 		return res;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "cancel")
