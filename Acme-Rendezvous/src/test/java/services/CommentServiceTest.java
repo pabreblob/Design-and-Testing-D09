@@ -166,7 +166,7 @@ public class CommentServiceTest extends AbstractTest {
 			{
 				"Comment1", null
 			}, {
-				"non-valid", AssertionError.class
+				"non-valid", NullPointerException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -188,8 +188,13 @@ public class CommentServiceTest extends AbstractTest {
 	public void templateFindOneComment(final String commentBean, final Class<?> expected) {
 		Class<?> caught;
 		caught = null;
+		Integer commentId;
 		try {
-			final Comment res = this.commentService.findOne(super.getEntityId(commentBean));
+			if (commentBean.equals("non-valid"))
+				commentId = null;
+			else
+				commentId = this.getEntityId(commentBean);
+			final Comment res = this.commentService.findOne(commentId);
 			Assert.notNull(res);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
