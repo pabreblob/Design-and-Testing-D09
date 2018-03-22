@@ -212,7 +212,8 @@ public class CategoryServiceTest extends AbstractTest {
 
 	/**
 	 * Tests the finding of one Category, given its ID.
-	 * This method checks that a Category stored in the database can be retrieved.
+	 * This method checks that a Category stored in the database
+	 * can be retrieved.
 	 * 
 	 * Functional requirement 11.1 (Acme-Rendezvous 2.0):
 	 * An actor who is authenticated as an administrator must be able to:
@@ -224,10 +225,11 @@ public class CategoryServiceTest extends AbstractTest {
 	 * giving an invalid ID. An <code>AssertionError</code> is expected.
 	 * 
 	 * (*) Even if the requirements don't explicitly say that an actor of any kind has
-	 * to be able to retrieve a Category from the Database, it makes sense that
-	 * this has to be possible, not only for every actor so they can see
-	 * the information regarding the Categories, but for the administrator so he
-	 * can be able to update and delete them.
+	 * to be able to retrieve one Category from the Database, it makes
+	 * sense that this has to be possible, not only for every actor
+	 * so they can see the information regarding the Categories,
+	 * but for the administrator so he/she can be able to update
+	 * and delete them.
 	 */
 	@Test
 	public void driverFindOneCategory() {
@@ -249,7 +251,8 @@ public class CategoryServiceTest extends AbstractTest {
 	 * of one Category.
 	 * 
 	 * @param categoryBean
-	 *            The name of the bean of the Category that the user wants to edit.
+	 *            The name of the bean of the Category that the user
+	 *            wants to retrieve.
 	 * @param expected
 	 *            The expected exception to be thrown.
 	 *            Use <code>null</code> if no exception is expected.
