@@ -144,7 +144,7 @@ public class ReplyServiceTest extends AbstractTest {
 	 * 
 	 * Case 1: A valid bean name is given. No exception expected.
 	 * Case 2: An invalid bean name is given, which is the most similar case to
-	 * giving an invalid ID. An <code>AssertionError</code> is expected.
+	 * giving an invalid ID. An <code>NullPointerException</code> is expected.
 	 */
 	@Test
 	public void driverFindOneReply() {
@@ -152,7 +152,7 @@ public class ReplyServiceTest extends AbstractTest {
 			{
 				"Reply1", null
 			}, {
-				"non-valid", AssertionError.class
+				"non-valid", NullPointerException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -174,8 +174,13 @@ public class ReplyServiceTest extends AbstractTest {
 	protected void templateFindOneReply(final String replyBean, final Class<?> expected) {
 		Class<?> caught;
 		caught = null;
+		Integer replyId;
 		try {
-			final Reply res = this.replyService.findOne(super.getEntityId(replyBean));
+			if (replyBean.equals("non-valid"))
+				replyId = null;
+			else
+				replyId = this.getEntityId(replyBean);
+			final Reply res = this.replyService.findOne(replyId);
 			Assert.notNull(res);
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
