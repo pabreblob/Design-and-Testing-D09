@@ -212,7 +212,7 @@ public class CommentServiceTest extends AbstractTest {
 	 * 
 	 * Case 1: An Administrator tries to delete a Comment. No exception is expected.
 	 * Case 2: An User tries to delete a Comment.
-	 * An <code>IllegalArgumentException</code> is expected.
+	 * An <code>NullPointerException</code> is expected.
 	 */
 	@Test
 	public void driverDeleteComment() {
