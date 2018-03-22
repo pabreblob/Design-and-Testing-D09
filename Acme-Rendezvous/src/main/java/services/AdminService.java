@@ -212,7 +212,7 @@ public class AdminService {
 		if (rendezvous.isEmpty())
 			res = new ArrayList<Rendezvous>();
 		else if (rendezvous.size() < 10)
-			res = rendezvous.subList(0, rendezvous.size() - 1);
+			res = rendezvous;
 		else
 			res = rendezvous.subList(0, 9);
 		return res;
@@ -411,7 +411,7 @@ public class AdminService {
 		}
 		Assert.notNull(admin);
 		Double res;
-		res = this.adminRepository.averageRequestsPerRendezvous();
+		res = this.adminRepository.minRequestsPerRendezvous();
 		if (res == null)
 			res = 0.0;
 		return res;
@@ -426,7 +426,7 @@ public class AdminService {
 		}
 		Assert.notNull(admin);
 		Double res;
-		res = this.adminRepository.standartDeviationRequestsPerRendezvous();
+		res = this.adminRepository.maxRequestsPerRendezvous();
 		if (res == null)
 			res = 0.0;
 		return res;
@@ -459,8 +459,9 @@ public class AdminService {
 		List<domain.Service> res = new ArrayList<domain.Service>();
 		if (services.isEmpty())
 			res = new ArrayList<domain.Service>();
-		else
+		else if (services.get(0).getRequests().size() > 0)
 			res.add(services.get(0));
+
 		for (final domain.Service s : services)
 			if (s.getRequests().size() == services.get(0).getRequests().size() && s != services.get(0))
 				res.add(s);
@@ -484,7 +485,7 @@ public class AdminService {
 		if (services.isEmpty())
 			res = new ArrayList<domain.Service>();
 		else if (services.size() < 10)
-			res = services.subList(0, services.size() - 1);
+			res = services;
 		else
 			res = services.subList(0, 9);
 		return res;
@@ -506,19 +507,7 @@ public class AdminService {
 			res = managers;
 		return res;
 	}
-	public Double avgCategoriesPerRendezvous() {
-		Administrator admin = null;
-		try {
-			admin = this.findByPrincipal();
 
-		} catch (final Exception e) {
-
-		}
-		Assert.notNull(admin);
-		final Double res = 0.0;
-
-		return res;
-	}
 	public Double getAverageCategoryPerRendezvous() {
 		Administrator admin = null;
 		try {
@@ -532,11 +521,12 @@ public class AdminService {
 		Double res = 0.0;
 		final int size = this.rendezvousService.findAll().size();
 		final List<Long> categoriesNum = this.adminRepository.averageCategoriesPerRendezvous();
-
-		for (final Long i : categoriesNum)
-			sum += i;
-		if (this.findAll().size() != 0)
-			res = sum / size;
+		if (categoriesNum.size() > 0) {
+			for (final Long i : categoriesNum)
+				sum += i;
+			if (this.findAll().size() != 0)
+				res = sum / size;
+		}
 
 		return res;
 	}

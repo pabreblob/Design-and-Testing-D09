@@ -211,7 +211,9 @@
  <spring:message code="admin.rendezvous.name" var="nameHeader" />
 		<display:column property="name" title="${nameHeader}" />
 	<spring:message code="admin.service.price" var="priceHeader" />
-		<display:column property="price" title="${priceHeader}" />
+		<display:column title="${priceHeader}" >
+	<jstl:out value="${row.price}"/> <jstl:out value="${currency}"/>
+	</display:column>
 	<display:column>
 	<a href="service/display.do?serviceId=${row.id}">
 				<spring:message	code="admin.rendezvous.view" />
@@ -224,7 +226,9 @@
  <spring:message code="admin.rendezvous.name" var="nameHeader" />
 		<display:column property="name" title="${nameHeader}" />
 	<spring:message code="admin.service.price" var="priceHeader" />
-		<display:column property="price" title="${priceHeader}" />
+		<display:column title="${priceHeader}" >
+	<jstl:out value="${row.price}"/> <jstl:out value="${currency}"/>
+	</display:column>
 	<display:column>
 	<a href="service/display.do?serviceId=${row.id}">
 				<spring:message	code="admin.rendezvous.view" />

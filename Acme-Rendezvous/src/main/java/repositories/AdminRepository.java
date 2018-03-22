@@ -22,7 +22,7 @@ public interface AdminRepository extends JpaRepository<Administrator, Integer> {
 	Double averageRendezvousCreatedPerUser();
 	@Query("select sqrt(sum(u.createdRendezvous.size*u.createdRendezvous.size)/count(u.createdRendezvous.size)-(avg(u.createdRendezvous.size)*avg(u.createdRendezvous.size))) from User u")
 	Double standartDeviationRendezvousCreatedPerUser();
-	@Query("select (select count(uc) from User uc where uc.createdRendezvous is not empty)*1.0/count(u) from User u where u.createdRendezvous is empty")
+	@Query("select (select count(uc) from User uc where uc.createdRendezvous is not empty)*1.0/count(u) from User u")
 	Double ratioUsersWithCreatedRendezvous();
 	@Query("select avg(r.attendants.size) from Rendezvous r")
 	Double averageAttendantsPerRendezvous();
@@ -59,7 +59,7 @@ public interface AdminRepository extends JpaRepository<Administrator, Integer> {
 	List<Manager> managersMoreThanAvg();
 	@Query("select s from Service s where s.manager.id=?")
 	List<Service> cancelledbyManager(int managerId);
-	//falta managers con más servicios cancelados
+	//falta managers con mï¿½s servicios cancelados
 	@Query("select s.manager from Service s where cancelled=true group by s.manager order by count(s) DESC")
 	List<Manager> managersMostCancelled();
 	@Query("select s from Service s order by s.requests.size DESC")

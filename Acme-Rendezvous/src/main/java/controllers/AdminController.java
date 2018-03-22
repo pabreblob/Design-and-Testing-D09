@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdminService;
+import services.ConfigurationService;
 import domain.Administrator;
 import domain.Manager;
 import domain.Rendezvous;
@@ -25,7 +26,9 @@ import domain.Service;
 public class AdminController extends AbstractController {
 
 	@Autowired
-	private AdminService	adminService;
+	private AdminService			adminService;
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	public AdminController() {
@@ -106,9 +109,11 @@ public class AdminController extends AbstractController {
 		bestSelling = this.adminService.getBestSellingServices();
 		final List<Manager> moreCancelled;
 		moreCancelled = this.adminService.getManagersMostCancelled();
+		final String currency = this.configurationService.find().getCurrency();
 		result.addObject("topSelling", topSelling);
 		result.addObject("bestSelling", bestSelling);
 		result.addObject("moreCancelled", moreCancelled);
+		result.addObject("currency", currency);
 		result.addObject("requestURI", "admin/dashboard.do");
 		return result;
 

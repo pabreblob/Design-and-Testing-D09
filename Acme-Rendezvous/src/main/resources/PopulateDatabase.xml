@@ -311,6 +311,27 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="Category0" class="domain.Category">
+		<property name="name" value="root" />
+		<property name="description" value="desc0" />
+		<property name="services">
+			<list>
+				
+			</list>
+		</property>
+		<property name="children">
+			<list>
+				<ref bean="Category1"></ref>
+				<ref bean="Category4"></ref>
+				<ref bean="Category5"></ref>
+				<ref bean="Category6"></ref>
+				<ref bean="Category7"></ref>
+				<ref bean="Category8"></ref>
+				
+			</list>
+		</property>
+		<property name="parent"><null/></property>
+	</bean>
 	<bean id="Category1" class="domain.Category">
 		<property name="name" value="categoryparent1" />
 		<property name="description" value="desc1" />
@@ -325,7 +346,7 @@
 				<ref bean="Category3"></ref>
 			</list>
 		</property>
-		<property name="parent"><null/></property>
+		<property name="parent"><ref bean="Category0"></ref></property>
 	</bean>
 	<bean id="Category2" class="domain.Category">
 		<property name="name" value="categorychild1" />
@@ -371,7 +392,7 @@
 				
 			</list>
 		</property>
-		<property name="parent"><null/></property>
+		<property name="parent"><ref bean="Category0"></ref></property>
 	</bean>
 	<bean id="Category5" class="domain.Category">
 		<property name="name" value="categoryparent3" />
@@ -386,7 +407,7 @@
 				
 			</list>
 		</property>
-		<property name="parent"><null/></property>
+		<property name="parent"><ref bean="Category0"></ref></property>
 	</bean>
 		<bean id="Category6" class="domain.Category">
 		<property name="name" value="categoryparent4" />
@@ -401,7 +422,7 @@
 				
 			</list>
 		</property>
-		<property name="parent"><null/></property>
+		<property name="parent"><ref bean="Category0"></ref></property>
 	</bean>
 			<bean id="Category7" class="domain.Category">
 		<property name="name" value="categoryparent5" />
@@ -416,7 +437,7 @@
 				
 			</list>
 		</property>
-		<property name="parent"><null/></property>
+		<property name="parent"><ref bean="Category0"></ref></property>
 	</bean>
 			<bean id="Category8" class="domain.Category">
 		<property name="name" value="categoryparent6" />
@@ -431,7 +452,7 @@
 				
 			</list>
 		</property>
-		<property name="parent"><null/></property>
+		<property name="parent"><ref bean="Category0"></ref></property>
 	</bean>
 	<bean id="Service1" class="domain.Service">
 		<property name="name" value="service1" />
